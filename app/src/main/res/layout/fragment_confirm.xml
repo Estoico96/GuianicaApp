@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_auth_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".splash.AuthFragment">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_image_fragment_confirm"
+        android:layout_width="109dp"
+        android:layout_height="109dp"
+        app:civ_border_width="0dp"
+        android:src="@drawable/lorem_image"
+        android:layout_centerHorizontal="true"
+        android:elevation="@dimen/small_margin"
+        android:layout_marginTop="@dimen/max_margin"/>
+
+    <TextView android:id="@+id/user_name_fragment_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_image_fragment_confirm"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/small_margin"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:text="@string/lorem_title_small"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/description_fragment_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="12"
+        android:fontFamily="@font/nunito_sans"
+        android:text="@string/text_description_fragment_confirm"
+        android:textAlignment="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="20sp" />
+
+
+    <Button
+        android:id="@+id/btn_next_fragment_confirm"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:background="@drawable/button_fragment_confirm"
+        android:fontFamily="@font/nunito_sans"
+        android:text="@string/text_button_fragment_confirm"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp" />
+
+</RelativeLayout>

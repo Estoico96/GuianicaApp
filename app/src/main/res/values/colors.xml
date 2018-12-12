@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- PRIMARY COLORS -->
+    <color name="colorPrimary">#FAFAFA</color>
+    <color name="colorPrimaryDark">#FAFAFA</color>
+    <color name="colorAccent">#225FA4</color>
+    <color name="colorWhite">#ffffff</color>
+
+    <!-- TEXT COLORS -->
+    <color name="colorPrimaryText">#000000</color>
+    <color name="colorSecondaryText">#e9002d56</color>
+
+    <!-- BACKGROUND COLORS -->
+    <color name="colorGrey">#dedede</color>
+
+    <!-- DOTS COLORS -->
+    <color name="colorDotInactive">#e9002d56</color>
+
+</resources>

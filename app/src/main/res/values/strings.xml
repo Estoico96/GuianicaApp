@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Guianica</string>
+    <string name="label_sign_in">Incia sesión</string>
+    <string name="text_button_fragment_confirm">Continuar</string>
+    <string name="text_description_fragment_confirm">El registro se ha completado con exito, puedes darle continuar para disfrutar del contenido de Guianica.</string>
+
+    <!-- LOREM IPSUM -->
+    <string name="lorem_title_small">Lorem ipsum</string>
+    <string name="lorem_description_small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="lorem_description_medium">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+
+    <!-- IMAGE VIEW CONTENT DESCRIPTION -->
+    <string name="logo_content_description">Logo</string>
+</resources>

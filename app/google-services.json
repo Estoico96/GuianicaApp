@@ -1,0 +1,61 @@
+{
+  "project_info": {
+    "project_number": "117932556839",
+    "firebase_url": "https://guianica-db801.firebaseio.com",
+    "project_id": "guianica-db801",
+    "storage_bucket": "guianica-db801.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117932556839:android:c647fd57d91f97ef",
+        "android_client_info": {
+          "package_name": "com.ninjabyte.guianica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "117932556839-ttnoah6t0j9rdq0q68cr01go7po0ccru.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ninjabyte.guianica",
+            "certificate_hash": "792aca1dc5b32e1d9996d33f2a406bae31cfe00f"
+          }
+        },
+        {
+          "client_id": "117932556839-5lsuq6bmuh2vjjmbqtm4pam66vp6hm1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBunL3QHdL4KJAE33lBizepxzOgSGpSsac"
+        },
+        {
+          "current_key": "AIzaSyAviS9tt_J8H1iToin5hrbWE-mMmZSUIlQ"
+        },
+        {
+          "current_key": "AIzaSyCK7iuNDOdfp7qdD_IcDxN6jbSZUJGccjQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "117932556839-5lsuq6bmuh2vjjmbqtm4pam66vp6hm1q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
