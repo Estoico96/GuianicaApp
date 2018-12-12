@@ -2,6 +2,7 @@
     <string name="app_name">Guianica</string>
     <string name="label_sign_in">Incia sesión</string>
     <string name="text_button_fragment_confirm">Continuar</string>
+    <string name="text_hints_search_main_activity">Buscar...</string>
     <string name="text_description_fragment_confirm">El registro se ha completado con exito, puedes darle continuar para disfrutar del contenido de Guianica.</string>
 
     <!-- LOREM IPSUM -->
