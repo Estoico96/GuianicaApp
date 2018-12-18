@@ -16,4 +16,8 @@
     <!-- DOTS COLORS -->
     <color name="colorDotInactive">#e9002d56</color>
 
+    <!-- NAVIGATIONVIEW COLOR -->
+    <color name="selector_item_color">#225FA4</color>
+    <color name="selector_text_color">#FFFFFF</color>
+
 </resources>

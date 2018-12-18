@@ -13,6 +13,13 @@
     <!-- IMAGE VIEW CONTENT DESCRIPTION -->
     <string name="logo_content_description">Logo</string>
 
+    <!-- TITLE MENU NAVIGATION -->
+    <string name="menu_title_home">Home</string>
+    <string name="menu_title_discover">Discover</string>
+    <string name="menu_title_favorite">Favorite</string>
+    <string name="menu_title_place">Place</string>
+    <string name="menu_title_user">User</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
