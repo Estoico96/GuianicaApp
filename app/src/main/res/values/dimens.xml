@@ -6,6 +6,18 @@
     <dimen name="max_margin">30dp</dimen>
 
     <!-- Lateral padding -->
-    <dimen name="lateral_padding_left">16dp</dimen>
-    <dimen name="lateral_padding_right">16dp</dimen>
+    <dimen name="padding_top">10dp</dimen>
+    <dimen name="padding_start">16dp</dimen>
+    <dimen name="padding_end">16dp</dimen>
+
+    <!-- Lateral margin title -->
+    <dimen name="title_margin_top">10dp</dimen>
+    <dimen name="title_margin_button">3dp</dimen>
+    <dimen name="title_margin_end">5dp</dimen>
+    <dimen name="title_font_size">25sp</dimen>
+
+    <!-- Lateral margin Subtitle -->
+    <dimen name="subtitle_margin_button">10dp</dimen>
+    <dimen name="subtitle_margin_end">5dp</dimen>
+    <dimen name="subtitle_font_size">16sp</dimen>
 </resources>

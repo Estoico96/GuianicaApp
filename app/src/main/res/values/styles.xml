@@ -10,8 +10,24 @@
 
     <!-- Application theme lateral margins. -->
     <style name="LayoutLateralMargin" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:paddingLeft">@dimen/lateral_padding_left</item>
-        <item name="android:paddingRight">@dimen/lateral_padding_right</item>
+        <item name="android:paddingTop">@dimen/padding_top</item>
+        <item name="android:paddingStart">@dimen/padding_start</item>
+        <item name="android:paddingEnd">@dimen/padding_end</item>
 
+    </style>
+
+    <!-- Application theme title header -->
+    <style name="TitleHeader" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_marginTop">@dimen/title_margin_top</item>
+        <item name="android:layout_marginEnd">@dimen/title_margin_end</item>
+        <item name="android:textSize">@dimen/title_font_size</item>
+        <item name="android:fontFamily">@font/nunito_sans_bold</item>
+    </style>
+
+    <!-- Application theme title header -->
+    <style name="SubtitleHeader" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_marginEnd">@dimen/subtitle_margin_end</item>
+        <item name="android:textSize">@dimen/subtitle_font_size</item>
+        <item name="android:fontFamily">@font/nunito_sans</item>
     </style>
 </resources>

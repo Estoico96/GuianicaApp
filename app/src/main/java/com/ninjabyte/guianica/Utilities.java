@@ -1,11 +1,15 @@
 package com.ninjabyte.guianica;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.view.Window;
 
 import com.ninjabyte.guianica.model.About;
 
@@ -43,4 +47,14 @@ public class Utilities {
 
     }
 
+
+    public static void checkApiLevel(Activity activity){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            View decor = activity.getWindow().getDecorView();
+            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            return;
+        }
+        Window window = activity.getWindow();
+        window.setStatusBarColor(Color.parseColor("#D5D5D5"));
+    }
 }

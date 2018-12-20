@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="wrap_content">
 
         <ImageButton
             android:layout_width="45dp"
@@ -39,17 +39,47 @@
             android:src="@drawable/lorem_image"
             android:layout_centerHorizontal="true"
             android:elevation="@dimen/small_elevation"/>
+
+        <EditText
+            android:hint="@string/text_hints_search_main_activity"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_below="@id/user_image_fragment_confirm "
+            android:background="@drawable/background_searchbar_activity_main"
+            android:elevation="@dimen/small_elevation"/>
+
+        <TextView style="@style/TitleHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_offer_home_fragment"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_tooltip"
+            android:paddingStart="7dp"
+            android:paddingTop="3dp"
+            android:paddingEnd="7dp"
+            android:paddingBottom="3dp"
+            android:text="10 negocios"
+            android:textColor="@color/colorWhite" />
+
     </RelativeLayout>
 
-    <EditText
-        android:hint="@string/text_hints_search_main_activity"
-        android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:layout_marginTop="17dp"
-        android:background="@drawable/background_searchbar_activity_main"
-        android:elevation="@dimen/small_elevation"/>
+
+
+    <TextView
+        style="@style/SubtitleHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lorem_description_small" />
+
+
 
 </LinearLayout>

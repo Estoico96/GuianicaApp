@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
@@ -20,7 +21,9 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        checkApiLevel();
+        Log.v("asdfg","xdxdxd");
+
+        Utilities.checkApiLevel(SplashActivity.this);
     }
 
     @Override
@@ -30,7 +33,6 @@ public class SplashActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null){
             Utilities.setFragment(new ConfirmFragment(), SplashActivity.this, FRAGMENT_CONTAINER);
-
 
             return;
         }
@@ -43,16 +45,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        finish();
+        //finish();
     }
 
-    private void checkApiLevel(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            View decor = getWindow().getDecorView();
-            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            return;
-        }
-        Window window = getWindow();
-        window.setStatusBarColor(Color.parseColor("#D5D5D5"));
-    }
 }
