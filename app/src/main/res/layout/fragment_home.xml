@@ -34,7 +34,6 @@
             app:civ_border_width="0dp"
             android:layout_alignParentEnd="true"
             android:src="@drawable/lorem_image"
-            android:layout_centerHorizontal="true"
             android:elevation="@dimen/small_elevation"/>
 
         <EditText android:id="@+id/search_bar_home_fragment"
@@ -87,6 +86,12 @@
 
 
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_offers_home_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
 
 
 

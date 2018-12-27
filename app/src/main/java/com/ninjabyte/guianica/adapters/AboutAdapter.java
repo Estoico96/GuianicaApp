@@ -38,7 +38,7 @@ public class AboutAdapter  extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        View view = layoutInflater.inflate(R.layout.model_about, container, false);
+        View view = layoutInflater.inflate(R.layout.view_about, container, false);
 
         About about = abouts.get(position);
 

@@ -20,4 +20,7 @@
     <color name="selector_item_color">#225FA4</color>
     <color name="selector_text_color">#FFFFFF</color>
 
+    <!-- TRASPARENT COLORS -->
+    <color name="colorTransparentBlack">#a0000000</color>
+
 </resources>
