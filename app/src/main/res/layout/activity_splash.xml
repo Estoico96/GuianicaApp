@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/login_coordinatorLy"
+    android:id="@+id/fragment_main_activity_splash"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".splash.SplashActivity">
 
-    <FrameLayout android:id="@+id/fragment_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
 
-
-</android.support.design.widget.CoordinatorLayout>
+</FrameLayout>

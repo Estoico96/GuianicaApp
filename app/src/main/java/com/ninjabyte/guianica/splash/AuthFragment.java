@@ -33,7 +33,7 @@ import com.shuhart.bubblepagerindicator.BubblePageIndicator;
 
 
 public class AuthFragment extends Fragment implements View.OnClickListener {
-    private static final int FRAGMENT_CONTAINER = R.id.fragment_main;
+    private static final int FRAGMENT_CONTAINER = R.id.fragment_main_activity_splash;
     private static final int RC_SIGN_IN = 1;
     private static final String TAG = "AuthActivity";
 

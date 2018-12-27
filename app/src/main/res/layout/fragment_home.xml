@@ -17,7 +17,6 @@
             android:layout_height="45dp"
             android:src="@drawable/ic_call_white"
             android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
             android:background="@drawable/button_emergency_call_activity_main"/>
 
         <TextView
@@ -25,53 +24,59 @@
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:fontFamily="@font/nunito_sans_bold"
             android:textSize="20sp"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/user_image_fragment_confirm"
+            android:id="@+id/user_image_fragment_home"
             android:layout_width="45dp"
             android:layout_height="45dp"
             app:civ_border_width="0dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:src="@drawable/lorem_image"
             android:layout_centerHorizontal="true"
             android:elevation="@dimen/small_elevation"/>
 
-        <EditText
+        <EditText android:id="@+id/search_bar_home_fragment"
             android:hint="@string/text_hints_search_main_activity"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="15dp"
             android:layout_marginStart="3dp"
+            android:layout_marginBottom="3dp"
             android:layout_marginEnd="3dp"
-            android:layout_below="@id/user_image_fragment_confirm "
+            android:layout_below="@id/user_image_fragment_home"
             android:background="@drawable/background_searchbar_activity_main"
             android:elevation="@dimen/small_elevation"/>
 
-        <TextView style="@style/TitleHeader"
+        <TextView android:id="@+id/title_offer_home_fragment"
+            style="@style/TitleHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/search_bar_home_fragment"
             android:text="@string/title_offer_home_fragment"/>
 
-        <TextView
+        <TextView android:id="@+id/tooltip_home_fragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/background_tooltip"
             android:paddingStart="7dp"
-            android:paddingTop="3dp"
+            android:layout_toEndOf="@+id/title_offer_home_fragment"
+            android:layout_below="@+id/search_bar_home_fragment"
+            android:paddingTop="2dp"
             android:paddingEnd="7dp"
-            android:paddingBottom="3dp"
+            android:paddingBottom="2dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="15dp"
+            android:textSize="13sp"
+            android:fontFamily="@font/nunito_sans_bold"
             android:text="10 negocios"
             android:textColor="@color/colorWhite" />
 
     </RelativeLayout>
-
 
 
     <TextView
@@ -79,6 +84,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lorem_description_small" />
+
+
+
 
 
 

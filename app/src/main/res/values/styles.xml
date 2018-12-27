@@ -28,6 +28,6 @@
     <style name="SubtitleHeader" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:layout_marginEnd">@dimen/subtitle_margin_end</item>
         <item name="android:textSize">@dimen/subtitle_font_size</item>
-        <item name="android:fontFamily">@font/nunito_sans</item>
+        <item name="android:fontFamily">@font/nunito</item>
     </style>
 </resources>

@@ -45,7 +45,7 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
     private Context context;
     private View view;
     private FirebaseAuth auth;
-    private FirebaseUser user;
+    private FirebaseUser currentUser;
 
     public ConfirmFragment() {
         // Required empty public constructor
@@ -61,12 +61,8 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
         TextView userName = view.findViewById(R.id.user_name_fragment_confirm);
         Button btnConfirm = view.findViewById(R.id.btn_next_fragment_confirm);
 
-        Glide.with(context)
-                .load(user.getPhotoUrl())
-                .dontAnimate()
-                .into(userImage);
-
-        userName.setText(user.getDisplayName());
+        Utilities.setImageFromUrl(context, userImage, Utilities.getCurrentUser("photoUrl"));
+        userName.setText(currentUser.getDisplayName());
 
         btnConfirm.setOnClickListener(this);
 
@@ -78,7 +74,7 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
+        currentUser = auth.getCurrentUser();
 
     }
 

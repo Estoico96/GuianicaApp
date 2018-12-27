@@ -1,5 +1,6 @@
 package com.ninjabyte.guianica.splash;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,16 +13,16 @@ import android.view.Window;
 import com.google.firebase.auth.FirebaseAuth;
 import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
+import com.ninjabyte.guianica.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
-    private static final int FRAGMENT_CONTAINER = R.id.fragment_main;
+    private static final int FRAGMENT_CONTAINER = R.id.fragment_main_activity_splash;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        Log.v("asdfg","xdxdxd");
 
         Utilities.checkApiLevel(SplashActivity.this);
     }
@@ -32,13 +33,15 @@ public class SplashActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null){
-            Utilities.setFragment(new ConfirmFragment(), SplashActivity.this, FRAGMENT_CONTAINER);
+            //PANTALLA DE BIENVENIDA
 
+            //POR EL MOMENTO SE ENVIA DIRECTAMENTE DESDE EL ACTIVITY SPLASH
+            //A EL MAINACTIVITY
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
             return;
         }
 
-        AuthFragment authFragment = new AuthFragment();
-        Utilities.setFragment(authFragment, SplashActivity.this, FRAGMENT_CONTAINER);
+        Utilities.setFragment(new AuthFragment(), SplashActivity.this, FRAGMENT_CONTAINER);
 
     }
 
