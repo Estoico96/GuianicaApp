@@ -1,71 +1,47 @@
 package com.ninjabyte.guianica.model;
 
 public class Offer {
-    private String bannerUrl;
-    private String title;
-    private String description;
-    private String expire;
-    private String state;
-    private String idCompany;
-    private String idOffer;
+   private String company;
+   private String counter;
+   private String logoUrl;
+   private String lastBannerUrlOffer;;
 
 
     public Offer() {
     }
 
-    public String getState() {
-        return state;
+
+    public String getCompany() {
+        return company;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
-    public String getIdCompany() {
-        return idCompany;
+    public String getCounter() {
+        return counter;
     }
 
-    public void setIdCompany(String idCompany) {
-        this.idCompany = idCompany;
+    public void setCounter(String counter) {
+        this.counter = counter;
     }
 
-    public String getIdOffer() {
-        return idOffer;
+    public String getLogoUrl() {
+        return logoUrl;
     }
 
-    public void setIdOffer(String idOffer) {
-        this.idOffer = idOffer;
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 
-    public String getBannerUrl() {
-        return bannerUrl;
+    public String getLastBannerUrlOffer() {
+        return lastBannerUrlOffer;
     }
 
-    public void setBannerUrl(String bannerUrl) {
-        this.bannerUrl = bannerUrl;
+    public void setLastBannerUrlOffer(String lastBannerUrlOffer) {
+        this.lastBannerUrlOffer = lastBannerUrlOffer;
     }
 
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getExpire() {
-        return expire;
-    }
-
-    public void setExpire(String expire) {
-        this.expire = expire;
-    }
 }

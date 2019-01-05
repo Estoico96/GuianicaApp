@@ -7,10 +7,10 @@
     tools:context=".main.MainActivity">
 
 
-    <FrameLayout style="@style/LayoutLateralMargin"
+    <FrameLayout
         android:id="@+id/container_activity_main"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/navigation_header_container"
+        android:layout_above="@+id/navigation_view_activity_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

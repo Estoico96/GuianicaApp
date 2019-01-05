@@ -11,10 +11,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ninjabyte.guianica.model.About;
 
 import java.util.ArrayList;
@@ -22,6 +25,10 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Utilities {
+    private static DatabaseReference databaseReference;
+    public static final int TYPE_CIRCLE = 0;
+    public static final int TYPE_NORMAL = 1;
+
     private Utilities() {
     }
 
@@ -31,7 +38,7 @@ public class Utilities {
 
     }
 
-    public static ArrayList<About> getAboutContent(){
+    public static ArrayList<About> getAboutContent() {
         ArrayList<About> abouts = new ArrayList<>();
 
         abouts.add(new About("¡Gracias por descargarme!",
@@ -54,8 +61,8 @@ public class Utilities {
     }
 
 
-    public static void checkApiLevel(Activity activity){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+    public static void checkApiLevel(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             View decor = activity.getWindow().getDecorView();
             decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             return;
@@ -64,14 +71,37 @@ public class Utilities {
         window.setStatusBarColor(Color.parseColor("#D5D5D5"));
     }
 
-    public static void setImageFromUrl(Context context, CircleImageView container, String url){
+    public static void setCircleImageFromUrl(Context context, CircleImageView container, String url) {
         Glide.with(context)
                 .load(url)
+                .placeholder(R.drawable.place_holder)
                 .dontAnimate()
                 .into(container);
     }
 
-    public static String getCurrentUser(String option){
+    public static void setImageFromUrl(Context context, int type, CircleImageView circleImage, ImageView normalImage, String url) {
+
+        switch (type) {
+            case TYPE_CIRCLE:
+                Glide.with(context)
+                        .load(url)
+                        .placeholder(R.drawable.place_holder)
+                        .dontAnimate()
+                        .into(circleImage);
+                break;
+
+            case TYPE_NORMAL:
+                Glide.with(context)
+                        .load(url)
+                        .placeholder(R.drawable.place_holder)
+                        .dontAnimate()
+                        .into(normalImage);
+                break;
+        }
+
+    }
+
+    public static String getCurrentUser(String option) {
         String response = "null";
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -83,15 +113,15 @@ public class Utilities {
                     break;
 
 
-                case "displayName" :
+                case "displayName":
                     response = user.getDisplayName();
                     break;
 
-                case "userUid" :
+                case "userUid":
                     response = user.getUid();
                     break;
 
-                case "userEmail" :
+                case "userEmail":
                     response = user.getEmail();
                     break;
             }
@@ -100,4 +130,14 @@ public class Utilities {
 
         return response;
     }
+
+    public static DatabaseReference getDatabaseReference() {
+
+        if (databaseReference == null) {
+            databaseReference = FirebaseDatabase.getInstance().getReference();
+        }
+
+        return databaseReference;
+    }
+
 }

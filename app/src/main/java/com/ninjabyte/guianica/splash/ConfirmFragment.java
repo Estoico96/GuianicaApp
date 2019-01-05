@@ -61,7 +61,7 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
         TextView userName = view.findViewById(R.id.user_name_fragment_confirm);
         Button btnConfirm = view.findViewById(R.id.btn_next_fragment_confirm);
 
-        Utilities.setImageFromUrl(context, userImage, Utilities.getCurrentUser("photoUrl"));
+        Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE, userImage, null, Utilities.getCurrentUser("photoUrl"));
         userName.setText(currentUser.getDisplayName());
 
         btnConfirm.setOnClickListener(this);
