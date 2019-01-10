@@ -3,13 +3,13 @@ package com.ninjabyte.guianica;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Build;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 
@@ -140,4 +140,17 @@ public class Utilities {
         return databaseReference;
     }
 
+    public static void setMargins(View view, int left, int top, int right, int bottom, String direction) {
+
+        ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+        switch (direction) {
+            case "END":
+                p.setMarginEnd(right);
+                break;
+            case "ALL":
+                p.setMargins(left, top, right, bottom);
+                break;
+        }
+        view.requestLayout();
+    }
 }

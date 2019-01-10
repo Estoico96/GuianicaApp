@@ -44,10 +44,6 @@ public class HomeFragment extends Fragment {
     private ArrayList<Offer> arrayOffers;
     private DatabaseReference databaseReference;
 
-    private Query query;
-    private  FirebaseRecyclerOptions<Offer> options;
-
-
 
 
     public HomeFragment() {

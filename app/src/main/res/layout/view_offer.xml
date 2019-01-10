@@ -25,15 +25,15 @@
 
         <TextView
             android:id="@+id/tooltip_view_offer"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_above="@+id/company_logo_view_offer"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
             android:background="@drawable/tooltip_offer"
             android:fontFamily="@font/nunito_sans_bold"
-            android:text="+5"
             android:textColor="@color/colorPrimaryText"
+            android:text="+5"
             android:textSize="12sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -42,7 +42,8 @@
             android:layout_height="45dp"
             android:layout_centerInParent="true"
             android:src="@drawable/lorem_image"
-            app:civ_border_width="0dp" />
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/colorAccent"/>
 
         <TextView
             android:id="@+id/company_name_view_offer"
@@ -51,7 +52,6 @@
             android:layout_below="@+id/company_logo_view_offer"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/nunito_sans_bold"
-            android:text="@string/app_name"
             android:textColor="@color/colorWhite"
             android:textSize="15sp" />
 

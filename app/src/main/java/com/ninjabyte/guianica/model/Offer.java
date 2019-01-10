@@ -2,9 +2,9 @@ package com.ninjabyte.guianica.model;
 
 public class Offer {
    private String company;
-   private String counter;
+   private int counter;
    private String logoUrl;
-   private String lastBannerUrlOffer;;
+   private String lastBannerUrlOffer;
 
 
     public Offer() {
@@ -19,11 +19,11 @@ public class Offer {
         this.company = company;
     }
 
-    public String getCounter() {
+    public int getCounter() {
         return counter;
     }
 
-    public void setCounter(String counter) {
+    public void setCounter(int  counter) {
         this.counter = counter;
     }
 
@@ -44,4 +44,13 @@ public class Offer {
     }
 
 
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "company='" + company + '\'' +
+                ", counter='" + counter + '\'' +
+                ", logoUrl='" + logoUrl + '\'' +
+                ", lastBannerUrlOffer='" + lastBannerUrlOffer + '\'' +
+                '}';
+    }
 }

@@ -11,15 +11,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.ninjabyte.guianica.R;
+import com.ninjabyte.guianica.Utilities;
 import com.ninjabyte.guianica.model.Offer;
 
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class OfferHomefragmentAdapter  extends RecyclerView.Adapter<OfferHomefragmentAdapter.OfferHolder> {
+public class OfferHomefragmentAdapter extends RecyclerView.Adapter<OfferHomefragmentAdapter.OfferHolder> {
 
     private Context context;
     private LayoutInflater layoutInflater;
@@ -49,7 +49,7 @@ public class OfferHomefragmentAdapter  extends RecyclerView.Adapter<OfferHomefra
         return arrayOffers == null ? 0 : arrayOffers.size();
     }
 
-    public class OfferHolder extends RecyclerView.ViewHolder{
+    public class OfferHolder extends RecyclerView.ViewHolder {
         private CardView container;
         private TextView tooltip;
         private ImageView banner;
@@ -67,25 +67,18 @@ public class OfferHomefragmentAdapter  extends RecyclerView.Adapter<OfferHomefra
             companyName = itemView.findViewById(R.id.company_name_view_offer);
         }
 
-        public void createOffer(int position){
+        public void createOffer(int position) {
 
-            Glide.with(context)
-                    .load(arrayOffers.get(position).getLogoUrl())
-                    .placeholder(R.drawable.place_holder)
-                    .dontAnimate()
-                    .into(logo);
+            String counter = "+" + arrayOffers.get(position).getCounter();
+            Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE, logo, null, arrayOffers.get(position).getLogoUrl());
+            Utilities.setImageFromUrl(context, Utilities.TYPE_NORMAL, null, banner, arrayOffers.get(position).getLastBannerUrlOffer());
+            companyName.setText(arrayOffers.get(position).getCompany());
+            Log.v("asdf", "tamaño " + counter);
+            tooltip.setText(counter);
 
-
-            Glide.with(context)
-                    .load(arrayOffers.get(position).getLastBannerUrlOffer())
-                    .placeholder(R.drawable.place_holder)
-                    .dontAnimate()
-                    .into(banner);
-
-            companyName.setText(arrayOffers.get(0).getCompany());
-
-            tooltip.setText("+"+arrayOffers.size());
-            Log.v("asdf",""+ arrayOffers.size());
+            if (position == arrayOffers.size() - 1) {
+                Utilities.setMargins(container, 0, 0, 50 , 0, "END");
+            }
         }
     }
 }

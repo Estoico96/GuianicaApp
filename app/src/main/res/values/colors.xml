@@ -21,6 +21,6 @@
     <color name="selector_text_color">#FFFFFF</color>
 
     <!-- TRASPARENT COLORS -->
-    <color name="colorTransparentBlack">#79000000</color>
+    <color name="colorTransparentBlack">#5a000000</color>
 
 </resources>

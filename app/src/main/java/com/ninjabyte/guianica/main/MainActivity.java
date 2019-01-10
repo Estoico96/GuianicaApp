@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         homeFragment = new HomeFragment();
-
         Utilities.setFragment(homeFragment, MainActivity.this, R.id.container_activity_main);
 
     }
