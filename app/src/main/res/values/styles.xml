@@ -8,11 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- Application theme lateral margins. -->
-    <style name="LayoutLateralMargin" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Application theme lateral padding. -->
+    <style name="LayoutLateralPadding" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:paddingTop">@dimen/padding_top</item>
         <item name="android:paddingStart">@dimen/padding_start</item>
         <item name="android:paddingEnd">@dimen/padding_end</item>
+
+    </style>
+
+    <style name="LayoutLateralMargin" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_marginTop">@dimen/padding_top</item>
+        <item name="android:layout_marginStart">@dimen/padding_start</item>
+        <item name="android:layout_marginEnd">@dimen/padding_end</item>
 
     </style>
 

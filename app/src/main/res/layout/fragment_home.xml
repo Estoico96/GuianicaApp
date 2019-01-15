@@ -1,99 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main.HomeFragment">
 
-
-    <RelativeLayout
+    <ImageButton android:id="@+id/btn_emergency_home_fragment"
         style="@style/LayoutLateralMargin"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/button_emergency_call_activity_main"
+        android:src="@drawable/ic_call_white" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:text="@string/app_name"
+        android:textSize="20sp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        style="@style/LayoutLateralMargin"
+        android:id="@+id/user_image_fragment_home"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:elevation="@dimen/small_elevation"
+        android:src="@drawable/lorem_image"
+        app:civ_border_width="0dp" />
+
+    <EditText
+        android:id="@+id/search_bar_home_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="44dp"
+        android:layout_below="@id/user_image_fragment_home"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/background_searchbar_activity_main"
+        android:elevation="@dimen/small_elevation"
+        android:hint="@string/text_hints_search_main_activity"
+        android:inputType="text"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp" />
 
-        <ImageButton
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@drawable/ic_call_white"
-            android:layout_alignParentStart="true"
-            android:background="@drawable/button_emergency_call_activity_main"/>
+    <TextView
+        android:id="@+id/title_offer_home_fragment"
+        style="@style/TitleHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_bar_home_fragment"
+        android:text="@string/title_offer_home_fragment" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/nunito_sans_bold"
-            android:textSize="20sp"/>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/user_image_fragment_home"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            app:civ_border_width="0dp"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/lorem_image"
-            android:elevation="@dimen/small_elevation"/>
-
-        <EditText android:id="@+id/search_bar_home_fragment"
-            android:hint="@string/text_hints_search_main_activity"
-            android:inputType="text"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginBottom="3dp"
-            android:layout_marginEnd="3dp"
-            android:layout_below="@id/user_image_fragment_home"
-            android:background="@drawable/background_searchbar_activity_main"
-            android:elevation="@dimen/small_elevation"/>
-
-        <TextView android:id="@+id/title_offer_home_fragment"
-            style="@style/TitleHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/search_bar_home_fragment"
-            android:text="@string/title_offer_home_fragment"/>
-
-        <TextView android:id="@+id/tooltip_home_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_tooltip"
-            android:paddingStart="7dp"
-            android:layout_toEndOf="@+id/title_offer_home_fragment"
-            android:layout_below="@+id/search_bar_home_fragment"
-            android:paddingTop="2dp"
-            android:paddingEnd="7dp"
-            android:paddingBottom="2dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginStart="15dp"
-            android:textSize="13sp"
-            android:fontFamily="@font/nunito_sans_bold"
-            android:text="10 negocios"
-            android:textColor="@color/colorWhite" />
-
-    </RelativeLayout>
-
+    <TextView
+        android:id="@+id/tooltip_offer_home_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_bar_home_fragment"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="18dp"
+        android:layout_toEndOf="@+id/title_offer_home_fragment"
+        android:background="@drawable/background_tooltip"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:paddingStart="7dp"
+        android:paddingTop="2dp"
+        android:paddingEnd="7dp"
+        android:paddingBottom="2dp"
+        android:text="10 negocios"
+        android:textColor="@color/colorWhite"
+        android:textSize="13sp" />
 
     <TextView
         style="@style/SubtitleHeader"
+        android:id="@+id/text_description_offer_home_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/title_offer_home_fragment"
         android:text="@string/lorem_description_small" />
-
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_offers_home_fragment"
+        android:layout_below="@+id/text_description_offer_home_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
 
+    <TextView
+        android:id="@+id/title_category_home_fragment"
+        style="@style/TitleHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recycler_offers_home_fragment"
+        android:text="@string/title_category_home_fragment" />
+
+    <TextView
+        android:id="@+id/tooltip_category_home_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recycler_offers_home_fragment"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="18dp"
+        android:layout_toEndOf="@+id/title_category_home_fragment"
+        android:background="@drawable/background_tooltip"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:paddingStart="7dp"
+        android:paddingTop="2dp"
+        android:paddingEnd="7dp"
+        android:paddingBottom="2dp"
+        android:text="15"
+        android:textColor="@color/colorWhite"
+        android:textSize="13sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_category_home_fragment"
+        android:layout_below="@+id/title_category_home_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
 
 
-</LinearLayout>
+</RelativeLayout>

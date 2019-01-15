@@ -1,8 +1,14 @@
 <resources>
     <string name="app_name">Guianica</string>
+    <string name="text_about_slide_title_one">¡Gracias por descargarme!</string>
+    <string name="text_about_slide_description_one">Soy una guia digital dónde encontrarás información de contacto y ofertas de distintos negocios comerciales.</string>
+    <string name="text_about_slide_title_two">Encuentra los negocios comerciales entre las distintas categorías.</string>
+    <string name="text_about_slide_description_two">Destro del resultado de busqueda podrás filtrar los negocios por su especialidad para encontar el que más se adapte a tu necesidad.</string>
+    <string name="text_about_slide_title_three">No te preocupes, funciono sin conexión a internet.</string>
+    <string name="text_about_slide_description_three">En cada perfil de los distintos negocios podrás guardar su información de contácto si asi lo deseas para esos días en el espacio intergaláctico.</string>
     <string name="label_sign_in">Incia sesión</string>
     <string name="text_button_fragment_confirm">Continuar</string>
-    <string name="text_hints_search_main_activity">Buscar...</string>
+    <string name="text_hints_search_main_activity">Buscar&#8230;&#8230;&#8230;</string>
     <string name="text_description_fragment_confirm">El registro se ha completado con exito, puedes darle continuar para disfrutar del contenido de Guianica.</string>
 
     <!-- LOREM IPSUM -->
@@ -23,6 +29,7 @@
 
     <!-- TITLE HOME FRAGMENT -->
     <string name="title_offer_home_fragment">Ofertas</string>
+    <string name="title_category_home_fragment">Categorias</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

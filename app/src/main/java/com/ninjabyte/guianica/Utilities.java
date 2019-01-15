@@ -7,7 +7,6 @@ import android.os.Build;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -38,15 +37,17 @@ public class Utilities {
 
     }
 
-    public static ArrayList<About> getAboutContent() {
+    public static ArrayList<About> getAboutContent(Context context) {
         ArrayList<About> abouts = new ArrayList<>();
 
-        abouts.add(new About("¡Gracias por descargarme!",
-                "Soy una guia digital dónde encontrarás información de contacto y ofertas de distintos negocios comerciales."));
-        abouts.add(new About("Encuentra los negocios comerciales entre las distintas categorías.",
-                "Destro del resultado de busqueda podrás filtrar los negocios por su especialidad para encontar el que más se adapte a tu necesidad."));
+        abouts.add(new About(context.getResources().getString(R.string.text_about_slide_title_one),
+                context.getResources().getString(R.string.text_about_slide_description_one)));
 
-        abouts.add(new About("No te preocupes, funciono sin conexión a internet.", "En cada perfil de los distintos negocios podrás guardar su información de contácto si asi lo deseas para esos días en el espacio intergaláctico."));
+        abouts.add(new About(context.getResources().getString(R.string.text_about_slide_title_two),
+                context.getResources().getString(R.string.text_about_slide_description_two)));
+
+        abouts.add(new About(context.getResources().getString(R.string.text_about_slide_title_three),
+                context.getResources().getString(R.string.text_about_slide_description_three)));
 
         return abouts;
     }
@@ -69,14 +70,6 @@ public class Utilities {
         }
         Window window = activity.getWindow();
         window.setStatusBarColor(Color.parseColor("#D5D5D5"));
-    }
-
-    public static void setCircleImageFromUrl(Context context, CircleImageView container, String url) {
-        Glide.with(context)
-                .load(url)
-                .placeholder(R.drawable.place_holder)
-                .dontAnimate()
-                .into(container);
     }
 
     public static void setImageFromUrl(Context context, int type, CircleImageView circleImage, ImageView normalImage, String url) {

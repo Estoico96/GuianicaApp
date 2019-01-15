@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
 import com.ninjabyte.guianica.adapters.OfferHomefragmentAdapter;
+import com.ninjabyte.guianica.model.Category;
 import com.ninjabyte.guianica.model.Company;
 import com.ninjabyte.guianica.model.MetaOffer;
 import com.ninjabyte.guianica.model.Offer;
@@ -42,7 +43,10 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerViewOffer;
     private OfferHomefragmentAdapter adapterOffer;
     private ArrayList<Offer> arrayOffers;
-    private DatabaseReference databaseReference;
+    private DatabaseReference offerDatabaseReference;
+    private DatabaseReference categoryDatabaseReference;
+    private ValueEventListener offerValueEventListener;
+    private ValueEventListener categoryValueEventListener;
 
 
 
@@ -56,47 +60,53 @@ public class HomeFragment extends Fragment {
         context = getContext();
         activity = getActivity();
 
-        arrayOffers = new ArrayList<>();
+        Utilities.checkApiLevel(activity);
 
-        databaseReference = Utilities.getDatabaseReference()
-                .child("7a4fa054-4287-4e9e-8432-258840d49798")
-                .child("offers")
-                .child("data");
+        onCreateOffer();
 
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Utilities.checkApiLevel(activity);
-
         View fragmentHomeView = inflater.inflate(R.layout.fragment_home, container, false);
 
         userImage = fragmentHomeView.findViewById(R.id.user_image_fragment_home);
-        Utilities.setImageFromUrl(context,Utilities.TYPE_CIRCLE,  userImage, null,Utilities.getCurrentUser("photoUrl"));
-
         recyclerViewOffer = fragmentHomeView.findViewById(R.id.recycler_offers_home_fragment);
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewOffer.setLayoutManager(linearLayoutManager);
         adapterOffer =  new OfferHomefragmentAdapter(context, arrayOffers);
         recyclerViewOffer.setAdapter(adapterOffer);
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE,  userImage,
+                null,Utilities.getCurrentUser("photoUrl"));
+
+        offerDatabaseReference.addValueEventListener(offerValueEventListener);
+
+        return fragmentHomeView;
+    }
+
+
+    private void onCreateOffer(){
+        arrayOffers = new ArrayList<>();
+
+        offerDatabaseReference = Utilities.getDatabaseReference()
+                .child("7a4fa054-4287-4e9e-8432-258840d49798")
+                .child("offers")
+                .child("data");
+
+        offerValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arrayOffers.clear();
 
-
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Offer offer = snapshot.getValue(Offer.class);
                     arrayOffers.add(offer);
-
-                    Log.v("asdf", offer.toString());
                 }
-
-
-                Log.v("asdf", "notify");
                 adapterOffer.notifyDataSetChanged();
             }
 
@@ -104,7 +114,31 @@ public class HomeFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
-        return fragmentHomeView;
+        };
+    }
+
+    private void onCreateCategory(){
+        final ArrayList<Category> arrayCategory = new ArrayList<>();
+
+        categoryDatabaseReference = Utilities.getDatabaseReference()
+                .child("7a4fa054-4287-4e9e-8432-258840d49798")
+                .child("categories");
+
+        categoryValueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                arrayCategory.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Category category = snapshot.getValue(Category.class);
+                    arrayCategory.add(category);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
     }
 }
