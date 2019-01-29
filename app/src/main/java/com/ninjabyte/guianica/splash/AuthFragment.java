@@ -139,8 +139,6 @@ public class AuthFragment extends Fragment implements View.OnClickListener {
                         }
 
                         // ...
-
-
                     }
                 });
     }

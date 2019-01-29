@@ -29,6 +29,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:16.0.5'
     implementation 'com.firebaseui:firebase-ui-database:4.3.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.shuhart.bubblepagerindicator:bubblepagerindicator:1.1.2'
     implementation 'com.shuhart.bubblepagerindicator:bubblepagerindicator:1.0.13'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'

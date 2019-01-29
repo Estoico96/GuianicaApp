@@ -32,7 +32,7 @@
         android:layout_marginBottom="32dp"
         android:layout_marginTop="32dp"
         app:bpi_fillColor="@color/colorAccent"
-        app:bpi_pageColor="@color/colorDotInactive"
+        app:bpi_pageColor="@color/colorGrey"
         app:bpi_radius="5dp"
         app:bpi_marginBetweenCircles="3dp"
         app:bpi_onSurfaceCount="1"

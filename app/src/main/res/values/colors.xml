@@ -8,7 +8,8 @@
 
     <!-- TEXT COLORS -->
     <color name="colorPrimaryText">#000000</color>
-    <color name="colorSecondaryText">#e9002d56</color>
+    <color name="colorSecondaryText">#898989</color>
+    <color name="colorAccentText">#e9002d56</color>
 
     <!-- BACKGROUND COLORS -->
     <color name="colorGrey">#dedede</color>

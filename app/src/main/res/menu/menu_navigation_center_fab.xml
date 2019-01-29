@@ -3,13 +3,15 @@
     <item
         android:id="@+id/m_home"
         android:checked="true"
+        android:checkable="true"
         android:icon="@drawable/ic_home_white"
         android:title="@string/menu_title_home" />
 
     <item
         android:id="@+id/m_discover"
         android:icon="@drawable/ic_discover_white"
-        android:title="@string/menu_title_discover" />
+        android:title="@string/menu_title_discover"
+        android:checkable="true"/>
 
     <!--must set the item title to empty-->
     <item
@@ -18,9 +20,11 @@
     <item
         android:id="@+id/i_favor"
         android:icon="@drawable/ic_favorite_white"
+        android:checkable="true"
         android:title="@string/menu_title_favorite" />
     <item
         android:id="@+id/i_visibility"
         android:icon="@drawable/ic_user_white"
+        android:checkable="true"
         android:title="@string/menu_title_user" />
 </menu>

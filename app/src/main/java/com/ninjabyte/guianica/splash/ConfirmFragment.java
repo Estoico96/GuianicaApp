@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -29,6 +30,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
 import com.ninjabyte.guianica.adapters.AboutAdapter;
@@ -81,8 +87,30 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btn_next_fragment_confirm){
+
+            //CREAR LA BASE DE DATOS
+            //onUpdateLocalDatabseWithFirebase();
             startActivity(new Intent(context.getApplicationContext(), MainActivity.class));
         }
+    }
+
+
+    private void onUpdateLocalDatabseWithFirebase(){
+        DatabaseReference database = Utilities.getDatabaseReference();
+        database.child("7a4fa054-4287-4e9e-8432-258840d49798")
+                .child("categories").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.v("asdf", "onUpdateLocalDatabseWithFirebase");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
 }

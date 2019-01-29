@@ -1,9 +1,12 @@
 package com.ninjabyte.guianica.splash;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,6 +16,7 @@ import android.view.Window;
 import com.google.firebase.auth.FirebaseAuth;
 import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
+import com.ninjabyte.guianica.database.GuianicaDbHelper;
 import com.ninjabyte.guianica.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -30,7 +34,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null){
             //PANTALLA DE BIENVENIDA
@@ -41,8 +44,20 @@ public class SplashActivity extends AppCompatActivity {
             return;
         }
 
-        Utilities.setFragment(new AuthFragment(), SplashActivity.this, FRAGMENT_CONTAINER);
+        /* FASE DE PRUEBA *********************
 
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                GuianicaDbHelper localDatabase = new GuianicaDbHelper(SplashActivity.this);
+                localDatabase.getWritableDatabase();
+            }
+        });
+
+        */ //*************************************
+
+        Utilities.setFragment(new AuthFragment(), SplashActivity.this, FRAGMENT_CONTAINER);
     }
+
 
 }

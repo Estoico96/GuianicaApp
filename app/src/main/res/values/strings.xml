@@ -8,8 +8,9 @@
     <string name="text_about_slide_description_three">En cada perfil de los distintos negocios podrás guardar su información de contácto si asi lo deseas para esos días en el espacio intergaláctico.</string>
     <string name="label_sign_in">Incia sesión</string>
     <string name="text_button_fragment_confirm">Continuar</string>
-    <string name="text_hints_search_main_activity">Buscar&#8230;&#8230;&#8230;</string>
+    <string name="text_hints_search_main_activity">Buscar&#8230;</string>
     <string name="text_description_fragment_confirm">El registro se ha completado con exito, puedes darle continuar para disfrutar del contenido de Guianica.</string>
+    <string name="text_description_offer">Aprovecha todas las ofertas de este mes. Aplican condiciones.</string>
 
     <!-- LOREM IPSUM -->
     <string name="lorem_title_small">Lorem ipsum</string>
@@ -29,6 +30,7 @@
 
     <!-- TITLE HOME FRAGMENT -->
     <string name="title_offer_home_fragment">Ofertas</string>
+    <string name="title_notice_home_fragment">Noticias</string>
     <string name="title_category_home_fragment">Categorias</string>
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    card_view:cardCornerRadius="20dp"
-    card_view:cardElevation="5dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container_view_category"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="10dp">
 
-    <TextView
+    <TextView android:id="@+id/name_view_category"
         android:layout_width="103dp"
         android:layout_height="34dp"
         android:textColor="@color/colorWhite"
@@ -14,10 +18,7 @@
         android:textStyle="bold"
         android:maxLines="1"
         android:ellipsize="end"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
         android:background="#E4B42F"
-        android:layout_marginStart="10dp"
         android:gravity="center"
         android:text="Fritangas"
         android:textSize="14sp" />

@@ -21,9 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        app:itemIconTint="@color/selector_item_color"
-        app:itemTextColor="@color/selector_text_color"
-        app:menu="@menu/menu_navigation_center_fab" />
+        android:background="@drawable/navigation_drawer_border_shadow"
+        app:menu="@menu/menu_navigation_center_fab"
+        app:itemIconTint="@color/state_list_item"
+        app:itemTextColor="@color/state_list_item"/>
 
 </RelativeLayout>

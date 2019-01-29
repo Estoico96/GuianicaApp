@@ -17,10 +17,11 @@ public class AboutAdapter  extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private ArrayList<About> abouts = Utilities.getAboutContent();
+    private ArrayList<About> abouts;
 
     public AboutAdapter(Context context) {
         this.context = context;
+        abouts = Utilities.getAboutContent(context);
         layoutInflater = LayoutInflater.from(context);
     }
 
