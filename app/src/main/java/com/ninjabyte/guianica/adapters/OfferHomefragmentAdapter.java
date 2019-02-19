@@ -1,6 +1,8 @@
 package com.ninjabyte.guianica.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
+import com.ninjabyte.guianica.main.DetailOfferActivity;
 import com.ninjabyte.guianica.model.Offer;
 
 import java.util.ArrayList;
@@ -37,8 +40,20 @@ public class OfferHomefragmentAdapter extends RecyclerView.Adapter<OfferHomefrag
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OfferHolder offerHolder, int i) {
+    public void onBindViewHolder(@NonNull final OfferHolder offerHolder, int i) {
         offerHolder.createOffer(i);
+
+        offerHolder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailOfferActivity.class);
+                Bundle data = new Bundle();
+                data.putString("uidOft", arrayOffers.get(offerHolder.getAdapterPosition()).getUid());
+                data.putString("nameOft", arrayOffers.get(offerHolder.getAdapterPosition()).getCompany());
+                intent.putExtras(data);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

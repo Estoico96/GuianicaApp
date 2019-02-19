@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".main.DetailOfferActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/logo_company_detail_offer"
+            style="@style/LayoutLateralMargin"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:elevation="@dimen/small_elevation"
+            android:src="@drawable/shimmer_circle_image"
+            app:civ_border_width="0dp" />
+
+
+        <TextView
+            android:id="@+id/company_name_detail_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/logo_company_detail_offer"
+            android:ems="7"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:text="@string/app_name"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_name_detail_offer"
+            android:layout_toEndOf="@+id/logo_company_detail_offer"
+            android:fontFamily="@font/nunito_sans"
+            android:text="ver perfil"
+            android:textColor="@color/colorAccent"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/btn_share_detail_offer"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/padding_end"
+            android:background="@drawable/btn_share_detail_offer"
+            android:text="@string/text_btn_share_detail_offer"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            tools:ignore="RelativeOverlap" />
+
+        <com.shuhart.bubblepagerindicator.BubblePageIndicator
+            android:id="@+id/page_indicator_detail_offer"
+            android:layout_below="@+id/logo_company_detail_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="3dp"
+            android:layout_centerHorizontal="true"
+            android:padding="5dp"
+            app:bpi_fillColor="@color/colorAccent"
+            app:bpi_marginBetweenCircles="3dp"
+            app:bpi_onSurfaceCount="4"
+            app:bpi_pageColor="@color/colorGrey"
+            app:bpi_radius="4dp"
+            app:bpi_risingCount="@integer/default_bubble_indicator_rising_count" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_banner_detail_offer"
+            android:layout_below="@+id/page_indicator_detail_offer"
+            android:layout_width="match_parent"
+            android:layout_height="215dp">
+        </android.support.v4.view.ViewPager>
+
+
+        <TextView
+            android:id="@+id/title_detail_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewpager_banner_detail_offer"
+            style="@style/LayoutLateralMargin"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:text="@string/lorem_description_small"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/description_detail_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_detail_offer"
+            style="@style/LayoutLateralMargin"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/lorem_description_medium"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="16sp" />
+
+        <TextView style="@style/LayoutLateralMargin"
+            android:id="@+id/expire_detail_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description_detail_offer"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/lorem_description_medium"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

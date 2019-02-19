@@ -1,15 +1,23 @@
 package com.ninjabyte.guianica.model;
 
 public class Offer {
-   private String company;
-   private int counter;
-   private String logoUrl;
-   private String lastBannerUrlOffer;
+    private String uid;
+    private String company;
+    private int counter;
+    private String logoUrl;
+    private String lastBannerUrlOffer;
 
 
     public Offer() {
     }
 
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
     public String getCompany() {
         return company;
@@ -23,7 +31,7 @@ public class Offer {
         return counter;
     }
 
-    public void setCounter(int  counter) {
+    public void setCounter(int counter) {
         this.counter = counter;
     }
 
