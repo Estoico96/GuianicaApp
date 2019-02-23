@@ -1,7 +1,9 @@
 package com.ninjabyte.guianica.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ninjabyte.guianica.R;
+import com.ninjabyte.guianica.ResultActivity;
 import com.ninjabyte.guianica.Utilities;
 import com.ninjabyte.guianica.model.Category;
 import com.ninjabyte.guianica.model.Offer;
@@ -54,7 +57,7 @@ public class CategoryHomefragmentAdapter extends RecyclerView.Adapter<CategoryHo
 
 
 
-    public class CategoryHolder extends RecyclerView.ViewHolder {
+    public class CategoryHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private CardView container;
         private TextView category;
 
@@ -63,6 +66,8 @@ public class CategoryHomefragmentAdapter extends RecyclerView.Adapter<CategoryHo
             super(itemView);
             container = itemView.findViewById(R.id.container_view_category);
             category = itemView.findViewById(R.id.name_view_category);
+
+            container.setOnClickListener(this);
         }
 
         public void onCreateCategory(int position) {
@@ -78,6 +83,17 @@ public class CategoryHomefragmentAdapter extends RecyclerView.Adapter<CategoryHo
 
             if (position == arrayCategories.size() - 1) {
                 Utilities.setMargins(container, 0, 0, 50 , 0, "END");
+            }
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == R.id.container_view_category){
+                Intent data = new Intent(context, ResultActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("category_name", category.getText().toString());
+                data.putExtras(bundle);
+                context.startActivity(data);
             }
         }
     }

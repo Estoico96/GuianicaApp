@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResultActivity">
+
+    <ImageButton
+        android:id="@+id/btn_back_result_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_keyboard_backspace_black" />
+
+    <TextView
+        android:id="@+id/category_name_result_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/btn_back_result_activity"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:text="Restaurantes"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="25sp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_filter_list_white"
+        tools:ignore="RelativeOverlap" />
+
+    <TextView
+        android:id="@+id/text_results_result_activity"
+        style="@style/LayoutLateralMargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/category_name_result_activity"
+        android:ems="15"
+        android:fontFamily="@font/nunito_sans"
+        android:text="@string/text_description_results"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/type_filter_result_activity"
+        style="@style/LayoutLateralMargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_results_result_activity"
+        android:background="@drawable/background_type_filter"
+        android:text="Todas las categorías"
+        android:textColor="@color/colorWhite"
+        android:textSize="14sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_result_result_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/type_filter_result_activity"
+        android:layout_marginTop="15dp">
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

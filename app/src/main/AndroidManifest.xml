@@ -25,7 +25,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.DetailOfferActivity"></activity>
+        <activity android:name=".main.DetailOfferActivity" />
+        <activity android:name=".ResultActivity"></activity>
     </application>
 
 </manifest>

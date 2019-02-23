@@ -27,6 +27,7 @@ public class Utilities {
     private static DatabaseReference databaseReference;
     public static final int TYPE_CIRCLE = 0;
     public static final int TYPE_NORMAL = 1;
+        public static final String DB_NODE = "7a4fa054-4287-4e9e-8432-258840d49798";
 
     private Utilities() {
     }
