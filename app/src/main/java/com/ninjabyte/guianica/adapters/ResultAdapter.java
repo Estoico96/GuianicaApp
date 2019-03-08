@@ -1,6 +1,7 @@
 package com.ninjabyte.guianica.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -8,10 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
+import com.ninjabyte.guianica.main.ProfileActivity;
 import com.ninjabyte.guianica.model.Result;
 
 import java.util.ArrayList;
@@ -39,8 +42,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ResultHolder offerHolder, int i) {
-        offerHolder.createResults(i);
+    public void onBindViewHolder(@NonNull ResultHolder resultHolder, int i) {
+        resultHolder.createResults(i);
     }
 
     @Override
@@ -48,8 +51,9 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
         return arrayResults == null ? 0 : arrayResults.size();
     }
 
-    public class ResultHolder extends RecyclerView.ViewHolder {
+    public class ResultHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private CardView container;
+        private ImageButton btnMore;
         private TextView name;
         private CircleImageView logo;
         private TextView specialty;
@@ -63,8 +67,10 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
             logo = itemView.findViewById(R.id.company_logo_result_activity);
             specialty = itemView.findViewById(R.id.company_specialty_result_activity);
             state = itemView.findViewById(R.id.state_company_result_activity);
+            btnMore = itemView.findViewById(R.id.btn_more_result_activity);
 
 
+            btnMore.setOnClickListener(this);
         }
 
         public void createResults(int position) {
@@ -75,5 +81,11 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
             Log.v("asdfg", " "+arrayResults.get(position).getLogoUrl());
         }
 
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == R.id.btn_more_result_activity){
+                context.startActivity(new Intent(context, ProfileActivity.class));
+            }
+        }
     }
 }

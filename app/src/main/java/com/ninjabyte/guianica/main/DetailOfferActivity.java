@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
@@ -23,6 +24,9 @@ import java.util.ArrayList;
 
 public class DetailOfferActivity extends AppCompatActivity {
     private final int INIT_POSITION = 0;
+
+    private TextView textNotFound;
+
 
     private ValueEventListener detailValueEventListener;
     private DatabaseReference detailOfferDatabaseReference;
@@ -49,6 +53,7 @@ public class DetailOfferActivity extends AppCompatActivity {
         arrayDetailOffer = new ArrayList<>();
         data = getIntent().getExtras();
 
+        textNotFound = findViewById(R.id.text_not_found_detail_offer);
         detailOfferTitle = findViewById(R.id.title_detail_offer);
         detailOfferDescription = findViewById(R.id.description_detail_offer);
         detailOfferExpire = findViewById(R.id.expire_detail_offer);
@@ -97,18 +102,23 @@ public class DetailOfferActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arrayDetailOffer.clear();
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    DetailOffer detailOffer = snapshot.getValue(DetailOffer.class);
-                    arrayDetailOffer.add(detailOffer);
+                if (dataSnapshot.getChildrenCount() != 0){
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        DetailOffer detailOffer = snapshot.getValue(DetailOffer.class);
+                        arrayDetailOffer.add(detailOffer);
+                    }
+
+                    detailOfferAdapter = new DetailOfferAdapter(DetailOfferActivity.this, arrayDetailOffer);
+                    viewPagerDetailOffer.setAdapter(detailOfferAdapter);
+                    viewPagerDetailOffer.setClipToPadding(false);
+                    indicatorDetailOffer.setViewPager(viewPagerDetailOffer);
+
+                    onCreateFadeIntTextAnimation(INIT_POSITION);
+
+                    return;
                 }
 
-                detailOfferAdapter = new DetailOfferAdapter(DetailOfferActivity.this, arrayDetailOffer);
-                viewPagerDetailOffer.setAdapter(detailOfferAdapter);
-                viewPagerDetailOffer.setClipToPadding(false);
-                indicatorDetailOffer.setViewPager(viewPagerDetailOffer);
-
-                onCreateFadeIntTextAnimation(INIT_POSITION);
-
+                textNotFound.setVisibility(View.VISIBLE);
             }
 
             @Override

@@ -91,6 +91,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View fragmentHomeView = inflater.inflate(R.layout.fragment_home, container, false);
 
+
         userImage = fragmentHomeView.findViewById(R.id.user_image_fragment_home);
         recyclerViewOffer = fragmentHomeView.findViewById(R.id.recycler_offers_home_fragment);
         recyclerViewCategories = fragmentHomeView.findViewById(R.id.recycler_category_home_fragment);

@@ -1,4 +1,4 @@
-package com.ninjabyte.guianica;
+package com.ninjabyte.guianica.main;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.ninjabyte.guianica.R;
+import com.ninjabyte.guianica.Utilities;
 import com.ninjabyte.guianica.adapters.ResultAdapter;
 import com.ninjabyte.guianica.model.Result;
 
