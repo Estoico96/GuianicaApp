@@ -19,14 +19,14 @@ import com.ninjabyte.guianica.model.Offer;
 
 import java.util.ArrayList;
 
-public class OfferHomefragmentAdapter extends RecyclerView.Adapter<OfferHomefragmentAdapter.OfferHolder> {
+public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferHolder> {
 
     private Context context;
     private LayoutInflater layoutInflater;
     private ArrayList<Offer> arrayOffers;
 
 
-    public OfferHomefragmentAdapter(Context context, ArrayList<Offer> arrayOffers) {
+    public OfferAdapter(Context context, ArrayList<Offer> arrayOffers) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
         this.arrayOffers = arrayOffers;

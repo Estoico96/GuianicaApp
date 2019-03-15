@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,7 +25,7 @@ import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
 import com.ninjabyte.guianica.adapters.CategoryHomefragmentAdapter;
 import com.ninjabyte.guianica.adapters.NoticeAdapter;
-import com.ninjabyte.guianica.adapters.OfferHomefragmentAdapter;
+import com.ninjabyte.guianica.adapters.OfferAdapter;
 import com.ninjabyte.guianica.model.Category;
 import com.ninjabyte.guianica.model.Notice;
 import com.ninjabyte.guianica.model.Offer;
@@ -50,7 +49,7 @@ public class HomeFragment extends Fragment {
     private BubblePageIndicator noticeIndicator;
 
     private NoticeAdapter adapterNotice;
-    private OfferHomefragmentAdapter adapterOffer;
+    private OfferAdapter adapterOffer;
     private CategoryHomefragmentAdapter adapterCategory;
 
     private ArrayList<Offer> arrayOffers;
@@ -113,7 +112,7 @@ public class HomeFragment extends Fragment {
         // OFFERS
         recyclerViewOffer.setLayoutManager(linearLayoutManagerOffer);
         recyclerViewOffer.setHasFixedSize(false);
-        adapterOffer = new OfferHomefragmentAdapter(context, arrayOffers);
+        adapterOffer = new OfferAdapter(context, arrayOffers);
         recyclerViewOffer.setAdapter(adapterOffer);
 
         //CATEGORIES
@@ -140,7 +139,7 @@ public class HomeFragment extends Fragment {
         arrayOffers = new ArrayList<>();
 
         offerDatabaseReference = Utilities.getDatabaseReference()
-                .child("7a4fa054-4287-4e9e-8432-258840d49798")
+                .child(Utilities.DB_NODE)
                 .child("offers")
                 .child("data");
 

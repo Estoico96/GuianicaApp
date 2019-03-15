@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/image_product_featured_networks"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/lorem_product"/>
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/lorem_product" />
 
+    <TextView
+        android:id="@+id/name_product_featured_networks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image_product_featured_networks"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:text="Pizzini Italianini"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="14sp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="4"
+        android:ellipsize="end"
+        android:layout_below="@+id/name_product_featured_networks"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:ems="8"
+        android:fontFamily="@font/nunito_sans"
+        android:text="Queso Mozzarella, Espinaca, Aceitunas negras"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="14sp" />
 
 </RelativeLayout>

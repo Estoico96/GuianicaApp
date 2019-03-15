@@ -77,14 +77,17 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
             name.setText(arrayResults.get(position).getCompany());
             specialty.setText(arrayResults.get(position).getSpecialty());
             Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE, logo, null, arrayResults.get(position).getLogoUrl());
-
-            Log.v("asdfg", " "+arrayResults.get(position).getLogoUrl());
         }
 
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.btn_more_result_activity){
-                context.startActivity(new Intent(context, ProfileActivity.class));
+                Intent intent = new Intent(context, ProfileActivity.class);
+                intent.putExtra("rsl_url_image", arrayResults.get(getAdapterPosition()).getLogoUrl());
+                intent.putExtra("rsl_name", arrayResults.get(getAdapterPosition()).getCompany());
+                intent.putExtra("rsl_specialty", arrayResults.get(getAdapterPosition()).getSpecialty());
+
+                context.startActivity(intent);
             }
         }
     }
