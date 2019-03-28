@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_view_featured_products"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/image_product_featured_networks"
+        android:id="@+id/image_view_featured_products"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/app_name"
         android:src="@drawable/lorem_product" />
 
-    <TextView
-        android:id="@+id/name_product_featured_networks"
+    <TextView android:id="@+id/price_featured_products"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/image_product_featured_networks"
+        android:layout_alignBottom="@+id/image_view_featured_products"
+        android:layout_toEndOf="@+id/image_view_featured_products"
+        android:background="@drawable/background_tooltip"
+        android:text="$12"
+        android:textColor="@color/colorWhite"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/name_view_featured_products"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image_view_featured_products"
         android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/nunito_sans_bold"
@@ -23,12 +34,12 @@
         android:textColor="@color/colorPrimaryText"
         android:textSize="14sp" />
 
-    <TextView
+    <TextView android:id="@+id/description_view_featured_products"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="4"
         android:ellipsize="end"
-        android:layout_below="@+id/name_product_featured_networks"
+        android:layout_below="@+id/name_view_featured_products"
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:ems="8"

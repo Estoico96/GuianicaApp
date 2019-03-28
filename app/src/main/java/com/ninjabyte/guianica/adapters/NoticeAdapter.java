@@ -36,7 +36,7 @@ public class NoticeAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return arrayNotices.size();//arrayNotices != null ? arrayNotices.size() : 0;
+        return arrayNotices != null ? arrayNotices.size() : 0;
     }
 
     @NonNull
@@ -46,10 +46,20 @@ public class NoticeAdapter extends PagerAdapter {
 
         ImageView image = itemView.findViewById(R.id.image_fragment_notice);
         TextView title = itemView.findViewById(R.id.title_fragment_notice);
+        TextView type = itemView.findViewById(R.id.type_fragment_notice);
+        TextView by = itemView.findViewById(R.id.by_fragment_notice);
 
             title.setText(arrayNotices
                     .get(position)
                     .getTitle());
+
+            type.setText(arrayNotices
+                    .get(position)
+                    .getType());
+
+            by.setText(arrayNotices
+                    .get(position)
+                    .getBy());
 
             Utilities.setImageFromUrl(context, Utilities.TYPE_NORMAL, null, image, arrayNotices
                     .get(position)

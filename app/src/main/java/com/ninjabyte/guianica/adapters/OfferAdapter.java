@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ninjabyte.guianica.R;
@@ -62,8 +64,10 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferHolder>
     }
 
     public class OfferHolder extends RecyclerView.ViewHolder {
-        private CardView container;
+        private LinearLayout container;
+        private CardView contanerBanner;
         private TextView tooltip;
+        private TextView name;
         private ImageView banner;
 
         public OfferHolder(@NonNull View itemView) {
@@ -71,7 +75,9 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferHolder>
 
             container = itemView.findViewById(R.id.container_view_offer);
             banner = itemView.findViewById(R.id.banner_view_offer);
+            contanerBanner = itemView.findViewById(R.id.container_banner_view_offer);
             tooltip = itemView.findViewById(R.id.tooltip_view_offer);
+            name = itemView.findViewById(R.id.company_name_offer_fragment_home);
 
         }
 
@@ -81,6 +87,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferHolder>
             Utilities.setImageFromUrl(context, Utilities.TYPE_NORMAL, null, banner, arrayOffers.get(position).getLastBannerUrlOffer());
             tooltip.setText(counter);
 
+            name.setText(arrayOffers.get(position).getCompany());
             if (position == arrayOffers.size() - 1) {
                 Utilities.setMargins(container, 0, 0, 50, 0, "END");
             }

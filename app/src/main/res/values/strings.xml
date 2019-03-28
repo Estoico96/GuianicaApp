@@ -35,6 +35,9 @@
     <string name="title_notice_home_fragment">Noticias</string>
     <string name="title_category_home_fragment">Categorias</string>
 
+    <!-- DDESCRIPTION ACTIVITY PROFILE -->
+    <string name="description_featured_products_profile_activity">Estos son algunos de nuestros productos preferidos entre la comunidad, puedes llamarnos y preguntar acerca de ellos.</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

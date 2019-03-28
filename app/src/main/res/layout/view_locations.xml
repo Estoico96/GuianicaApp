@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+
+    <TextView android:id="@+id/place_view_telephone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="11"
+        android:text="Puente El Edén 1 cuadra 1/2 abajo, mano izquierda"
+        android:fontFamily="@font/nunito_sans"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryText"/>
+
+    <ImageView android:id="@+id/btn_see_map_view_telephone"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_map_white"
+        android:background="@drawable/button_see_map_profile_activity"
+        android:contentDescription="@string/app_name" />
+
+</RelativeLayout>

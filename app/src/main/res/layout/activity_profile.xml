@@ -22,9 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:textAllCaps="false"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
             android:text="ver más" />
 
         <android.support.v7.widget.RecyclerView
@@ -32,8 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title_gallery_profile_activity">
-        </android.support.v7.widget.RecyclerView>
 
+        </android.support.v7.widget.RecyclerView>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/company_logo_profile_activity"
@@ -90,7 +89,6 @@
             android:textColor="@color/colorSecondaryText"
             android:textSize="14sp" />
 
-
         <ImageButton
             android:id="@+id/btn_call_profile_activity"
             android:layout_width="wrap_content"
@@ -127,24 +125,104 @@
             android:src="@drawable/ic_mail_blue" />
 
         <TextView
-            android:id="@+id/title_social_profile_activity"
+            android:id="@+id/title_social_networks_activity_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_place_profile_activity"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Siguenos en:"
+            android:textSize="15sp" />
+
+        <RelativeLayout
+            android:id="@+id/container_social_networks_activity_profile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_social_networks_activity_profile"
+            android:gravity="center">
+
+
+            <ImageView
+                android:id="@+id/btn_facebook_activity_profile"
+                style="@style/LayoutLateralMargin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_facebook" />
+
+            <ImageView
+                android:id="@+id/btn_instagram_activity_profile"
+                style="@style/LayoutLateralMargin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/btn_facebook_activity_profile"
+                android:src="@drawable/ic_instagram" />
+
+            <ImageView
+                android:id="@+id/btn_twitter_activity_profile"
+                style="@style/LayoutLateralMargin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/btn_instagram_activity_profile"
+                android:src="@drawable/ic_twitter" />
+
+
+            <ImageView
+                android:id="@+id/btn_youtebe_activity_profile"
+                style="@style/LayoutLateralMargin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/btn_twitter_activity_profile"
+                android:src="@drawable/ic_youtube" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/title_offer_profile_activity"
             style="@style/TitleHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_call_profile_activity"
-            android:text="Redes sociales" />
-
+            android:layout_below="@+id/container_social_networks_activity_profile"
+            android:text="Ofertas" />
 
         <TextView
-            android:id="@+id/recycler_networks_social_profile_activity"
-            style="@style/LayoutLateralMargin"
+            android:id="@+id/tooltip_offer_activity_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title_social_profile_activity"
-            android:background="@drawable/button_emergency_call_activity_main"
-            android:padding="10dp"
-            android:text="F"
-            android:textColor="@color/colorWhite" />
+            android:layout_below="@+id/container_social_networks_activity_profile"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="18dp"
+            android:layout_toEndOf="@+id/title_offer_profile_activity"
+            android:background="@drawable/background_tooltip"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:paddingStart="7dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="7dp"
+            android:paddingBottom="2dp"
+            android:text="3"
+            android:textColor="@color/colorWhite"
+            android:textSize="13sp" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/container_last_offer_activity_profile"
+            android:layout_width="match_parent"
+            android:layout_height="215dp"
+            android:layout_below="@+id/title_offer_profile_activity"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardUseCompatPadding="true">
+
+            <ImageView
+                android:id="@+id/last_offer_profile_activity"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:scaleType="centerCrop" />
+
+        </android.support.v7.widget.CardView>
 
 
         <TextView
@@ -152,8 +230,30 @@
             style="@style/TitleHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recycler_networks_social_profile_activity"
+            android:layout_below="@+id/container_last_offer_activity_profile"
             android:text="Productos destacados" />
+
+        <TextView
+            android:id="@+id/description_featured_products_profile_activity"
+            style="@style/LayoutLateralMargin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_featured_products_profile_activity"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="@string/description_featured_products_profile_activity"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="14sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_featured_products_profile_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description_featured_products_profile_activity"
+            android:layout_marginBottom="10dp">
+
+        </android.support.v7.widget.RecyclerView>
+
 
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>

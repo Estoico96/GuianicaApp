@@ -61,6 +61,7 @@ public class HomeFragment extends Fragment {
     private DatabaseReference noticeDatabaseReference;
 
     private ValueEventListener offerValueEventListener;
+    private ValueEventListener noticeValueEventListener;
     private ChildEventListener categoryChildEventListener;
     private ChildEventListener noticeChildEventListener;
 
@@ -129,7 +130,7 @@ public class HomeFragment extends Fragment {
 
         offerDatabaseReference.addValueEventListener(offerValueEventListener);
         categoryDatabaseReference.addChildEventListener(categoryChildEventListener);
-        noticeDatabaseReference.addChildEventListener(noticeChildEventListener);
+        noticeDatabaseReference.addValueEventListener(noticeValueEventListener);
 
         return fragmentHomeView;
     }
@@ -213,38 +214,19 @@ public class HomeFragment extends Fragment {
                 .child("notices")
                 .child("data");
 
-        noticeChildEventListener = new ChildEventListener() {
+        noticeValueEventListener = new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                int i = 1;
-                Notice notice = dataSnapshot.getValue(Notice.class);
-                arrayNotices.add(notice);
-                i++;
-
-                Log.v("asdf", " "+dataSnapshot.getChildrenCount());
-
-                if (i == dataSnapshot.getChildrenCount()){
-                    adapterNotice = new NoticeAdapter(context, arrayNotices);
-                    viewPagerNotice.setAdapter(adapterNotice);
-                    viewPagerNotice.setClipToPadding(false);
-                    viewPagerNotice.setPadding(16,0,16,0);
-                    noticeIndicator.setViewPager(viewPagerNotice);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Notice notice = snapshot.getValue(Notice.class);
+                    arrayNotices.add(notice);
                 }
-            }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                adapterNotice = new NoticeAdapter(context, arrayNotices);
+                viewPagerNotice.setAdapter(adapterNotice);
+                viewPagerNotice.setClipToPadding(false);
+                viewPagerNotice.setPadding(16,0,16,0);
+                noticeIndicator.setViewPager(viewPagerNotice);
             }
 
             @Override
