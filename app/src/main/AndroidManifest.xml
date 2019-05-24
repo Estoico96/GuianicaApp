@@ -27,7 +27,8 @@
         </activity>
         <activity android:name=".main.DetailOfferActivity" />
         <activity android:name=".main.ResultActivity" />
-        <activity android:name=".main.ProfileActivity"></activity>
+        <activity android:name=".main.ProfileActivity">
+        </activity>
     </application>
 
 </manifest>

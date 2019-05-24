@@ -3,7 +3,7 @@
     <!-- PRIMARY COLORS -->
     <color name="colorPrimary">#FAFAFA</color>
     <color name="colorPrimaryDark">#FAFAFA</color>
-    <color name="colorAccent">#225FA4</color>
+    <color name="colorAccent">#415fa3</color>
     <color name="colorWhite">#ffffff</color>
 
     <!-- TEXT COLORS -->
@@ -12,7 +12,11 @@
     <color name="colorAccentText">#e9002d56</color>
 
     <!-- BACKGROUND COLORS -->
-    <color name="colorGrey">#dedede</color>
+    <color name="colorGrey">#c2c2c2</color>
+    <color name="colorGreen">#4aa60d</color>
+
+    <!-- BACKGROUND COLORS -->
+    <color name="colorPanel">#aeb9b9b9</color>
 
     <!-- DOTS COLORS -->
     <color name="colorDotInactive">#e9002d56</color>

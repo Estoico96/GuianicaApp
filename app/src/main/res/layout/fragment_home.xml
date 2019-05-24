@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,172 +8,173 @@
     android:scrollbars="none"
     tools:context=".main.HomeFragment">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <ImageButton android:id="@+id/btn_emergency_home_fragment"
-        style="@style/LayoutLateralMargin"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_toStartOf="@+id/user_image_fragment_home"
-        android:background="@drawable/button_emergency_call_activity_main"
-        android:src="@drawable/ic_emergency_white" />
-
-    <TextView
-        style="@style/LayoutLateralMargin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toStartOf="@+id/btn_emergency_home_fragment"
-        android:layout_alignParentStart="true"
-        android:fontFamily="@font/nunito_sans_bold"
-        android:text="@string/app_name"
-        android:textSize="25sp" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        style="@style/LayoutLateralMargin"
-        android:id="@+id/user_image_fragment_home"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_alignParentEnd="true"
-        android:elevation="@dimen/small_elevation"
-        android:src="@drawable/shimmer_circle_image"
-        app:civ_border_width="0dp" />
-
-    <TextView
-        android:id="@+id/title_offer_home_fragment"
-        style="@style/TitleHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_emergency_home_fragment"
-        android:text="@string/title_offer_home_fragment" />
-
-    <TextView
-        android:id="@+id/tooltip_offer_home_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_emergency_home_fragment"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="18dp"
-        android:layout_toEndOf="@+id/title_offer_home_fragment"
-        android:background="@drawable/background_tooltip"
-        android:fontFamily="@font/nunito_sans_bold"
-        android:paddingStart="7dp"
-        android:paddingTop="2dp"
-        android:paddingEnd="7dp"
-        android:paddingBottom="2dp"
-        android:textColor="@color/colorWhite"
-        android:textSize="13sp" />
-
-    <TextView
-        style="@style/SubtitleHeader"
-        android:id="@+id/text_description_offer_home_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title_offer_home_fragment"
-        android:fontFamily="@font/nunito"
-        android:textColor="@color/colorSecondaryText"
-        android:text="@string/text_description_offer" />
-
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nested_scroll_coffers_home_fragment"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_description_offer_home_fragment"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="13dp">
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btn_emergency_home_fragment"
+            style="@style/LayoutLateralMargin"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_toStartOf="@+id/user_image_fragment_home"
+            android:background="@drawable/button_emergency_call_activity_main"
+            android:src="@drawable/ic_emergency_white"
+            android:contentDescription="@string/app_name" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_image_fragment_home"
+            style="@style/LayoutLateralMargin"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:elevation="@dimen/small_elevation"
+            android:src="@drawable/shimmer_circle_image"
+            app:civ_border_width="0dp" />
+
+        <TextView
+            android:id="@+id/title_offer_home_fragment"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_offer_home_fragment" />
+
+        <TextView
+            android:id="@+id/tooltip_offer_home_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="23dp"
+            android:layout_toEndOf="@+id/title_offer_home_fragment"
+            android:background="@drawable/background_tooltip"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:paddingStart="7dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="7dp"
+            android:paddingBottom="2dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="13sp"
+            tools:ignore="RelativeOverlap" />
+
+        <TextView
+            android:id="@+id/text_description_offer_home_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_emergency_home_fragment"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/text_description_offer"
+            android:textColor="@color/colorSecondaryText" />
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_offers_home_fragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_description_offer_home_fragment"
+            android:layout_marginTop="13dp">
 
         </android.support.v7.widget.RecyclerView>
 
-    </android.support.v4.widget.NestedScrollView>
+
+        <TextView
+            android:id="@+id/title_category_home_fragment"
+            style="@style/TitleHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recycler_offers_home_fragment"
+            android:text="@string/title_category_home_fragment" />
+
+        <TextView
+            android:id="@+id/tooltip_category_home_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recycler_offers_home_fragment"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="18dp"
+            android:layout_toEndOf="@+id/title_category_home_fragment"
+            android:background="@drawable/background_tooltip"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:maxWidth="50dp"
+            android:paddingStart="7dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="7dp"
+            android:paddingBottom="2dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="13sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_category_home_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_category_home_fragment">
+            </android.support.v7.widget.RecyclerView>
 
 
+        <TextView
+            android:id="@+id/title_notice_home_fragment"
+            style="@style/TitleHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recycler_category_home_fragment"
+            android:text="@string/title_notice_home_fragment" />
 
-    <TextView
-        android:id="@+id/title_category_home_fragment"
-        style="@style/TitleHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nested_scroll_coffers_home_fragment"
-        android:text="@string/title_category_home_fragment" />
+        <ImageButton
+            style="@style/LayoutLateralMargin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recycler_category_home_fragment"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="17dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_more_grey" />
 
-    <TextView
-        android:id="@+id/tooltip_category_home_fragment"
-        android:layout_width="wrap_content"
-        android:maxWidth="50dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nested_scroll_coffers_home_fragment"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="18dp"
-        android:layout_toEndOf="@+id/title_category_home_fragment"
-        android:background="@drawable/background_tooltip"
-        android:fontFamily="@font/nunito_sans_bold"
-        android:paddingStart="7dp"
-        android:paddingTop="2dp"
-        android:paddingEnd="7dp"
-        android:paddingBottom="2dp"
-        android:textColor="@color/colorWhite"
-        android:textSize="13sp" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_notice_home_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:layout_below="@+id/title_notice_home_fragment"
+            android:layout_marginBottom="20dp">
 
+        </android.support.v4.view.ViewPager>
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nested_scroll_category_home_fragment"
-        android:layout_below="@+id/title_category_home_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <com.shuhart.bubblepagerindicator.BubblePageIndicator
+            android:id="@+id/notice_page_indicator_home_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viewpager_notice_home_fragment"
+            android:layout_centerHorizontal="true"
+            app:bpi_fillColor="@color/colorAccent"
+            app:bpi_marginBetweenCircles="3dp"
+            app:bpi_onSurfaceCount="1"
+            app:bpi_pageColor="@color/colorGrey"
+            app:bpi_radius="4dp"
+            app:bpi_risingCount="@integer/default_bubble_indicator_rising_count" />
+
+        <TextView
+            android:id="@+id/title_tourist_places_home_fragment"
+            style="@style/TitleHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/notice_page_indicator_home_fragment"
+            android:text="@string/title_tourist_places_home_fragment" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_category_home_fragment"
+            android:id="@+id/recycler_tourist_places_home_fragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:layout_below="@+id/title_tourist_places_home_fragment">
+
         </android.support.v7.widget.RecyclerView>
-
-    </android.support.v4.widget.NestedScrollView>
-
-    <TextView
-        android:id="@+id/title_notice_home_fragment"
-        style="@style/TitleHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nested_scroll_category_home_fragment"
-        android:text="@string/title_notice_home_fragment" />
-
-    <ImageButton style="@style/LayoutLateralMargin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="17dp"
-        android:src="@drawable/ic_more_grey"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/nested_scroll_category_home_fragment"
-        android:contentDescription="@string/app_name" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager_notice_home_fragment"
-        android:layout_below="@+id/title_notice_home_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="320dp">
-    </android.support.v4.view.ViewPager>
-
-    <com.shuhart.bubblepagerindicator.BubblePageIndicator
-        android:id="@+id/notice_page_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorGrey"
-        android:layout_below="@id/viewpager_notice_home_fragment"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        app:bpi_fillColor="@color/colorAccent"
-        app:bpi_pageColor="@color/colorGrey"
-        app:bpi_radius="4dp"
-        app:bpi_marginBetweenCircles="3dp"
-        app:bpi_onSurfaceCount="1"
-        app:bpi_risingCount="@integer/default_bubble_indicator_rising_count"/>
-</RelativeLayout>
-</ScrollView>
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

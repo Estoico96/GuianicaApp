@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +25,11 @@ import com.ninjabyte.guianica.Utilities;
 import com.ninjabyte.guianica.adapters.CategoryHomefragmentAdapter;
 import com.ninjabyte.guianica.adapters.NoticeAdapter;
 import com.ninjabyte.guianica.adapters.OfferAdapter;
+import com.ninjabyte.guianica.adapters.TouristPlacesAdapter;
 import com.ninjabyte.guianica.model.Category;
 import com.ninjabyte.guianica.model.Notice;
 import com.ninjabyte.guianica.model.Offer;
+import com.ninjabyte.guianica.model.TouristPlace;
 import com.shuhart.bubblepagerindicator.BubblePageIndicator;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerViewOffer;
     private RecyclerView recyclerViewCategories;
+    private RecyclerView recyclerViewTouristPlaces;
 
     private ViewPager viewPagerNotice;
 
@@ -51,17 +53,21 @@ public class HomeFragment extends Fragment {
     private NoticeAdapter adapterNotice;
     private OfferAdapter adapterOffer;
     private CategoryHomefragmentAdapter adapterCategory;
+    private TouristPlacesAdapter adapterTouristPlaces;
 
     private ArrayList<Offer> arrayOffers;
     private ArrayList<Category> arrayCategory;
     private ArrayList<Notice> arrayNotices;
+    private ArrayList<TouristPlace> arrayTouristPlaces;
 
     private DatabaseReference offerDatabaseReference;
     private DatabaseReference categoryDatabaseReference;
     private DatabaseReference noticeDatabaseReference;
+    private DatabaseReference touristPlacesDatabaseReference;
 
     private ValueEventListener offerValueEventListener;
     private ValueEventListener noticeValueEventListener;
+    private ValueEventListener touristPlacesValueEventListener;
     private ChildEventListener categoryChildEventListener;
     private ChildEventListener noticeChildEventListener;
 
@@ -83,6 +89,7 @@ public class HomeFragment extends Fragment {
 
         onCreateOffer();
         onCreateCategory();
+        onCreateTouristPlaces();
 
     }
 
@@ -91,12 +98,12 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View fragmentHomeView = inflater.inflate(R.layout.fragment_home, container, false);
 
-
         userImage = fragmentHomeView.findViewById(R.id.user_image_fragment_home);
         recyclerViewOffer = fragmentHomeView.findViewById(R.id.recycler_offers_home_fragment);
         recyclerViewCategories = fragmentHomeView.findViewById(R.id.recycler_category_home_fragment);
+        recyclerViewTouristPlaces = fragmentHomeView.findViewById(R.id.recycler_tourist_places_home_fragment);
         viewPagerNotice = fragmentHomeView.findViewById(R.id.viewpager_notice_home_fragment);
-        noticeIndicator = fragmentHomeView.findViewById(R.id.notice_page_indicator);
+        noticeIndicator = fragmentHomeView.findViewById(R.id.notice_page_indicator_home_fragment);
         tooltipOffer = fragmentHomeView.findViewById(R.id.tooltip_offer_home_fragment);
         tooltipCategory = fragmentHomeView.findViewById(R.id.tooltip_category_home_fragment);
 
@@ -109,6 +116,9 @@ public class HomeFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManagerCategory = new LinearLayoutManager(context);
         linearLayoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        LinearLayoutManager linearLayoutManagerTouristPlaces = new LinearLayoutManager(context);
+        linearLayoutManagerTouristPlaces.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         // OFFERS
         recyclerViewOffer.setLayoutManager(linearLayoutManagerOffer);
@@ -125,12 +135,19 @@ public class HomeFragment extends Fragment {
         //NOTICES
         onCreateNotice();
 
+        //TOURIST PLACES
+        recyclerViewTouristPlaces.setLayoutManager(linearLayoutManagerTouristPlaces);
+        recyclerViewTouristPlaces.setHasFixedSize(false);
+        adapterTouristPlaces = new TouristPlacesAdapter(context, arrayTouristPlaces);
+        recyclerViewTouristPlaces.setAdapter(adapterTouristPlaces);
+
         Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE, userImage,
                 null, Utilities.getCurrentUser("photoUrl"));
 
         offerDatabaseReference.addValueEventListener(offerValueEventListener);
         categoryDatabaseReference.addChildEventListener(categoryChildEventListener);
         noticeDatabaseReference.addValueEventListener(noticeValueEventListener);
+        touristPlacesDatabaseReference.addValueEventListener(touristPlacesValueEventListener);
 
         return fragmentHomeView;
     }
@@ -206,7 +223,7 @@ public class HomeFragment extends Fragment {
         };
     }
 
-    private void onCreateNotice(){
+    private void onCreateNotice() {
         arrayNotices = new ArrayList<>();
 
         noticeDatabaseReference = Utilities.getDatabaseReference()
@@ -217,7 +234,7 @@ public class HomeFragment extends Fragment {
         noticeValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Notice notice = snapshot.getValue(Notice.class);
                     arrayNotices.add(notice);
                 }
@@ -225,7 +242,7 @@ public class HomeFragment extends Fragment {
                 adapterNotice = new NoticeAdapter(context, arrayNotices);
                 viewPagerNotice.setAdapter(adapterNotice);
                 viewPagerNotice.setClipToPadding(false);
-                viewPagerNotice.setPadding(16,0,16,0);
+                viewPagerNotice.setPadding(16, 0, 16, 0);
                 noticeIndicator.setViewPager(viewPagerNotice);
             }
 
@@ -234,6 +251,31 @@ public class HomeFragment extends Fragment {
 
             }
         };
+    }
 
+    private void onCreateTouristPlaces() {
+        arrayTouristPlaces = new ArrayList<>();
+
+        touristPlacesDatabaseReference = Utilities.getDatabaseReference()
+                .child(Utilities.DB_NODE)
+                .child("tourist_places");
+
+        touristPlacesValueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                arrayTouristPlaces.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    TouristPlace touristPlaces = snapshot.getValue(TouristPlace.class);
+                    arrayTouristPlaces.add(touristPlaces);
+                }
+                adapterTouristPlaces.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
     }
 }

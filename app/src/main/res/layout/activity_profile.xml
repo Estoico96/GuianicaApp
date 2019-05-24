@@ -68,78 +68,104 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/state_company_result_activity"
+            android:id="@+id/open_company_profile_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/company_specialty_profile_activity"
             android:layout_toEndOf="@+id/company_logo_profile_activity"
             android:fontFamily="@font/nunito_sans"
-            android:text="Abierto ahora"
-            android:textColor="#14E00C"
-            android:textSize="14sp" />
+            android:layout_marginEnd="10dp"
+            android:drawableStart="@drawable/ic_time"
+            android:drawablePadding="5dp"
+            android:text="Abierto 05:00 pm"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/closes_company_profile_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_specialty_profile_activity"
+            android:layout_toEndOf="@+id/open_company_profile_activity"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Cierra 05:00 pm"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/description_profile_activity"
             style="@style/LayoutLateralMargin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/state_company_result_activity"
+            android:layout_below="@+id/open_company_profile_activity"
             android:fontFamily="@font/nunito_sans"
             android:text="@string/lorem_description_medium"
             android:textColor="@color/colorSecondaryText"
             android:textSize="14sp" />
 
-        <ImageButton
-            android:id="@+id/btn_call_profile_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/layout_container_btn_contact_profile_activity"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
             android:layout_below="@+id/description_profile_activity"
-            android:layout_marginTop="20dp"
-            android:layout_toStartOf="@+id/btn_place_profile_activity"
-            android:background="@drawable/button_contact_profile_activity"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_phone_blue" />
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/btn_place_profile_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/description_profile_activity"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/button_contact_profile_activity"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_place_blue" />
+            <ImageButton
+                android:id="@+id/btn_call_profile_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_contact_profile_activity"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_phone_blue" />
 
-        <ImageButton
-            android:id="@+id/btn_mail_profile_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/description_profile_activity"
-            android:layout_marginTop="20dp"
-            android:layout_toEndOf="@+id/btn_place_profile_activity"
-            android:background="@drawable/button_contact_profile_activity"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_mail_blue" />
+            <ImageButton
+                android:id="@+id/btn_place_profile_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/button_contact_profile_activity"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_place_blue" />
+
+            <ImageButton
+                android:id="@+id/btn_mail_profile_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/button_contact_profile_activity"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_mail_blue" />
+
+            <ImageButton
+                android:id="@+id/btn_web_site_profile_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_contact_profile_activity"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_web_site" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/title_social_networks_activity_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_place_profile_activity"
+            android:layout_below="@+id/layout_container_btn_contact_profile_activity"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="17dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/nunito_sans"
             android:text="Siguenos en:"
+            android:textColor="@color/colorPrimaryText"
             android:textSize="15sp" />
 
         <RelativeLayout
             android:id="@+id/container_social_networks_activity_profile"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/title_social_networks_activity_profile"
             android:gravity="center">
 
@@ -149,7 +175,9 @@
                 style="@style/LayoutLateralMargin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_facebook" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_facebook"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/btn_instagram_activity_profile"
@@ -157,7 +185,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/btn_facebook_activity_profile"
-                android:src="@drawable/ic_instagram" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_instagram"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/btn_twitter_activity_profile"
@@ -165,7 +195,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/btn_instagram_activity_profile"
-                android:src="@drawable/ic_twitter" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_twitter"
+                android:visibility="gone" />
 
 
             <ImageView
@@ -174,7 +206,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/btn_twitter_activity_profile"
-                android:src="@drawable/ic_youtube" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_youtube"
+                android:visibility="gone" />
 
 
         </RelativeLayout>

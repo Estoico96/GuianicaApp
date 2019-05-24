@@ -6,8 +6,8 @@
     <string name="text_about_slide_title_two">Encuentra los negocios comerciales entre las distintas categorías.</string>
     <string name="text_about_slide_description_two">Destro del resultado de busqueda podrás filtrar los negocios por su especialidad para encontar el que más se adapte a tu necesidad.</string>
     <string name="text_about_slide_title_three">No te preocupes, funciono sin conexión a internet.</string>
-    <string name="text_about_slide_description_three">En cada perfil de los distintos negocios podrás guardar su información de contácto si asi lo deseas para esos días en el espacio intergaláctico.</string>
-    <string name="label_sign_in">Incia sesión</string>
+    <string name="text_about_slide_description_three">En cada perfil de los distintos negocios podrás guardar su información de contácto si asi lo deseas para esos días en el que te encuentre viajando por espacio intergaláctico.</string>
+    <string name="text_sign_in">Inicia sesión</string>
     <string name="text_button_fragment_confirm">Continuar</string>
     <string name="text_hints_search_main_activity">Buscar&#8230;</string>
     <string name="text_description_fragment_confirm">El registro se ha completado con exito, puedes darle continuar para disfrutar del contenido de Guianica.</string>
@@ -32,12 +32,14 @@
 
     <!-- TITLE HOME FRAGMENT -->
     <string name="title_offer_home_fragment">Ofertas</string>
-    <string name="title_notice_home_fragment">Noticias</string>
+    <string name="title_notice_home_fragment">Publicidad</string>
     <string name="title_category_home_fragment">Categorias</string>
+    <string name="title_tourist_places_home_fragment">Lugares turísticos</string>
 
     <!-- DDESCRIPTION ACTIVITY PROFILE -->
     <string name="description_featured_products_profile_activity">Estos son algunos de nuestros productos preferidos entre la comunidad, puedes llamarnos y preguntar acerca de ellos.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

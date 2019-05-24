@@ -20,4 +20,6 @@
     <dimen name="subtitle_margin_button">10dp</dimen>
     <dimen name="subtitle_margin_end">5dp</dimen>
     <dimen name="subtitle_font_size">16sp</dimen>
+
+
 </resources>

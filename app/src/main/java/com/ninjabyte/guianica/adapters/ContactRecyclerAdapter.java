@@ -77,19 +77,19 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        int curremSize = 0;
+        int currentSize = 0;
 
         switch (viewType){
             case 1 :
-                curremSize = arrayTelephones.size();
+                currentSize = arrayTelephones.size();
                 break;
 
             case 2 :
-                curremSize = arrayLocations.size();
+                currentSize = arrayLocations.size();
                 break;
         }
 
-        return curremSize;
+        return currentSize;
     }
 
     public static class CallRecyclerHolder extends RecyclerView.ViewHolder {
