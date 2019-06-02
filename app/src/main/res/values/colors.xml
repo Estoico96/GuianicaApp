@@ -4,6 +4,7 @@
     <color name="colorPrimary">#FAFAFA</color>
     <color name="colorPrimaryDark">#FAFAFA</color>
     <color name="colorAccent">#415fa3</color>
+    <color name="chipIconTint">#e71f1f</color>
     <color name="colorWhite">#ffffff</color>
 
     <!-- TEXT COLORS -->
@@ -17,6 +18,7 @@
 
     <!-- BACKGROUND COLORS -->
     <color name="colorPanel">#aeb9b9b9</color>
+    <color name="colorBackground">#F3F3F3</color>
 
     <!-- DOTS COLORS -->
     <color name="colorDotInactive">#e9002d56</color>

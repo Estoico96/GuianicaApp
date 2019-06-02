@@ -13,7 +13,7 @@
     <string name="text_description_fragment_confirm">El registro se ha completado con exito, puedes darle continuar para disfrutar del contenido de Guianica.</string>
     <string name="text_description_offer">Aprovecha todas las ofertas de este mes. Aplican condiciones.</string>
     <string name="text_description_results">Hemos encontrado %1$d negocios en esta categoría, puedes filtarlos según su especialidad.</string>
-
+    <string name="text_schedule_company_activity_result">Abierto de %1$s a %2$s</string>
     <!-- LOREM IPSUM -->
     <string name="lorem_title_small">Lorem ipsum</string>
     <string name="lorem_description_small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>

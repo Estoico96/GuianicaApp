@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".main.ResultActivity">
-
+    tools:context=".main.ResultActivity"
+    android:background="@color/colorBackground">
 
     <ImageButton
-        android:id="@+id/btn_back_result_activity"
+        android:id="@+id/button_back_result_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -21,23 +21,13 @@
         android:id="@+id/category_name_result_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:layout_marginStart="10dp"
-        android:layout_toEndOf="@+id/btn_back_result_activity"
+        android:layout_marginTop="12dp"
+        android:layout_toEndOf="@+id/button_back_result_activity"
         android:fontFamily="@font/nunito_sans_bold"
         android:text="Category"
         android:textColor="@color/colorPrimaryText"
         android:textSize="25sp" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btn_filter_activity_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_filter_list_white"
-        tools:ignore="RelativeOverlap" />
 
     <TextView
         android:id="@+id/text_results_result_activity"
@@ -45,54 +35,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/category_name_result_activity"
-        android:ems="15"
         android:fontFamily="@font/nunito_sans"
         android:text="@string/text_description_results"
         android:textColor="@color/colorSecondaryText"
         android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/type_filter_result_activity"
-        style="@style/LayoutLateralMargin"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_filter_result_activity"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_results_result_activity"
-        android:background="@drawable/background_type_filter"
-        android:text="Todas las categorías"
-        android:textColor="@color/colorWhite"
-        android:textSize="14sp" />
+        android:layout_marginTop="15dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_result_result_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/type_filter_result_activity"
-        android:layout_marginTop="15dp">
-    </android.support.v7.widget.RecyclerView>
-
-    <RelativeLayout android:id="@+id/filter_container_activity_result"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPanel"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <com.github.mmin18.widget.RealtimeBlurView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:realtimeBlurRadius="15dp"
-            app:realtimeOverlayColor="#88ffffff" />
-
-        <TextView android:id="@+id/title_filter_activity_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/nunito_sans_bold"
-            android:layout_marginBottom="20dp"
-            android:text="Filtros"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="25sp"/>
-
-    </RelativeLayout>
-
+        android:layout_below="@+id/recycler_filter_result_activity"
+        android:layout_marginTop="15dp"/>
 </RelativeLayout>
