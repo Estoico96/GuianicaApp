@@ -37,17 +37,16 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeFragment extends Fragment {
-
     private Context context;
     private Activity activity;
     private CircleImageView userImage;
+    private TextView userName;
 
     private RecyclerView recyclerViewOffer;
     private RecyclerView recyclerViewCategories;
     private RecyclerView recyclerViewTouristPlaces;
 
     private ViewPager viewPagerNotice;
-
     private BubblePageIndicator noticeIndicator;
 
     private NoticeAdapter adapterNotice;
@@ -90,7 +89,6 @@ public class HomeFragment extends Fragment {
         onCreateOffer();
         onCreateCategory();
         onCreateTouristPlaces();
-
     }
 
     @Override
@@ -99,6 +97,7 @@ public class HomeFragment extends Fragment {
         View fragmentHomeView = inflater.inflate(R.layout.fragment_home, container, false);
 
         userImage = fragmentHomeView.findViewById(R.id.user_image_fragment_home);
+        userName = fragmentHomeView.findViewById(R.id.say_hello_home_fragment);
         recyclerViewOffer = fragmentHomeView.findViewById(R.id.recycler_offers_home_fragment);
         recyclerViewCategories = fragmentHomeView.findViewById(R.id.recycler_category_home_fragment);
         recyclerViewTouristPlaces = fragmentHomeView.findViewById(R.id.recycler_tourist_places_home_fragment);
@@ -110,7 +109,6 @@ public class HomeFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManagerOffer = new LinearLayoutManager(context);
         linearLayoutManagerOffer.setOrientation(LinearLayoutManager.HORIZONTAL);
-
 
         GridLayoutManager gridLayoutManagerCategory = new GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false);
 
@@ -141,13 +139,13 @@ public class HomeFragment extends Fragment {
         adapterTouristPlaces = new TouristPlacesAdapter(context, arrayTouristPlaces);
         recyclerViewTouristPlaces.setAdapter(adapterTouristPlaces);
 
-        Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE, userImage,
-                null, Utilities.getCurrentUser("photoUrl"));
 
         offerDatabaseReference.addValueEventListener(offerValueEventListener);
         categoryDatabaseReference.addChildEventListener(categoryChildEventListener);
         noticeDatabaseReference.addValueEventListener(noticeValueEventListener);
         touristPlacesDatabaseReference.addValueEventListener(touristPlacesValueEventListener);
+
+        onCreateDataUser();
 
         return fragmentHomeView;
     }
@@ -253,6 +251,13 @@ public class HomeFragment extends Fragment {
         };
     }
 
+    private void onCreateDataUser(){
+        String[] firstUserName =  Utilities.getCurrentUser("displayName").split(" ", 2);
+        userName.setText(String.format(getResources().getString(R.string.say_hello_home_fragment), firstUserName[0]));
+
+        Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE, userImage,
+                null, Utilities.getCurrentUser("photoUrl"));
+    }
     private void onCreateTouristPlaces() {
         arrayTouristPlaces = new ArrayList<>();
 

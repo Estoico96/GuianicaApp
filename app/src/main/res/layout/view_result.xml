@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_company_info_activity_result"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="wrap_content"
     app:cardCornerRadius="16dp"
     app:cardUseCompatPadding="true">
 
@@ -19,6 +19,7 @@
             android:layout_height="56dp"
             android:layout_centerVertical="true"
             android:elevation="@dimen/small_elevation"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/shimmer_circle_image"
             app:civ_border_width="0dp" />
 
@@ -26,12 +27,11 @@
             android:id="@+id/company_name_view_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
             android:layout_toEndOf="@+id/company_logo_view_result"
             android:ellipsize="end"
             android:fontFamily="@font/nunito_sans_bold"
+            android:maxWidth="120dp"
             android:maxLines="1"
-            android:text="Atomic Pizza"
             android:textColor="@color/colorPrimaryText"
             android:textSize="18sp" />
 
@@ -41,7 +41,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/company_name_view_result"
-            android:layout_marginStart="7dp"
             android:layout_marginTop="3dp"
             android:layout_toEndOf="@id/company_logo_view_result"
             android:numStars="5"
@@ -52,31 +51,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/company_name_view_result"
-            android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/company_rating_view_result"
             android:fontFamily="@font/nunito_sans_bold"
-            android:text="4.0"
             android:textSize="14sp" />
 
-        <TextView android:id="@+id/state_delivery_view_result"
+        <TextView
+            android:id="@+id/state_delivery_view_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/schedule_company_view_result"
-            android:layout_marginStart="7dp"
             android:layout_toEndOf="@+id/company_logo_view_result"
-            android:text="Delivery gratis"
             android:textColor="@color/colorGreen"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:drawableEnd="@drawable/ic_delivery"
+            android:drawablePadding="7dp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/company_specialty_view_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/count_rating_view_result"
-            android:layout_marginStart="7dp"
             android:layout_toEndOf="@+id/company_logo_view_result"
             android:fontFamily="@font/nunito_sans"
-            android:text="Restaurante de comida rápida"
             android:textColor="@color/colorSecondaryText"
             android:textSize="14sp" />
 
@@ -85,34 +82,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/company_specialty_view_result"
-            android:layout_marginStart="7dp"
             android:layout_toEndOf="@+id/company_logo_view_result"
             android:fontFamily="@font/nunito_sans"
-            android:text="@string/text_schedule_company_activity_result"
             android:textColor="@color/colorSecondaryText"
             android:textSize="14sp" />
 
-        <ImageButton android:id="@+id/button_send_profile_view_result"
-            android:background="@drawable/background_button_send_profile"
+        <ImageButton
+            android:id="@+id/button_send_profile_view_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:src="@drawable/ic_chevron_right_white"
             android:layout_alignParentEnd="true"
-            android:contentDescription="@string/app_name"/>
+            android:background="@drawable/background_button_send_profile"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_chevron_right_white" />
 
         <TextView
             android:id="@+id/state_offer_company_view_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/company_name_view_result"
             android:drawableStart="@drawable/ic_offer_grey"
             android:drawablePadding="5dp"
+            android:layout_marginStart="7dp"
             android:fontFamily="@font/nunito_sans"
-            android:visibility="gone"
             android:textColor="@color/colorWhite"
             android:textSize="14sp"
+            android:visibility="gone"
             tools:ignore="RelativeOverlap" />
 
     </RelativeLayout>

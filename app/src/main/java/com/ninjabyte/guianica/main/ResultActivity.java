@@ -17,12 +17,16 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.Shimmer;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,11 +40,15 @@ import com.ninjabyte.guianica.model.Result;
 import java.util.ArrayList;
 
 public class ResultActivity extends AppCompatActivity implements View.OnClickListener {
+    private final String DEFAULT_FILTERED_LIST = "Todos";
+    private ShimmerFrameLayout shimmerActivityResult;
+    private RelativeLayout relativeContaierResult;
     private TextView categoryName;
     private ResultAdapter resultAdapter;
     private FilterAdapter filterAdapter;
     private ArrayList<Result> arrayResults;
     private ArrayList<String> arrayFilter;
+    private RecyclerView recyclerResult;
     private TextView textDescriptionResults;
     private DatabaseReference companyDatabaseReference;
     private ValueEventListener resultValueEventListener;
@@ -58,14 +66,18 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         arrayResults = new ArrayList<>();
         arrayFilter = new ArrayList<>();
 
+        shimmerActivityResult = findViewById(R.id.shimmer_view_container);
+        shimmerActivityResult.startShimmer();
+        relativeContaierResult = findViewById(R.id.relative_container_activity_result);
         categoryName = findViewById(R.id.category_name_result_activity);
-        RecyclerView recyclerResult = findViewById(R.id.recycler_result_result_activity);
+        recyclerResult = findViewById(R.id.recycler_result_result_activity);
         RecyclerView recyclerFilter = findViewById(R.id.recycler_filter_result_activity);
 
         recyclerResult.setHasFixedSize(false);
         recyclerResult.setLayoutManager(new LinearLayoutManager(this));
-        resultAdapter = new ResultAdapter(this, arrayResults);
+        resultAdapter = new ResultAdapter(this, arrayResults, recyclerResult);
         recyclerResult.setAdapter(resultAdapter);
+
 
         recyclerFilter.setHasFixedSize(false);
         LinearLayoutManager filterLinearLayoutManager = new LinearLayoutManager(this);
@@ -81,6 +93,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arrayResults.clear();
                 arrayFilter.clear();
+                arrayFilter.add(DEFAULT_FILTERED_LIST);
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Result result = snapshot.getValue(Result.class);
@@ -88,11 +101,16 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
                     onCreateFilter(result);
                 }
 
-                resultAdapter.notifyDataSetChanged();
+                Utilities.runLayoutAnimation(recyclerResult, ResultActivity.this);
+
                 filterAdapter.notifyDataSetChanged();
                 textDescriptionResults.setText(
                         String.format(getResources().getString(R.string.text_description_results),
                                 dataSnapshot.getChildrenCount()));
+
+                shimmerActivityResult.stopShimmer();
+                shimmerActivityResult.setVisibility(View.GONE);
+                relativeContaierResult.setVisibility(View.VISIBLE);
                 position = 0;
             }
 

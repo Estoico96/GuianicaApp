@@ -21,5 +21,16 @@
     <dimen name="subtitle_margin_end">5dp</dimen>
     <dimen name="subtitle_font_size">16sp</dimen>
 
+    <!-- Shimmer activity result -->
+    <dimen name="placeholder_lateral_margin">16dp</dimen>
+    <dimen name="placeholder_wh_logo">56dp</dimen>
+    <dimen name="placeholder_text_height">8dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="name">15dp</dimen>
+    <dimen name="chef">12dp</dimen>
+    <dimen name="timestamp">11dp</dimen>
+    <dimen name="description">15dp</dimen>
+    <dimen name="price">13dp</dimen>
+
 
 </resources>

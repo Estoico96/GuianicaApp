@@ -64,7 +64,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferHolder>
     }
 
     public class OfferHolder extends RecyclerView.ViewHolder {
-        private LinearLayout container;
+        private RelativeLayout container;
         private CardView contanerBanner;
         private TextView tooltip;
         private TextView name;

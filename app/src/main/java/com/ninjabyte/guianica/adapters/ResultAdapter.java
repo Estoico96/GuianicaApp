@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
 import com.ninjabyte.guianica.main.ProfileActivity;
+import com.ninjabyte.guianica.main.ResultActivity;
 import com.ninjabyte.guianica.model.Result;
 
 import java.util.ArrayList;
@@ -29,13 +29,15 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
     private LayoutInflater layoutInflater;
     private ArrayList<Result> arrayResults;
     private ArrayList<Result> arrayResultsFiltered;
+    private RecyclerView recyclerResult;
 
 
-    public ResultAdapter(Context context, ArrayList<Result> arrayResults) {
+    public ResultAdapter(Context context, ArrayList<Result> arrayResults, RecyclerView recyclerResult) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
         this.arrayResults = arrayResults;
         this.arrayResultsFiltered = arrayResults;
+        this.recyclerResult = recyclerResult;
     }
 
     @NonNull
@@ -60,23 +62,22 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
-                String charString = "Restaurante de "+charSequence.toString();
-                Log.v("filtertest", charString);
-
+                String charString = charSequence.toString();
                 if (charString.isEmpty()) {
                     arrayResultsFiltered = arrayResults;
                 } else {
                     ArrayList<Result> filteredList = new ArrayList<>();
                     filteredList.clear();
                     for (Result row : arrayResults) {
-                        if (row.getSpecialty().equals(charString)) {
+                        if (row.getSpecialty().contains(charString)) {
                             filteredList.add(row);
-                            Log.v("filtertest", "add: " + row.getSpecialty());
                         }
+                    }
+                    if (filteredList.size() == 0) {
+                        filteredList = arrayResults;
                     }
                     arrayResultsFiltered = filteredList;
                 }
-                Log.v("filtertest", "equals: " + arrayResultsFiltered.toString());
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = arrayResultsFiltered;
                 return filterResults;
@@ -84,7 +85,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-
+                arrayResultsFiltered = (ArrayList<Result>) results.values;
+                Utilities.runLayoutAnimation(recyclerResult, context);
                 notifyDataSetChanged();
             }
         };
@@ -109,7 +111,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
             companyLogo = itemView.findViewById(R.id.company_logo_view_result);
             companySchedule = itemView.findViewById(R.id.schedule_company_view_result);
             companyRating = itemView.findViewById(R.id.company_rating_view_result);
-            companyRatingCount =itemView.findViewById(R.id.count_rating_view_result);
+            companyRatingCount = itemView.findViewById(R.id.count_rating_view_result);
             companyStateDelivery = itemView.findViewById(R.id.state_delivery_view_result);
             companySpecialty = itemView.findViewById(R.id.company_specialty_view_result);
             companyStateOffer = itemView.findViewById(R.id.state_offer_company_view_result);
@@ -118,28 +120,30 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
         }
 
         public void createResults(int position) {
+            float rating = arrayResultsFiltered.get(position).getRating();
+            String valueDelivery = arrayResultsFiltered.get(position).getDelivery().getValue();
+            boolean activeDelivery = arrayResultsFiltered.get(position).getDelivery().isActive();
 
-            float rating = arrayResults.get(position).getRating();
-            String delivery = arrayResults.get(position).getDelivery();
-            Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE, companyLogo, null, arrayResults.get(position).getLogoUrl());
-            companyName.setText(arrayResults.get(position).getCompany());
-            companySpecialty.setText(arrayResults.get(position).getSpecialty());
+            Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE, companyLogo, null, arrayResultsFiltered.get(position).getLogoUrl());
+            companyName.setText(arrayResultsFiltered.get(position).getCompany());
+            companySpecialty.setText(arrayResultsFiltered.get(position).getSpecialty());
             companySchedule.setText(String.format(
                     context.getResources().getString(
                             R.string.text_schedule_company_activity_result),
-                            getSchedule(position,0),
-                            getSchedule(position,1)
-                    ));
+                    getSchedule(position, 0),
+                    getSchedule(position, 1)
+            ));
             companyRating.setRating(rating);
             companyRatingCount.setText(String.valueOf(rating));
 
-            if (delivery.equals("false")){
+            if (activeDelivery) {
+                companyStateDelivery.setVisibility(View.VISIBLE);
+                companyStateDelivery.setText(valueDelivery);
+            } else {
                 companyStateDelivery.setVisibility(View.GONE);
-            }else {
-                companyStateDelivery.setText(delivery);
             }
 
-            if (arrayResults.get(position).isOffer()){
+            if (arrayResultsFiltered.get(position).isOffer()) {
                 companyStateOffer.setVisibility(View.VISIBLE);
             }
         }
@@ -156,8 +160,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
             }
         }
 
-        private String getSchedule(int position, int index){
-            return arrayResults.get(position).getSchedule().get(index);
+        private String getSchedule(int position, int index) {
+            return arrayResultsFiltered.get(position).getSchedule().get(index);
         }
     }
 }

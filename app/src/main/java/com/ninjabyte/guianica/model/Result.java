@@ -9,7 +9,7 @@ public class Result {
     private String specialty;
     private ArrayList<String> schedule;
     private boolean offer;
-    private String delivery;
+    private Delivery delivery;
     private int rating;
 
 
@@ -44,16 +44,20 @@ public class Result {
         return specialty;
     }
 
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
+
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
     }
 
     public ArrayList<String> getSchedule() {
         return schedule;
-    }
-
-    public String getDelivery() {
-        return delivery;
     }
 
     public int getRating() {
@@ -72,25 +76,9 @@ public class Result {
         this.offer = offer;
     }
 
-    public void setDelivery(String delivery) {
-        this.delivery = delivery;
-    }
-
     public void setRating(int rating) {
         this.rating = rating;
     }
 
-    @Override
-    public String toString() {
-        return "Result{" +
-                "uid='" + uid + '\'' +
-                ", company='" + company + '\'' +
-                ", logoUrl='" + logoUrl + '\'' +
-                ", specialty='" + specialty + '\'' +
-                ", schedule=" + schedule +
-                ", offer=" + offer +
-                ", delivery='" + delivery + '\'' +
-                ", rating=" + rating +
-                '}';
-    }
+
 }

@@ -50,7 +50,7 @@
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/padding_end"
-            android:background="@drawable/btn_share_detail_offer"
+            android:background="@drawable/button_share_detail_offer"
             android:text="@string/text_btn_share_detail_offer"
             android:textAllCaps="false"
             android:textSize="16sp"

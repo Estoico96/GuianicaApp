@@ -1,56 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.ResultActivity"
     android:background="@color/colorBackground">
 
-    <ImageButton
-        android:id="@+id/button_back_result_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_keyboard_backspace_black" />
-
-    <TextView
-        android:id="@+id/category_name_result_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_toEndOf="@+id/button_back_result_activity"
-        android:fontFamily="@font/nunito_sans_bold"
-        android:text="Category"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/text_results_result_activity"
-        style="@style/LayoutLateralMargin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/category_name_result_activity"
-        android:fontFamily="@font/nunito_sans"
-        android:text="@string/text_description_results"
-        android:textColor="@color/colorSecondaryText"
-        android:textSize="14sp" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_filter_result_activity"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_results_result_activity"
-        android:layout_marginTop="15dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_result_result_activity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/recycler_filter_result_activity"
-        android:layout_marginTop="15dp"/>
-</RelativeLayout>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/shimmer_activity_result_header" />
+                <include layout="@layout/shimmer_activity_result_item" />
+                <include layout="@layout/shimmer_activity_result_item" />
+                <include layout="@layout/shimmer_activity_result_item" />
+                <include layout="@layout/shimmer_activity_result_item" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+        <RelativeLayout android:id="@+id/relative_container_activity_result"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/button_back_result_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_keyboard_backspace_black" />
+
+            <TextView
+                android:id="@+id/category_name_result_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_toEndOf="@+id/button_back_result_activity"
+                android:fontFamily="@font/nunito_sans_bold"
+                android:text="Category"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/text_results_result_activity"
+                style="@style/LayoutLateralMargin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/category_name_result_activity"
+                android:fontFamily="@font/nunito_sans"
+                android:text="@string/text_description_results"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="14sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_filter_result_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_results_result_activity"
+                android:layout_marginTop="15dp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_result_result_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recycler_filter_result_activity"
+                android:layout_marginTop="15dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
