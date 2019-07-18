@@ -7,10 +7,15 @@
     <string name="text_about_slide_description_two">Destro del resultado de busqueda podrás filtrar los negocios por su especialidad para encontar el que más se adapte a tu necesidad.</string>
     <string name="text_about_slide_title_three">No te preocupes, funciono sin conexión a internet.</string>
     <string name="text_about_slide_description_three">En cada perfil de los distintos negocios podrás guardar su información de contácto si asi lo deseas para esos días en el que te encuentre viajando por espacio intergaláctico.</string>
-    <string name="text_sign_in">Inicia sesión</string>
+    <string name="text_sign_in">Inicia sesión con Google</string>
+    <string name="text_privacy_policy_auth">Al registrarte, aceptas la <![CDATA[ <a href="#">política de privacidad</a>]]> de Guianica.</string>
+    <string name="text_privacy_policy">Política de privacidad</string>
+    <string name="privacy_policy_key">papgn</string>
+    <string name="privacy_policy_state_key">false</string>
     <string name="text_button_fragment_confirm">Continuar</string>
     <string name="text_hints_search_main_activity">Buscar&#8230;</string>
-    <string name="text_description_fragment_confirm">El registro se ha completado con exito, puedes darle continuar para disfrutar del contenido de Guianica.</string>
+    <string name="text_description_fragment_confirm">Gracias por iniciar sesión, ya esta todo listo.</string>
+    <string name="text_load_data_user_fragment_confirm">Estamos guardando tu perfil, espera un momento.</string>
     <string name="text_description_offer">Aprovecha todas las ofertas de este mes que tenemos para tí con mucho amor.</string>
     <string name="text_description_results">Hemos encontrado %1$d negocios en esta categoría, puedes filtarlos según su especialidad.</string>
     <string name="text_schedule_company_activity_result">Abierto de %1$s a %2$s</string>
@@ -18,6 +23,12 @@
     <string name="lorem_title_small">Lorem ipsum</string>
     <string name="lorem_description_small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
     <string name="lorem_description_medium">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+
+    <!-- ERROR MESSAGES -->
+    <string name="text_app_error">Ha ocurrido un error, Intentalo de nuevo.</string>
+    <string name="text_app_error_auth">Fallo de Autenticación.</string>
+    <string name="text_app_error_privacy_policy">Revisa la politica de privacidad antes de iniciar.</string>
+    <string name="text_app_error_sing_in_google">El inicio con Google falló, Intentalo de nuevo.</string>
 
     <!-- IMAGE VIEW CONTENT DESCRIPTION -->
     <string name="logo_content_description">Logo</string>
@@ -30,13 +41,13 @@
     <string name="menu_title_place">Place</string>
     <string name="menu_title_user">User</string>
 
+
     <!-- TITLE HOME FRAGMENT -->
     <string name="title_offer_home_fragment">Ofertas</string>
     <string name="say_hello_home_fragment">Hola, %1$s</string>
     <string name="title_notice_home_fragment">Publicidad</string>
     <string name="title_category_home_fragment">Categorias</string>
     <string name="title_tourist_places_home_fragment">Lugares turísticos</string>
-
     <!-- DDESCRIPTION ACTIVITY PROFILE -->
     <string name="description_featured_products_profile_activity">Estos son algunos de nuestros productos preferidos entre la comunidad, puedes llamarnos y preguntar acerca de ellos.</string>
 

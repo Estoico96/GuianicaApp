@@ -22,12 +22,10 @@ import com.ninjabyte.guianica.main.MainActivity;
 public class SplashActivity extends AppCompatActivity {
     private static final int FRAGMENT_CONTAINER = R.id.fragment_main_activity_splash;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
         Utilities.checkApiLevel(SplashActivity.this);
     }
 
@@ -36,26 +34,9 @@ public class SplashActivity extends AppCompatActivity {
         super.onStart();
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null){
-            //PANTALLA DE BIENVENIDA
-
-            //POR EL MOMENTO SE ENVIA DIRECTAMENTE DESDE EL ACTIVITY SPLASH
-            //A EL MAINACTIVITY
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
             return;
         }
-
-        /* FASE DE PRUEBA *********************
-
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                GuianicaDbHelper localDatabase = new GuianicaDbHelper(SplashActivity.this);
-                localDatabase.getWritableDatabase();
-            }
-        });
-
-        */ //*************************************
-
         Utilities.setFragment(new AuthFragment(), SplashActivity.this, FRAGMENT_CONTAINER);
     }
 

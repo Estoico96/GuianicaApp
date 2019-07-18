@@ -5,24 +5,14 @@
     android:id="@+id/layout_auth_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".splash.AuthFragment">
-
-    <ImageView
-        android:id="@+id/logo_fragment_auth"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:src="@mipmap/ic_launcher"
-        android:contentDescription="@string/logo_content_description" />
-
 
     <android.support.v4.view.ViewPager
         android:id="@+id/about_view_pager_fragment_auth"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_above="@+id/indicator_fragment_about"
-        android:layout_below="@+id/logo_fragment_auth" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/indicator_fragment_about" />
 
     <com.shuhart.bubblepagerindicator.BubblePageIndicator
         android:id="@+id/indicator_fragment_about"
@@ -38,21 +28,51 @@
         app:bpi_onSurfaceCount="4"
         app:bpi_risingCount="@integer/default_bubble_indicator_rising_count"/>
 
+    <ProgressBar android:id="@+id/progress_fragment_auth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/indicator_fragment_about"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/btn_sign_in_fragment_auth"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:drawableStart="@drawable/ic_google"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/small_margin"
-        android:background="@drawable/button_sign_in_fragment_auth"
-        android:fontFamily="@font/nunito_sans_bold"
-        android:text="@string/text_sign_in"
+        android:layout_marginBottom="10dp"
+        android:drawablePadding="10dp"
+        android:layout_above="@+id/container_privacy_policy_fragment_auth"
         android:textAllCaps="false"
-        android:textColor="@color/colorWhite"
-        android:textSize="18sp" />
+        android:background="@drawable/button_sign_in_fragment_auth"
+        android:text="@string/text_sign_in" />
 
+    <LinearLayout android:id="@+id/container_privacy_policy_fragment_auth"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true">
+
+        <CheckBox android:id="@+id/accept_privacy_policy_fragment_auth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"/>
+
+        <TextView android:id="@+id/privacy_policy_fragment_auth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_privacy_policy_auth"
+            android:maxLines="2"
+            android:ems="13"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
+
+    <!--
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button_fragment_auth"
         android:layout_width="wrap_content"
@@ -62,5 +82,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/small_margin"
         android:layout_marginBottom="@dimen/small_margin"/>
-
+-->
 </RelativeLayout>

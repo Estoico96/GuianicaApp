@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_company_info_activity_result"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal">
+
+    <View
+        android:id="@+id/thumbnail"
+        android:layout_width="109dp"
+        android:layout_height="109dp"
+        android:layout_marginEnd="7dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shimmer_circle_image"
+        />
+    <View
+        android:id="@+id/name"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/thumbnail"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_shimmer_text" />
+
+
+
+</RelativeLayout>

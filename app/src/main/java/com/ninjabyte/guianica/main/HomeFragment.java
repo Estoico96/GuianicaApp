@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -254,7 +255,12 @@ public class HomeFragment extends Fragment {
     private void onCreateDataUser(){
         String[] firstUserName =  Utilities.getCurrentUser("displayName").split(" ", 2);
         userName.setText(String.format(getResources().getString(R.string.say_hello_home_fragment), firstUserName[0]));
-
+        userName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+            }
+        });
         Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE, userImage,
                 null, Utilities.getCurrentUser("photoUrl"));
     }

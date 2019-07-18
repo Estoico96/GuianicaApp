@@ -3,8 +3,7 @@
     <!-- PRIMARY COLORS -->
     <color name="colorPrimary">#FAFAFA</color>
     <color name="colorPrimaryDark">#FAFAFA</color>
-    <color name="colorAccent">#415fa3</color>
-    <color name="chipIconTint">#e71f1f</color>
+    <color name="colorAccent">#E7602C</color>
     <color name="colorWhite">#ffffff</color>
 
     <!-- TEXT COLORS -->

@@ -2,6 +2,7 @@ package com.ninjabyte.guianica;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.design.widget.Snackbar;
@@ -20,7 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.ninjabyte.guianica.main.ResultActivity;
 import com.ninjabyte.guianica.model.About;
 
 import java.util.ArrayList;
@@ -31,7 +31,11 @@ public class Utilities {
     private static DatabaseReference databaseReference;
     public static final int TYPE_CIRCLE = 0;
     public static final int TYPE_NORMAL = 1;
-        public static final String DB_NODE = "7a4fa054-4287-4e9e-8432-258840d49798";
+    public static final String DB_NODE = "7a4fa054-4287-4e9e-8432-258840d49798";
+    public static final String DB_USER_NODE = "51b563d2-9c45-11e9-a2a3-2a2ae2dbcce4";
+    public static final String PRIVACY_POLICY_URL = "https://guianica-db801.firebaseapp.com";
+
+    private static SharedPreferences privacyPolicySharedPreferences;
 
     private Utilities() {
     }
@@ -43,11 +47,11 @@ public class Utilities {
 
     public static ArrayList<About> getAboutContent(Context context) {
         ArrayList<About> abouts = new ArrayList<>();
-        abouts.add(new About(context.getResources().getString(R.string.text_about_slide_title_one),
+        abouts.add(new About(context.getResources().getDrawable(R.drawable.ic_welcome), context.getResources().getString(R.string.text_about_slide_title_one),
                 context.getResources().getString(R.string.text_about_slide_description_one)));
-        abouts.add(new About(context.getResources().getString(R.string.text_about_slide_title_two),
+        abouts.add(new About(context.getResources().getDrawable(R.drawable.ic_search), context.getResources().getString(R.string.text_about_slide_title_two),
                 context.getResources().getString(R.string.text_about_slide_description_two)));
-        abouts.add(new About(context.getResources().getString(R.string.text_about_slide_title_three),
+        abouts.add(new About(context.getResources().getDrawable(R.drawable.ic_space), context.getResources().getString(R.string.text_about_slide_title_three),
                 context.getResources().getString(R.string.text_about_slide_description_three)));
         return abouts;
     }
@@ -137,4 +141,19 @@ public class Utilities {
         if (recyclerView != null) recyclerView.getAdapter().notifyDataSetChanged();
         recyclerView.scheduleLayoutAnimation();
     }
+
+    public static void saveDecisionPrivacyPolicy(Context context, boolean state){
+         privacyPolicySharedPreferences = context.getSharedPreferences(
+                context.getString(R.string.privacy_policy_key), context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = privacyPolicySharedPreferences.edit();
+        editor.putBoolean(context.getString(R.string.privacy_policy_state_key), state);
+        editor.apply();
+
+    }
+
+    public static boolean getDecisionPrivacyPolicy(Context context){
+        return privacyPolicySharedPreferences.getBoolean(context.getString(R.string.privacy_policy_state_key), false);
+    }
+
 }

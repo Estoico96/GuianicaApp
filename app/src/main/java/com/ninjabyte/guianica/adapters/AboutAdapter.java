@@ -1,11 +1,13 @@
 package com.ninjabyte.guianica.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
@@ -43,9 +45,11 @@ public class AboutAdapter  extends PagerAdapter {
 
         About about = abouts.get(position);
 
+        ImageView image = view.findViewById(R.id.image_illustration_view_about);
         TextView title = view.findViewById(R.id.title_about);
         TextView description = view.findViewById(R.id.description_about);
 
+        image.setImageDrawable(about.getImage());
         title.setText(about.getTitle());
         description.setText(about.getDescription());
 

@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -39,19 +40,24 @@ import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
 import com.ninjabyte.guianica.adapters.AboutAdapter;
 import com.ninjabyte.guianica.main.MainActivity;
+import com.ninjabyte.guianica.model.User;
 import com.shuhart.bubblepagerindicator.BubblePageIndicator;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ConfirmFragment extends Fragment implements View.OnClickListener {
-
     private static final String TAG = "AuthActivity";
-
     private Context context;
     private View view;
+    private ShimmerFrameLayout shimmerFramengConfirm;
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
+    private DatabaseReference userDatabaseReference;
+    private CircleImageView userImage;
+    private  TextView userName;
+    private  TextView description;
+    private Button btnConfirm;
 
     public ConfirmFragment() {
         // Required empty public constructor
@@ -63,15 +69,14 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
         context = getContext();
         view = inflater.inflate(R.layout.fragment_confirm, container, false);
 
-        CircleImageView userImage = view.findViewById(R.id.user_image_fragment_confirm);
-        TextView userName = view.findViewById(R.id.user_name_fragment_confirm);
-        Button btnConfirm = view.findViewById(R.id.btn_next_fragment_confirm);
-
-        Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE, userImage, null, Utilities.getCurrentUser("photoUrl"));
-        userName.setText(currentUser.getDisplayName());
+        shimmerFramengConfirm = view.findViewById(R.id.shimmer_view_container_fragment_confirm);
+        userImage = view.findViewById(R.id.user_image_fragment_confirm);
+        userName = view.findViewById(R.id.user_name_fragment_confirm);
+        description = view.findViewById(R.id.description_fragment_confirm);
+        btnConfirm = view.findViewById(R.id.btn_next_fragment_confirm);
 
         btnConfirm.setOnClickListener(this);
-
+        shimmerFramengConfirm.startShimmer();
         return view;
     }
 
@@ -82,35 +87,66 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
 
+        userDatabaseReference = Utilities.getDatabaseReference()
+                .child(Utilities.DB_USER_NODE)
+                .child("Users").child(currentUser.getUid());
+
+        registerUser();
     }
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btn_next_fragment_confirm){
-
-            //CREAR LA BASE DE DATOS
-            //onUpdateLocalDatabseWithFirebase();
             startActivity(new Intent(context.getApplicationContext(), MainActivity.class));
         }
     }
 
+    private void registerUser(){
 
-    private void onUpdateLocalDatabseWithFirebase(){
-        DatabaseReference database = Utilities.getDatabaseReference();
-        database.child("7a4fa054-4287-4e9e-8432-258840d49798")
-                .child("categories").addListenerForSingleValueEvent(new ValueEventListener() {
+        if (currentUser != null){
+
+            User user = new User(
+                currentUser.getUid(),
+                currentUser.getDisplayName(),
+                currentUser.getPhotoUrl().toString(),
+                currentUser.getEmail()
+            );
+
+            userDatabaseReference.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isComplete()){
+                        downloadDataUser();
+                    }
+                }
+            });
+
+        }
+    }
+
+    private void downloadDataUser(){
+        userDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.v("asdf", "onUpdateLocalDatabseWithFirebase");
+               loadDataUser(dataSnapshot.getValue(User.class));
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Utilities.showSnackBar(view, databaseError.getMessage());
             }
         });
-
-
     }
 
+    private void loadDataUser(User user){
+        shimmerFramengConfirm.stopShimmer();
+        shimmerFramengConfirm.setVisibility(View.GONE);
+        userImage.setVisibility(View.VISIBLE);
+        userName.setVisibility(View.VISIBLE);
+
+        Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE, userImage, null, user.photoUrl);
+        userName.setText(user.name);
+        description.setText(getText(R.string.text_description_fragment_confirm));
+
+    }
 }
