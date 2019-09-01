@@ -2,46 +2,31 @@ package com.ninjabyte.guianica.splash;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
-import com.ninjabyte.guianica.adapters.AboutAdapter;
 import com.ninjabyte.guianica.main.MainActivity;
 import com.ninjabyte.guianica.model.User;
-import com.shuhart.bubblepagerindicator.BubblePageIndicator;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -55,8 +40,8 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
     private FirebaseUser currentUser;
     private DatabaseReference userDatabaseReference;
     private CircleImageView userImage;
-    private  TextView userName;
-    private  TextView description;
+    private TextView userName;
+    private TextView description;
     private Button btnConfirm;
 
     public ConfirmFragment() {
@@ -91,31 +76,35 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
                 .child(Utilities.DB_USER_NODE)
                 .child("Users").child(currentUser.getUid());
 
-        registerUser();
+            registerUser();
+
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.btn_next_fragment_confirm){
-            startActivity(new Intent(context.getApplicationContext(), MainActivity.class));
+        if (view.getId() == R.id.btn_next_fragment_confirm) {
+           Utilities.saveUserPreferences(
+                   context, "boolean",
+                   "isAuth",
+                   view.findViewById(R.id.fragment_main_activity_splash),
+                   0, true, null);
+
+           startActivity(new Intent(context.getApplicationContext(), MainActivity.class));
         }
     }
 
-    private void registerUser(){
-
-        if (currentUser != null){
-
+    private void registerUser() {
+        if (currentUser != null) {
             User user = new User(
-                currentUser.getUid(),
-                currentUser.getDisplayName(),
-                currentUser.getPhotoUrl().toString(),
-                currentUser.getEmail()
+                    currentUser.getUid(),
+                    currentUser.getDisplayName(),
+                    currentUser.getPhotoUrl().toString(),
+                    currentUser.getEmail()
             );
-
             userDatabaseReference.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isComplete()){
+                    if (task.isComplete()) {
                         downloadDataUser();
                     }
                 }
@@ -124,11 +113,11 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void downloadDataUser(){
+    private void downloadDataUser() {
         userDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               loadDataUser(dataSnapshot.getValue(User.class));
+                loadDataUser(dataSnapshot.getValue(User.class));
             }
 
             @Override
@@ -138,7 +127,7 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
         });
     }
 
-    private void loadDataUser(User user){
+    private void loadDataUser(User user) {
         shimmerFramengConfirm.stopShimmer();
         shimmerFramengConfirm.setVisibility(View.GONE);
         userImage.setVisibility(View.VISIBLE);
@@ -148,5 +137,6 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
         userName.setText(user.name);
         description.setText(getText(R.string.text_description_fragment_confirm));
 
+        btnConfirm.setVisibility(View.VISIBLE);
     }
 }

@@ -2,7 +2,6 @@ package com.ninjabyte.guianica;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,9 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 import com.ninjabyte.guianica.adapters.ContactRecyclerAdapter;
 import com.ninjabyte.guianica.model.Telephone;
 
@@ -33,11 +29,9 @@ public class ContactSheetHelper {
     private ArrayList<Telephone> arrayTelephones;
     private ArrayList<String> arrayLocations;
     private ArrayList<String> arrayEmails;
-
     private ContactRecyclerAdapter contactAdapter;
 
-    public ContactSheetHelper(Activity activity,  Context context, String type, DataSnapshot snapshot) {
-
+    public ContactSheetHelper(Activity activity, Context context, String type, DataSnapshot snapshot) {
         this.activity = activity;
         this.snapshot = snapshot;
 
@@ -61,7 +55,7 @@ public class ContactSheetHelper {
         dialog.setContentView(view);
         dialog.show();
 
-        switch (type){
+        switch (type) {
             case TYPE_TELEPHONE:
                 initializeViewTelephones();
                 break;
@@ -77,27 +71,21 @@ public class ContactSheetHelper {
 
 
     private void initializeViewTelephones() {
-
         arrayTelephones.clear();
-
-        for (DataSnapshot snap : snapshot.child(ContactSheetHelper.TYPE_TELEPHONE).getChildren()){
+        for (DataSnapshot snap : snapshot.child(ContactSheetHelper.TYPE_TELEPHONE).getChildren()) {
             Telephone telephone = snap.getValue(Telephone.class);
             arrayTelephones.add(telephone);
         }
-
         contactAdapter = new ContactRecyclerAdapter(activity.getApplicationContext(), arrayTelephones, null, 1);
     }
 
 
     private void initializeViewLocations() {
         arrayLocations.clear();
-
-        for (DataSnapshot snap : snapshot.child(ContactSheetHelper.TYPE_LOCATION).getChildren()){
+        for (DataSnapshot snap : snapshot.child(ContactSheetHelper.TYPE_LOCATION).getChildren()) {
             String locations = snap.getValue(String.class);
             arrayLocations.add(locations);
         }
-
         contactAdapter = new ContactRecyclerAdapter(activity.getApplicationContext(), null, arrayLocations, 2);
     }
-
 }

@@ -41,4 +41,14 @@
         <item name="android:paddingStart">@dimen/padding_start</item>
         <item name="android:paddingEnd">@dimen/padding_end</item>
     </style>
+
+    <!-- warning dialog theme -->
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--buttons color-->
+        <item name="colorAccent">@color/colorWhite</item>
+        <!--title and message color-->
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <!--dialog background-->
+        <item name="android:windowBackground">@drawable/warning_dialog_background</item>
+    </style>
 </resources>

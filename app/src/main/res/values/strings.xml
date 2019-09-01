@@ -11,7 +11,9 @@
     <string name="text_privacy_policy_auth">Al registrarte, aceptas la <![CDATA[ <a href="#">política de privacidad</a>]]> de Guianica.</string>
     <string name="text_privacy_policy">Política de privacidad</string>
     <string name="privacy_policy_key">papgn</string>
-    <string name="privacy_policy_state_key">false</string>
+    <string name="privacy_policy_state_key">ppsk</string>
+    <string name="commercial_int_key">cmmi</string>
+    <string name="last_commercial_int_key">cmmky</string>
     <string name="text_button_fragment_confirm">Continuar</string>
     <string name="text_hints_search_main_activity">Buscar&#8230;</string>
     <string name="text_description_fragment_confirm">Gracias por iniciar sesión, ya esta todo listo.</string>
@@ -45,13 +47,21 @@
     <!-- TITLE HOME FRAGMENT -->
     <string name="title_offer_home_fragment">Ofertas</string>
     <string name="say_hello_home_fragment">Hola, %1$s</string>
-    <string name="title_notice_home_fragment">Publicidad</string>
+    <string name="title_commercial_home_fragment">Anuncios</string>
     <string name="title_category_home_fragment">Categorias</string>
     <string name="title_tourist_places_home_fragment">Lugares turísticos</string>
     <!-- DDESCRIPTION ACTIVITY PROFILE -->
     <string name="description_featured_products_profile_activity">Estos son algunos de nuestros productos preferidos entre la comunidad, puedes llamarnos y preguntar acerca de ellos.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- SPLASH TEXTS -->
+    <string name="text_checking_connection_fragment_welcome">Comprobando conexióna a internet&#8230;</string>
+    <string name="text_checking_updates_fragment_welcome">Comprobando actualizaciones&#8230;</string>
 
+     <!-- DIALOG TEXT -->
+    <string name="text_title_warning_connection_fragment_welcome">Advertencia.</string>
+    <string name="text_content_warning_connection_mobile_fragment_welcome">Hola querido usuario, hemos detectado que estas usando tu internet movil para cargar la aplicación, esto puede consumir tus datos.</string>
+    <string name="text_content_no_connection_fragment_welcome">No se ha detectado ninguna conexión, Guianica entrará en modo sin conexión.</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

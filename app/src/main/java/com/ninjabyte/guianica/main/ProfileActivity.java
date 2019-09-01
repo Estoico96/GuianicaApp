@@ -33,21 +33,16 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private Bundle bundle;
     private TextView tooltipOffer;
-
     private ImageButton buttonEmail;
-
     private CircleImageView companyLogo;
     private TextView companyName;
     private TextView companySpecialty;
-
     private ImageView iFacebook;
     private ImageView iTwitter;
     private ImageView iInstagram;
     private ImageView iYoutube;
     private Map<String, SocialNetworks> mapSocialNetworks;
-
     private ImageView lastOfferBanner;
-
     private GalleryAdapter galleryAdapter;
     private FeaturedProductsAdapter featuredProductsAdapter;
 
@@ -210,16 +205,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void initializeSocialNetworks(DataSnapshot snapshot){
-
         mapSocialNetworks = new HashMap <>();
-
         for (DataSnapshot snap : snapshot.getChildren()){
             SocialNetworks social = snap.getValue(SocialNetworks.class);
-
             mapSocialNetworks.put(social.getName(), social);
 
             switch (social.getName() != null ? social.getName() : ""){
-
                 case "Twitter" :
                     iTwitter.setVisibility(View.VISIBLE);
                     break;

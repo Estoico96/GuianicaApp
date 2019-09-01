@@ -24,13 +24,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
 import com.ninjabyte.guianica.adapters.CategoryHomefragmentAdapter;
-import com.ninjabyte.guianica.adapters.NoticeAdapter;
+import com.ninjabyte.guianica.adapters.CommercialAdapter;
 import com.ninjabyte.guianica.adapters.OfferAdapter;
-import com.ninjabyte.guianica.adapters.TouristPlacesAdapter;
 import com.ninjabyte.guianica.model.Category;
-import com.ninjabyte.guianica.model.Notice;
+import com.ninjabyte.guianica.model.Commercial;
 import com.ninjabyte.guianica.model.Offer;
-import com.ninjabyte.guianica.model.TouristPlace;
 import com.shuhart.bubblepagerindicator.BubblePageIndicator;
 
 import java.util.ArrayList;
@@ -43,33 +41,23 @@ public class HomeFragment extends Fragment {
     private CircleImageView userImage;
     private TextView userName;
 
-    private RecyclerView recyclerViewOffer;
-    private RecyclerView recyclerViewCategories;
-    private RecyclerView recyclerViewTouristPlaces;
+    private ViewPager viewPagerCommercial;
 
-    private ViewPager viewPagerNotice;
-    private BubblePageIndicator noticeIndicator;
-
-    private NoticeAdapter adapterNotice;
+    private CommercialAdapter commercialAdapter;
     private OfferAdapter adapterOffer;
     private CategoryHomefragmentAdapter adapterCategory;
-    private TouristPlacesAdapter adapterTouristPlaces;
 
     private ArrayList<Offer> arrayOffers;
     private ArrayList<Category> arrayCategory;
-    private ArrayList<Notice> arrayNotices;
-    private ArrayList<TouristPlace> arrayTouristPlaces;
+    private ArrayList<Commercial> arrayCommercials;
 
     private DatabaseReference offerDatabaseReference;
     private DatabaseReference categoryDatabaseReference;
     private DatabaseReference noticeDatabaseReference;
-    private DatabaseReference touristPlacesDatabaseReference;
 
     private ValueEventListener offerValueEventListener;
     private ValueEventListener noticeValueEventListener;
-    private ValueEventListener touristPlacesValueEventListener;
     private ChildEventListener categoryChildEventListener;
-    private ChildEventListener noticeChildEventListener;
 
     private TextView tooltipCategory;
     private TextView tooltipOffer;
@@ -89,7 +77,6 @@ public class HomeFragment extends Fragment {
 
         onCreateOffer();
         onCreateCategory();
-        onCreateTouristPlaces();
     }
 
     @Override
@@ -99,11 +86,9 @@ public class HomeFragment extends Fragment {
 
         userImage = fragmentHomeView.findViewById(R.id.user_image_fragment_home);
         userName = fragmentHomeView.findViewById(R.id.say_hello_home_fragment);
-        recyclerViewOffer = fragmentHomeView.findViewById(R.id.recycler_offers_home_fragment);
-        recyclerViewCategories = fragmentHomeView.findViewById(R.id.recycler_category_home_fragment);
-        recyclerViewTouristPlaces = fragmentHomeView.findViewById(R.id.recycler_tourist_places_home_fragment);
-        viewPagerNotice = fragmentHomeView.findViewById(R.id.viewpager_notice_home_fragment);
-        noticeIndicator = fragmentHomeView.findViewById(R.id.notice_page_indicator_home_fragment);
+        RecyclerView recyclerViewOffer = fragmentHomeView.findViewById(R.id.recycler_offers_home_fragment);
+        RecyclerView recyclerViewCategories = fragmentHomeView.findViewById(R.id.recycler_category_home_fragment);
+        viewPagerCommercial = fragmentHomeView.findViewById(R.id.viewpager_commercial_home_fragment);
         tooltipOffer = fragmentHomeView.findViewById(R.id.tooltip_offer_home_fragment);
         tooltipCategory = fragmentHomeView.findViewById(R.id.tooltip_category_home_fragment);
 
@@ -116,8 +101,6 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager linearLayoutManagerCategory = new LinearLayoutManager(context);
         linearLayoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL);
 
-        LinearLayoutManager linearLayoutManagerTouristPlaces = new LinearLayoutManager(context);
-        linearLayoutManagerTouristPlaces.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         // OFFERS
         recyclerViewOffer.setLayoutManager(linearLayoutManagerOffer);
@@ -132,19 +115,12 @@ public class HomeFragment extends Fragment {
         recyclerViewCategories.setAdapter(adapterCategory);
 
         //NOTICES
-        onCreateNotice();
-
-        //TOURIST PLACES
-        recyclerViewTouristPlaces.setLayoutManager(linearLayoutManagerTouristPlaces);
-        recyclerViewTouristPlaces.setHasFixedSize(false);
-        adapterTouristPlaces = new TouristPlacesAdapter(context, arrayTouristPlaces);
-        recyclerViewTouristPlaces.setAdapter(adapterTouristPlaces);
+        onCreateCommercials();
 
 
         offerDatabaseReference.addValueEventListener(offerValueEventListener);
         categoryDatabaseReference.addChildEventListener(categoryChildEventListener);
         noticeDatabaseReference.addValueEventListener(noticeValueEventListener);
-        touristPlacesDatabaseReference.addValueEventListener(touristPlacesValueEventListener);
 
         onCreateDataUser();
 
@@ -191,64 +167,46 @@ public class HomeFragment extends Fragment {
         categoryChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
                 Category category = dataSnapshot.getValue(Category.class);
                 arrayCategory.add(category);
 
                 adapterCategory.notifyDataSetChanged();
                 tooltipCategory.setText(String.valueOf(arrayCategory.size()));
             }
-
-
             @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
             @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {}
             @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         };
     }
 
-    private void onCreateNotice() {
-        arrayNotices = new ArrayList<>();
+    private void onCreateCommercials() {
+        arrayCommercials = new ArrayList<>();
 
         noticeDatabaseReference = Utilities.getDatabaseReference()
                 .child("7a4fa054-4287-4e9e-8432-258840d49798")
-                .child("notices")
+                .child("commercial")
                 .child("data");
 
         noticeValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Notice notice = snapshot.getValue(Notice.class);
-                    arrayNotices.add(notice);
+                    Commercial commercial = snapshot.getValue(Commercial.class);
+                    arrayCommercials.add(commercial);
                 }
 
-                adapterNotice = new NoticeAdapter(context, arrayNotices);
-                viewPagerNotice.setAdapter(adapterNotice);
-                viewPagerNotice.setClipToPadding(false);
-                viewPagerNotice.setPadding(16, 0, 16, 0);
-                noticeIndicator.setViewPager(viewPagerNotice);
-            }
+                commercialAdapter = new CommercialAdapter(context, activity,arrayCommercials);
+                viewPagerCommercial.setAdapter(commercialAdapter);
+                viewPagerCommercial.setCurrentItem(Utilities.getCommercialInt(context, arrayCommercials.size()));
 
+            }
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         };
     }
 
@@ -263,30 +221,5 @@ public class HomeFragment extends Fragment {
         });
         Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE, userImage,
                 null, Utilities.getCurrentUser("photoUrl"));
-    }
-    private void onCreateTouristPlaces() {
-        arrayTouristPlaces = new ArrayList<>();
-
-        touristPlacesDatabaseReference = Utilities.getDatabaseReference()
-                .child(Utilities.DB_NODE)
-                .child("tourist_places");
-
-        touristPlacesValueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                arrayTouristPlaces.clear();
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    TouristPlace touristPlaces = snapshot.getValue(TouristPlace.class);
-                    arrayTouristPlaces.add(touristPlaces);
-                }
-                adapterTouristPlaces.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
     }
 }

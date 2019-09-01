@@ -36,9 +36,7 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
         View view;
-
         switch (viewType) {
             case 1:
                 view = inflater.inflate(R.layout.view_telephones, viewGroup, false);
@@ -54,26 +52,17 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-
         switch (viewType) {
-
             case 1:
-
                 ((CallRecyclerHolder) viewHolder).place.setText(arrayTelephones.get(position).getPlace());
                 ((CallRecyclerHolder) viewHolder).number.setText(arrayTelephones.get(position).getNumber());
-
                 break;
 
             case 2:
-
                 ((LocationRecyclerHolder) viewHolder).place.setText(arrayLocations.get(position));
-
                 break;
-
         }
-
     }
-
 
     @Override
     public int getItemCount() {

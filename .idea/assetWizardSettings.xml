@@ -62,7 +62,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="scalingPercent" value="63" />
+                                                <entry key="scalingPercent" value="65" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -97,7 +97,7 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="ff6600" />
-                                      <entry key="foregroundImage" value="C:\Users\USUARIO\Desktop\logo\ic_launcher_white.png" />
+                                      <entry key="foregroundImage" value="C:\Users\USUARIO\Desktop\logo\ic_launcher_wt.svg" />
                                       <entry key="foregroundLayerName" value="launcher" />
                                     </map>
                                   </option>
@@ -202,11 +202,11 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="707070" />
-                            <entry key="height" value="497" />
-                            <entry key="outputName" value="ic_search_1" />
+                            <entry key="height" value="340" />
+                            <entry key="outputName" value="ic_launcher" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\USUARIO\Desktop\logo\ic_search_1.svg" />
-                            <entry key="width" value="646" />
+                            <entry key="sourceFile" value="C:\Users\USUARIO\Desktop\logo\ic_launcher.svg" />
+                            <entry key="width" value="308" />
                           </map>
                         </option>
                       </PersistentState>
