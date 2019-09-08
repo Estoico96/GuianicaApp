@@ -21,6 +21,8 @@ import com.ninjabyte.guianica.model.Offer;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferHolder> {
 
     private Context context;
@@ -45,7 +47,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferHolder>
     public void onBindViewHolder(@NonNull final OfferHolder offerHolder, int i) {
         offerHolder.createOffer(i);
 
-        offerHolder.container.setOnClickListener(new View.OnClickListener() {
+        offerHolder.banner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailOfferActivity.class);
@@ -68,14 +70,13 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferHolder>
         private CardView contanerBanner;
         private TextView tooltip;
         private TextView name;
-        private ImageView banner;
+        private CircleImageView banner;
 
         public OfferHolder(@NonNull View itemView) {
             super(itemView);
 
             container = itemView.findViewById(R.id.container_view_offer);
             banner = itemView.findViewById(R.id.banner_view_offer);
-            contanerBanner = itemView.findViewById(R.id.container_banner_view_offer);
             tooltip = itemView.findViewById(R.id.tooltip_view_offer);
             name = itemView.findViewById(R.id.company_name_offer_fragment_home);
 

@@ -14,7 +14,7 @@
     <dimen name="title_margin_top">10dp</dimen>
     <dimen name="title_margin_button">3dp</dimen>
     <dimen name="title_margin_end">5dp</dimen>
-    <dimen name="title_font_size">25sp</dimen>
+    <dimen name="title_font_size">20sp</dimen>
 
     <!-- Lateral margin Subtitle -->
     <dimen name="subtitle_margin_button">10dp</dimen>

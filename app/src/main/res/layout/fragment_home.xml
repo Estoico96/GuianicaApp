@@ -9,163 +9,206 @@
     android:scrollbars="none"
     tools:context=".main.HomeFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/btn_emergency_home_fragment"
-            style="@style/LayoutLateralMargin"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_toStartOf="@+id/user_image_fragment_home"
-            android:background="@drawable/button_emergency_call_activity_main"
-            android:src="@drawable/ic_emergency_white"
-            android:contentDescription="@string/app_name" />
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_home_fragment"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/user_image_fragment_home"
-            style="@style/LayoutLateralMargin"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_alignParentEnd="true"
-            android:elevation="@dimen/small_elevation"
-            android:src="@drawable/shimmer_circle_image"
-            app:civ_border_width="0dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/say_hello_home_fragment"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/nunito_sans_bold"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="25sp"
-            android:maxLines="1"
-            android:ems="7"
-            android:ellipsize="end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/say_hello_home_fragment"
-            tools:ignore="RelativeOverlap" />
+                <include layout="@layout/shimmer_fragment_home" />
 
-        <TextView
-            android:id="@+id/title_offer_home_fragment"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/nunito_sans_bold"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="25sp"
-            android:layout_below="@+id/say_hello_home_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/title_offer_home_fragment" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tooltip_offer_home_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/say_hello_home_fragment"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_toEndOf="@+id/title_offer_home_fragment"
-            android:background="@drawable/background_tooltip"
-            android:fontFamily="@font/nunito_sans_bold"
-            android:paddingStart="7dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="7dp"
-            android:paddingBottom="2dp"
-            android:textColor="@color/colorWhite"
-            android:textSize="13sp"
-            tools:ignore="RelativeOverlap" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
-        <TextView
-            android:id="@+id/text_description_offer_home_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_offer_home_fragment"
-            android:textSize="16sp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/nunito"
-            android:text="@string/text_description_offer"
-            android:textColor="@color/colorSecondaryText" />
-
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_offers_home_fragment"
+        <RelativeLayout android:id="@+id/container_content_home_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_description_offer_home_fragment"
-            android:layout_marginTop="13dp">
+            android:visibility="gone">
 
-        </android.support.v7.widget.RecyclerView>
+            <ImageButton
+                android:id="@+id/btn_emergency_home_fragment"
+                style="@style/LayoutLateralMargin"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_toStartOf="@+id/user_image_fragment_home"
+                android:background="@drawable/button_emergency_call_activity_main"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_emergency_white" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_image_fragment_home"
+                style="@style/LayoutLateralMargin"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:elevation="@dimen/small_elevation"
+                android:src="@drawable/shimmer_circle_image"
+                app:civ_border_width="0dp" />
+
+            <TextView
+                android:id="@+id/say_hello_home_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:ellipsize="end"
+                android:ems="7"
+                android:fontFamily="@font/nunito_sans"
+                android:maxLines="1"
+                android:text="@string/say_hello_home_fragment"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="25sp"
+                tools:ignore="RelativeOverlap" />
+
+            <TextView
+                android:id="@+id/title_offer_home_fragment"
+                style="@style/TitleHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/say_hello_home_fragment"
+                android:text="@string/title_offer_home_fragment" />
+
+            <TextView
+                android:id="@+id/tooltip_offer_home_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/say_hello_home_fragment"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_toEndOf="@+id/title_offer_home_fragment"
+                android:background="@drawable/background_tooltip"
+                android:fontFamily="@font/nunito_sans_bold"
+                android:paddingStart="7dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="7dp"
+                android:paddingBottom="2dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="13sp"
+                tools:ignore="RelativeOverlap" />
+
+            <TextView
+                android:id="@+id/text_description_offer_home_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_offer_home_fragment"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/text_description_offer"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="14sp" />
 
 
-        <TextView
-            android:id="@+id/title_category_home_fragment"
-            style="@style/TitleHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/recycler_offers_home_fragment"
-            android:text="@string/title_category_home_fragment" />
 
-        <TextView
-            android:id="@+id/tooltip_category_home_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/recycler_offers_home_fragment"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="18dp"
-            android:layout_toEndOf="@+id/title_category_home_fragment"
-            android:background="@drawable/background_tooltip"
-            android:fontFamily="@font/nunito_sans_bold"
-            android:maxWidth="50dp"
-            android:paddingStart="7dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="7dp"
-            android:paddingBottom="2dp"
-            android:textColor="@color/colorWhite"
-            android:textSize="13sp" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_offers_home_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_description_offer_home_fragment"
+                android:layout_marginTop="5dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+            <TextView
+                android:id="@+id/title_category_home_fragment"
+                style="@style/TitleHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recycler_offers_home_fragment"
+                android:text="@string/title_category_home_fragment" />
+
+            <TextView
+                android:id="@+id/tooltip_category_home_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recycler_offers_home_fragment"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="12dp"
+                android:layout_toEndOf="@+id/title_category_home_fragment"
+                android:background="@drawable/background_tooltip"
+                android:fontFamily="@font/nunito_sans_bold"
+                android:maxWidth="50dp"
+                android:paddingStart="7dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="7dp"
+                android:paddingBottom="2dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="13sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_category_home_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title_category_home_fragment">
+
             </android.support.v7.widget.RecyclerView>
 
-        <TextView
-            android:id="@+id/title_notice_home_fragment"
-            style="@style/TitleHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_below="@+id/recycler_category_home_fragment"
-            android:text="@string/title_commercial_home_fragment" />
+            <TextView
+                android:id="@+id/title_commercial_home_fragment"
+                style="@style/TitleHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recycler_category_home_fragment"
+                android:layout_marginBottom="5dp"
+                android:text="@string/title_commercial_home_fragment" />
 
-        <ImageButton
-            style="@style/LayoutLateralMargin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/recycler_category_home_fragment"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="17dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_more_grey" />
+            <TextView
+                android:id="@+id/tooltip_commercial_home_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recycler_category_home_fragment"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="12dp"
+                android:layout_toEndOf="@+id/title_commercial_home_fragment"
+                android:background="@drawable/background_tooltip"
+                android:fontFamily="@font/nunito_sans_bold"
+                android:maxWidth="50dp"
+                android:paddingStart="7dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="7dp"
+                android:paddingBottom="2dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="13sp" />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewpager_commercial_home_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="370dp"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:paddingEnd="50dp"
-            android:paddingStart="50dp"
-            android:layout_below="@+id/title_notice_home_fragment"
-            android:layout_marginBottom="10dp">
 
-        </android.support.v4.view.ViewPager>
-    </RelativeLayout>
+            <ImageButton
+                style="@style/LayoutLateralMargin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recycler_category_home_fragment"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="17dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_more_grey" />
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager_commercial_home_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_below="@+id/title_commercial_home_fragment"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:clipToPadding="false">
+
+            </android.support.v4.view.ViewPager>
+        </RelativeLayout>
+
+    </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

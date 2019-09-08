@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -51,14 +52,21 @@ public class CommercialAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         final View itemView = inflater.inflate(R.layout.view_fragment_commercial, container, false);
-        ImageView banner = itemView.findViewById(R.id.banner_fragment_commercial);
-        TextView companyName = itemView.findViewById(R.id.company_name_fragment_commercial);
+
+        ImageView banner = itemView.findViewById(R.id.company_banner_view_fragment_commercial);
+        TextView companyName = itemView.findViewById(R.id.company_name_view_fragment_commercial);
+        TextView companyType = itemView.findViewById(R.id.company_type_view_fragment_commercial);
         TextView companyTelephone = itemView.findViewById(R.id.company_telephone_fragment_commercial);
-        TextView companyDescription = itemView.findViewById(R.id.company_description_fragment_commercial);
-        ImageButton call = itemView.findViewById(R.id.btn_call_fragment_commercial);
-        companyName.setText(arrayCommercials
+        TextView companyDescription = itemView.findViewById(R.id.company_description_view_fragment_commercial);
+        Button call = itemView.findViewById(R.id.btn_call_view_fragment_commercial);
+
+             companyName.setText(arrayCommercials
                 .get(position)
                 .getName());
+
+        companyType.setText(arrayCommercials
+                .get(position)
+                .getType());
 
         companyDescription.setText(arrayCommercials
                 .get(position)

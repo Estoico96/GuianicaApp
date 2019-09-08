@@ -50,9 +50,8 @@ public class Utilities{
     public static final String PRIVACY_POLICY_URL = "https://guianica-db801.firebaseapp.com";
 
     private static SharedPreferences privacyPolicySharedPreferences;
-    private static SharedPreferences commertialIntSharedPreferences;
     private static String proberbs [] = {
-            "A todo mamón.,",
+            "A todo mamón.",
             "El que no llora no mama.",
             "El que quiere celeste que le cueste.",
             "El que madruga come pechuga.",
@@ -276,14 +275,13 @@ public class Utilities{
 
     public static int getCommercialInt(Context context, int size){
 
+        SharedPreferences  commercialIntSharedPreferences = context
+                .getSharedPreferences(context.getString(R.string.commercial_int_key), context.MODE_PRIVATE);
+
         Random random = new Random();
         int x = random.nextInt(size);
 
-        if (commertialIntSharedPreferences == null){
-            saveCommercialInt(context, x);
-        }
-
-        int l = commertialIntSharedPreferences.getInt(context.getString(R.string.last_commercial_int_key), 0);
+        int l = commercialIntSharedPreferences.getInt(context.getString(R.string.last_commercial_int_key), 0);
         if (x == l){
             if (x < size){
                 ++x;
@@ -292,18 +290,11 @@ public class Utilities{
             }
         }
 
-        saveCommercialInt(context, x);
+        SharedPreferences.Editor editor = commercialIntSharedPreferences.edit();
+        editor.putInt(context.getString(R.string.last_commercial_int_key), x);
+        editor.apply();
 
-        Log.v("randomLastInt ", "last_: "+l +" now_: "+x);
         return x;
     }
 
-    private static void saveCommercialInt(Context context, int i){
-        commertialIntSharedPreferences = context
-                .getSharedPreferences(context.getString(R.string.commercial_int_key), context.MODE_PRIVATE);
-
-        SharedPreferences.Editor editor = commertialIntSharedPreferences.edit();
-        editor.putInt(context.getString(R.string.last_commercial_int_key), i);
-        editor.apply();
-    }
 }

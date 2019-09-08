@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
@@ -45,7 +46,7 @@ public class DetailOfferAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView( (CardView) object);
+        container.removeView( (RelativeLayout) object);
     }
 
     @Override

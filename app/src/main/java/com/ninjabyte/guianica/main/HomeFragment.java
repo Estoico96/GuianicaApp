@@ -10,11 +10,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,12 +39,16 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeFragment extends Fragment {
+    private ShimmerFrameLayout shimmerHomeFragment;
+    private RelativeLayout containerContent;
     private Context context;
     private Activity activity;
     private CircleImageView userImage;
     private TextView userName;
 
     private ViewPager viewPagerCommercial;
+    private  RecyclerView recyclerViewOffer;
+    private  RecyclerView recyclerViewCategories;
 
     private CommercialAdapter commercialAdapter;
     private OfferAdapter adapterOffer;
@@ -61,6 +68,7 @@ public class HomeFragment extends Fragment {
 
     private TextView tooltipCategory;
     private TextView tooltipOffer;
+    private TextView tooltipCommercial;
 
 
     public HomeFragment() {
@@ -75,8 +83,6 @@ public class HomeFragment extends Fragment {
 
         Utilities.checkApiLevel(activity);
 
-        onCreateOffer();
-        onCreateCategory();
     }
 
     @Override
@@ -84,45 +90,29 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View fragmentHomeView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        shimmerHomeFragment = fragmentHomeView.findViewById(R.id.shimmer_view_home_fragment);
+        containerContent = fragmentHomeView.findViewById(R.id.container_content_home_fragment);
+        shimmerHomeFragment.startShimmer();
+
         userImage = fragmentHomeView.findViewById(R.id.user_image_fragment_home);
         userName = fragmentHomeView.findViewById(R.id.say_hello_home_fragment);
-        RecyclerView recyclerViewOffer = fragmentHomeView.findViewById(R.id.recycler_offers_home_fragment);
-        RecyclerView recyclerViewCategories = fragmentHomeView.findViewById(R.id.recycler_category_home_fragment);
+        recyclerViewOffer = fragmentHomeView.findViewById(R.id.recycler_offers_home_fragment);
+        recyclerViewCategories = fragmentHomeView.findViewById(R.id.recycler_category_home_fragment);
         viewPagerCommercial = fragmentHomeView.findViewById(R.id.viewpager_commercial_home_fragment);
         tooltipOffer = fragmentHomeView.findViewById(R.id.tooltip_offer_home_fragment);
         tooltipCategory = fragmentHomeView.findViewById(R.id.tooltip_category_home_fragment);
+        tooltipCommercial = fragmentHomeView.findViewById(R.id.tooltip_commercial_home_fragment);
 
 
-        LinearLayoutManager linearLayoutManagerOffer = new LinearLayoutManager(context);
-        linearLayoutManagerOffer.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-        GridLayoutManager gridLayoutManagerCategory = new GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false);
-
-        LinearLayoutManager linearLayoutManagerCategory = new LinearLayoutManager(context);
-        linearLayoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-
-        // OFFERS
-        recyclerViewOffer.setLayoutManager(linearLayoutManagerOffer);
-        recyclerViewOffer.setHasFixedSize(false);
-        adapterOffer = new OfferAdapter(context, arrayOffers);
-        recyclerViewOffer.setAdapter(adapterOffer);
-
-        //CATEGORIES
-        recyclerViewCategories.setLayoutManager(gridLayoutManagerCategory);
-        recyclerViewCategories.setHasFixedSize(false);
-        adapterCategory = new CategoryHomefragmentAdapter(context, arrayCategory);
-        recyclerViewCategories.setAdapter(adapterCategory);
-
-        //NOTICES
+        onCreateDataUser();
+        onCreateOffer();
+        onCreateCategory();
         onCreateCommercials();
-
 
         offerDatabaseReference.addValueEventListener(offerValueEventListener);
         categoryDatabaseReference.addChildEventListener(categoryChildEventListener);
         noticeDatabaseReference.addValueEventListener(noticeValueEventListener);
 
-        onCreateDataUser();
 
         return fragmentHomeView;
     }
@@ -130,6 +120,14 @@ public class HomeFragment extends Fragment {
 
     private void onCreateOffer() {
         arrayOffers = new ArrayList<>();
+
+        LinearLayoutManager linearLayoutManagerOffer = new LinearLayoutManager(context);
+        linearLayoutManagerOffer.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        recyclerViewOffer.setLayoutManager(linearLayoutManagerOffer);
+        recyclerViewOffer.setHasFixedSize(false);
+        adapterOffer = new OfferAdapter(context, arrayOffers);
+        recyclerViewOffer.setAdapter(adapterOffer);
 
         offerDatabaseReference = Utilities.getDatabaseReference()
                 .child(Utilities.DB_NODE)
@@ -148,6 +146,10 @@ public class HomeFragment extends Fragment {
                 adapterOffer.notifyDataSetChanged();
                 String offerCount = arrayOffers.size() + " negocios";
                 tooltipOffer.setText(offerCount);
+
+                shimmerHomeFragment.stopShimmer();
+                shimmerHomeFragment.setVisibility(View.GONE);
+                containerContent.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -160,6 +162,13 @@ public class HomeFragment extends Fragment {
     private void onCreateCategory() {
         arrayCategory = new ArrayList<>();
 
+        GridLayoutManager gridLayoutManagerCategory = new GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false);
+
+        recyclerViewCategories.setLayoutManager(gridLayoutManagerCategory);
+        recyclerViewCategories.setHasFixedSize(false);
+        adapterCategory = new CategoryHomefragmentAdapter(context, arrayCategory);
+        recyclerViewCategories.setAdapter(adapterCategory);
+
         categoryDatabaseReference = Utilities.getDatabaseReference()
                 .child("7a4fa054-4287-4e9e-8432-258840d49798")
                 .child("categories");
@@ -169,7 +178,6 @@ public class HomeFragment extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Category category = dataSnapshot.getValue(Category.class);
                 arrayCategory.add(category);
-
                 adapterCategory.notifyDataSetChanged();
                 tooltipCategory.setText(String.valueOf(arrayCategory.size()));
             }
@@ -199,11 +207,7 @@ public class HomeFragment extends Fragment {
                     Commercial commercial = snapshot.getValue(Commercial.class);
                     arrayCommercials.add(commercial);
                 }
-
-                commercialAdapter = new CommercialAdapter(context, activity,arrayCommercials);
-                viewPagerCommercial.setAdapter(commercialAdapter);
-                viewPagerCommercial.setCurrentItem(Utilities.getCommercialInt(context, arrayCommercials.size()));
-
+                onCreateCommercialViewPager();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {}
@@ -221,5 +225,48 @@ public class HomeFragment extends Fragment {
         });
         Utilities.setImageFromUrl(context, Utilities.TYPE_CIRCLE, userImage,
                 null, Utilities.getCurrentUser("photoUrl"));
+    }
+
+
+    private void onCreateCommercialViewPager(){
+
+        tooltipCommercial.setText(String.valueOf(arrayCommercials.size()));
+        commercialAdapter = new CommercialAdapter(context, activity,arrayCommercials);
+        viewPagerCommercial.setAdapter(commercialAdapter);
+
+        int currentItem = Utilities.getCommercialInt(context, arrayCommercials.size());
+        viewPagerCommercial.setCurrentItem(currentItem);
+
+        if (currentItem == 0){
+            viewPagerCommercial.setPadding(16,0,284,0);
+        }else if (currentItem == arrayCommercials.size() -1){
+            viewPagerCommercial.setPadding(284,0,16,0);
+        }else {
+            viewPagerCommercial.setPadding(150,0,150,0);
+        }
+
+
+        viewPagerCommercial.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                if (i == 0){
+                    viewPagerCommercial.setPadding(16,0,284,0);
+                }else if (i == arrayCommercials.size() - 1){
+                    viewPagerCommercial.setPadding(284,0,16,0);
+                }else {
+                    viewPagerCommercial.setPadding(150,0,150,0);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 }

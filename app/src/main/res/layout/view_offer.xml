@@ -4,49 +4,49 @@
     android:id="@+id/container_view_offer"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="14dp"
+    android:layout_marginStart="15dp"
     android:layout_marginTop="10dp"
-    android:layout_marginBottom="5dp"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/company_name_offer_fragment_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="3dp"
-        android:fontFamily="@font/nunito"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/nunito_sans_bold"
         android:text="Atomic pizza nicaragua"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:ems="5"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="17sp" />
+        android:textSize="14sp" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/banner_view_offer"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        app:civ_border_width="0dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/lorem_image"
+        android:layout_centerHorizontal="true"
+        android:elevation="5dp"
+        android:layout_marginTop="@dimen/max_margin"/>
 
     <TextView
         android:id="@+id/tooltip_view_offer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/company_name_offer_fragment_home"
-        android:layout_marginStart="7dp"
-        android:text="+2"
+        android:layout_alignBottom="@+id/banner_view_offer"
+        android:layout_marginStart="-18dp"
+        android:layout_marginBottom="5dp"
+        android:elevation="6dp"
+        android:layout_toEndOf="@id/banner_view_offer"
         android:background="@drawable/background_tooltip"
         android:fontFamily="@font/nunito_sans_bold"
+        android:text="+2"
         android:textColor="@color/colorWhite"
         android:textSize="13sp" />
 
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/container_banner_view_offer"
-        android:layout_width="wrap_content"
-        android:layout_height="112dp"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/company_name_offer_fragment_home"
-        app:cardCornerRadius="10dp"
-        app:cardUseCompatPadding="true">
-
-        <ImageView
-            android:id="@+id/banner_view_offer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/banner_content_description" />
-
-    </android.support.v7.widget.CardView>
 </RelativeLayout>
