@@ -2,14 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container_banner_detail_offer"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/banner_detail_offer"
         android:layout_width="match_parent"
-        android:layout_height="215dp"
-        android:src="@drawable/lorem_background"
-        android:contentDescription="@string/banner_content_description"
-        android:scaleType="centerCrop" />
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/app_name" />
 
 </RelativeLayout>

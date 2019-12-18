@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,8 +53,10 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferHolder>
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailOfferActivity.class);
                 Bundle data = new Bundle();
-                data.putString("uidOft", arrayOffers.get(offerHolder.getAdapterPosition()).getUid());
-                data.putString("nameOft", arrayOffers.get(offerHolder.getAdapterPosition()).getCompany());
+                data.putString("uidOft", arrayOffers.get(offerHolder.getAdapterPosition()).getOfferID());
+                data.putString("uidCmpny", arrayOffers.get(offerHolder.getAdapterPosition()).getCompanyUID());
+                data.putString("nameCmpny", arrayOffers.get(offerHolder.getAdapterPosition()).getCompany());
+                data.putString("logoCmpny", arrayOffers.get(offerHolder.getAdapterPosition()).getLogoUrl());
                 intent.putExtras(data);
                 context.startActivity(intent);
             }
@@ -70,7 +73,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferHolder>
         private CardView contanerBanner;
         private TextView tooltip;
         private TextView name;
-        private CircleImageView banner;
+        private ImageView banner;
 
         public OfferHolder(@NonNull View itemView) {
             super(itemView);

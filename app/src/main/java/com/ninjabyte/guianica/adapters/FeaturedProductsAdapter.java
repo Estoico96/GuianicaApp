@@ -52,7 +52,7 @@ public class FeaturedProductsAdapter extends RecyclerView.Adapter<FeaturedProduc
     }
 
     public class FeaturedProductsHolder extends RecyclerView.ViewHolder {
-        private RelativeLayout container;
+        private CardView container;
         private TextView name;
         private TextView description;
         private TextView price;

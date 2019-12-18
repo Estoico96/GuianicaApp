@@ -1,4 +1,4 @@
-package com.ninjabyte.guianica;
+package com.ninjabyte.guianica.main;
 
 
 import android.app.Activity;
@@ -8,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ninjabyte.guianica.R;
+import com.ninjabyte.guianica.Utilities;
 
 
 /**

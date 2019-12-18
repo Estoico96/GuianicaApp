@@ -2,9 +2,8 @@ package com.ninjabyte.guianica.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-import com.ninjabyte.guianica.LocalFragment;
 import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
 

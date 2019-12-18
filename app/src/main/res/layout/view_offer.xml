@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container_view_offer"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="15dp"
+    android:layout_marginStart="10dp"
     android:layout_marginTop="10dp"
     android:orientation="vertical">
 
@@ -13,37 +13,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:fontFamily="@font/nunito_sans_bold"
-        android:text="Atomic pizza nicaragua"
-        android:maxLines="1"
         android:ellipsize="end"
         android:ems="5"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:maxLines="1"
+        android:text="Atomic pizza nicaragua"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryText"
         android:textSize="14sp" />
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/banner_view_offer"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
-        app:civ_border_width="0dp"
-        android:layout_marginBottom="15dp"
-        android:src="@drawable/lorem_image"
-        android:layout_centerHorizontal="true"
-        android:elevation="5dp"
-        android:layout_marginTop="@dimen/max_margin"/>
+    <android.support.v7.widget.CardView
+        android:id="@+id/container_banner_view_offer"
+        android:layout_width="wrap_content"
+        card_view:cardCornerRadius="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/company_name_offer_fragment_home">
+
+        <ImageView
+            android:id="@+id/banner_view_offer"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:contentDescription="@string/app_name" />
+
+    </android.support.v7.widget.CardView>
+
 
     <TextView
         android:id="@+id/tooltip_view_offer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/banner_view_offer"
-        android:layout_marginStart="-18dp"
+        android:layout_marginStart="5dp"
         android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@id/company_name_offer_fragment_home"
+        android:background="@drawable/background_tooltip_sticker"
         android:elevation="6dp"
-        android:layout_toEndOf="@id/banner_view_offer"
-        android:background="@drawable/background_tooltip"
         android:fontFamily="@font/nunito_sans_bold"
         android:text="+2"
         android:textColor="@color/colorWhite"

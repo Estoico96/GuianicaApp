@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_container_banner_fragment_commercial"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="10dp"
     android:layout_marginTop="10dp"
     android:layout_marginEnd="10dp"
-    android:layout_marginBottom="7dp"
     app:cardCornerRadius="10dp"
     app:cardUseCompatPadding="true">
 
@@ -19,46 +17,18 @@
         <ImageView
             android:id="@+id/company_banner_view_fragment_commercial"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop" />
-
-        <TextView
-            android:id="@+id/company_name_view_fragment_commercial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:ellipsize="end"
-            android:ems="6"
-            android:fontFamily="@font/nunito_sans_bold"
-            android:maxLines="2"
-            android:text="@string/lorem_title_small"
-            android:layout_below="@+id/company_banner_view_fragment_commercial"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="18sp" />
-
-        <TextView android:id="@+id/company_type_view_fragment_commercial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/nunito_sans"
-            android:maxLines="2"
-            android:layout_marginBottom="12dp"
-            android:text="comercial"
-            android:layout_below="@+id/company_name_view_fragment_commercial"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="15sp"/>
+            android:layout_height="190dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/lorem_commercial"
+            android:contentDescription="@string/app_name"/>
 
         <TextView
             android:id="@+id/company_telephone_fragment_commercial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_below="@+id/company_banner_view_fragment_commercial"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="12dp"
             android:ellipsize="end"
             android:fontFamily="@font/nunito_sans"
             android:maxLines="2"
@@ -66,41 +36,55 @@
             android:textColor="@color/colorAccent"
             android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/company_name_view_fragment_commercial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_telephone_fragment_commercial"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="12dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:maxLines="1"
+            android:text="@string/lorem_title_small"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="18sp" />
 
-        <View android:id="@+id/line_title_view_fragment_commercial"
+        <View
+            android:id="@+id/line_title_view_fragment_commercial"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorGrey"
-            android:layout_below="@+id/company_type_view_fragment_commercial"/>
+            android:layout_below="@+id/company_name_view_fragment_commercial"
+            android:background="@color/colorGrey" />
 
         <TextView
             android:id="@+id/company_description_view_fragment_commercial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_below="@+id/line_title_view_fragment_commercial"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
             android:ellipsize="end"
             android:fontFamily="@font/nunito_sans"
-            android:maxLines="2"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="12dp"
-            android:text="@string/lorem_description_medium"
-            android:layout_below="@+id/line_title_view_fragment_commercial"
             android:textColor="@color/colorSecondaryText"
             android:textSize="14sp" />
 
-      <Button android:id="@+id/btn_call_view_fragment_commercial"
-          android:layout_width="wrap_content"
-          android:layout_height="30dp"
-          android:text="llamar"
-          android:background="@drawable/button_call_commercial"
-          android:textSize="14sp"
-          android:layout_alignParentEnd="true"
-          android:layout_marginBottom="15dp"
-          android:layout_marginEnd="16dp"
-          android:layout_below="@+id/company_description_view_fragment_commercial"
-          android:textColor="@color/colorWhite"/>
-
-
+        <ImageButton
+            android:id="@+id/btn_call_view_fragment_commercial"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/company_banner_view_fragment_commercial"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="-25dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="5dp"
+            android:src="@drawable/ic_call_white"
+            android:background="@drawable/button_call_commercial"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp"
+            android:contentDescription="@string/app_name" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

@@ -29,6 +29,7 @@ import com.ninjabyte.guianica.Utilities;
 import com.ninjabyte.guianica.adapters.CategoryHomefragmentAdapter;
 import com.ninjabyte.guianica.adapters.CommercialAdapter;
 import com.ninjabyte.guianica.adapters.OfferAdapter;
+import com.ninjabyte.guianica.custom.HeightWrappingViewPager;
 import com.ninjabyte.guianica.model.Category;
 import com.ninjabyte.guianica.model.Commercial;
 import com.ninjabyte.guianica.model.Offer;
@@ -46,7 +47,7 @@ public class HomeFragment extends Fragment {
     private CircleImageView userImage;
     private TextView userName;
 
-    private ViewPager viewPagerCommercial;
+    private HeightWrappingViewPager viewPagerCommercial;
     private  RecyclerView recyclerViewOffer;
     private  RecyclerView recyclerViewCategories;
 
@@ -179,7 +180,10 @@ public class HomeFragment extends Fragment {
                 Category category = dataSnapshot.getValue(Category.class);
                 arrayCategory.add(category);
                 adapterCategory.notifyDataSetChanged();
-                tooltipCategory.setText(String.valueOf(arrayCategory.size()));
+
+                tooltipCategory.setText(String.format(
+                        getResources().getString(R.string.text_template_tooltip),
+                        String.valueOf(arrayCategory.size())));
             }
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
@@ -207,6 +211,11 @@ public class HomeFragment extends Fragment {
                     Commercial commercial = snapshot.getValue(Commercial.class);
                     arrayCommercials.add(commercial);
                 }
+
+                tooltipCommercial.setText(String.format(
+                        getResources().getString(R.string.text_template_tooltip),
+                        String.valueOf(arrayCommercials.size())));
+
                 onCreateCommercialViewPager();
             }
             @Override
@@ -230,7 +239,6 @@ public class HomeFragment extends Fragment {
 
     private void onCreateCommercialViewPager(){
 
-        tooltipCommercial.setText(String.valueOf(arrayCommercials.size()));
         commercialAdapter = new CommercialAdapter(context, activity,arrayCommercials);
         viewPagerCommercial.setAdapter(commercialAdapter);
 

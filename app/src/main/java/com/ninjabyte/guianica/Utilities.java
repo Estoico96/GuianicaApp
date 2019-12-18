@@ -3,24 +3,30 @@ package com.ninjabyte.guianica;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,12 +37,15 @@ import com.ninjabyte.guianica.interfaces.buttonDialogListener;
 import com.ninjabyte.guianica.model.About;
 import com.ninjabyte.guianica.model.Connection;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Utilities{
+public class Utilities {
     private static DatabaseReference databaseReference;
     private static SharedPreferences userPreferences;
     private static SharedPreferences userAuthPreferences;
@@ -50,7 +59,7 @@ public class Utilities{
     public static final String PRIVACY_POLICY_URL = "https://guianica-db801.firebaseapp.com";
 
     private static SharedPreferences privacyPolicySharedPreferences;
-    private static String proberbs [] = {
+    private static String proberbs[] = {
             "A todo mamón.",
             "El que no llora no mama.",
             "El que quiere celeste que le cueste.",
@@ -93,8 +102,8 @@ public class Utilities{
         fragmentTransaction.commit();
     }
 
-    public static Connection checkConnetion(Context context){
-        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public static Connection checkConnection(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null && activeNetwork.isConnected();
@@ -116,6 +125,13 @@ public class Utilities{
     }
 
     public static void setImageFromUrl(Context context, int type, CircleImageView circleImage, ImageView normalImage, String url) {
+        Activity activity = (Activity) context;
+        Display display = activity.getWindowManager().getDefaultDisplay();
+        DisplayMetrics metrics = new DisplayMetrics();
+        display.getMetrics(metrics);
+
+        float displayWidth = metrics.widthPixels;
+
         switch (type) {
             case TYPE_CIRCLE:
                 Glide.with(context)
@@ -128,10 +144,14 @@ public class Utilities{
                 Glide.with(context)
                         .load(url)
                         .placeholder(R.drawable.place_holder)
+                        .override((int) displayWidth, (int)(displayWidth * 0.6f))
                         .dontAnimate()
                         .into(normalImage);
                 break;
         }
+
+
+
     }
 
     public static String getCurrentUser(String request) {
@@ -176,10 +196,6 @@ public class Utilities{
         view.requestLayout();
     }
 
-    public static void setPaddings(View view, int left, int top, int right, int bottom) {
-
-    }
-
     public static void runLayoutAnimation(RecyclerView recyclerView, Context context) {
         final LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_down);
         recyclerView.setLayoutAnimation(controller);
@@ -198,13 +214,13 @@ public class Utilities{
                 editor.putBoolean(key, b);
                 break;
 
-            case "int" :
+            case "int":
                 editor.putInt(key, i);
                 break;
 
-            case "String" :
-            editor.putString(key, s);
-            break;
+            case "String":
+                editor.putString(key, s);
+                break;
 
             default:
                 Utilities.showSnackBar(snackView, "Ha ocurrido un error mientras se guardaban las preferencias del usuario.");
@@ -213,8 +229,9 @@ public class Utilities{
 
     }
 
-    public static boolean userFinishedAuth(Context context){
-        if (userAuthPreferences == null){
+    public static boolean userFinishedAuth(Context context) {
+
+        if (userAuthPreferences == null) {
             userPreferences = context.getSharedPreferences(USER_PREFERENCES, context.MODE_PRIVATE);
         }
         return userPreferences.getBoolean("isAuth", false);
@@ -234,9 +251,9 @@ public class Utilities{
         return privacyPolicySharedPreferences.getBoolean(context.getString(R.string.privacy_policy_state_key), false);
     }
 
-    public static void showDialog(Context context,  buttonDialogListener selectedButtonDialogListener, int title, int content, String textPButton, String textNButton){
+    public static void showDialog(Context context, buttonDialogListener selectedButtonDialogListener, int title, int content, String textPButton, String textNButton) {
 
-       final buttonDialogListener dialogListener = selectedButtonDialogListener;
+        final buttonDialogListener dialogListener = selectedButtonDialogListener;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.MyDialogTheme);
         builder.setTitle(context.getResources().getString(title));
@@ -263,29 +280,29 @@ public class Utilities{
         dialog.show();
     }
 
-    public static String getRandomProverb(){
+    public static String getRandomProverb() {
         Random random = new Random();
         int x = random.nextInt(proberbs.length);
         return proberbs[x];
     }
 
-    public static boolean getStateConnection(){
-     return stateConnection;
+    public static boolean getStateConnection() {
+        return stateConnection;
     }
 
-    public static int getCommercialInt(Context context, int size){
+    public static int getCommercialInt(Context context, int size) {
 
-        SharedPreferences  commercialIntSharedPreferences = context
+        SharedPreferences commercialIntSharedPreferences = context
                 .getSharedPreferences(context.getString(R.string.commercial_int_key), context.MODE_PRIVATE);
 
         Random random = new Random();
         int x = random.nextInt(size);
 
         int l = commercialIntSharedPreferences.getInt(context.getString(R.string.last_commercial_int_key), 0);
-        if (x == l){
-            if (x < size){
+        if (x == l) {
+            if (x < size) {
                 ++x;
-            }else {
+            } else {
                 x = 0;
             }
         }
@@ -297,4 +314,37 @@ public class Utilities{
         return x;
     }
 
+    public static int pxFromDp(final Context context, final float dp) {
+        return (int)(dp / context.getResources().getDisplayMetrics().density);
+    }
+
+    public static void shareContent(Context context, ImageView image, ProgressBar progressBar, View layoutMessage) {
+
+        try {
+            image.buildDrawingCache();
+            Bitmap bitmap = image.getDrawingCache();
+            File cachePath = new File(context.getCacheDir(), "share");
+            cachePath.mkdirs();
+            FileOutputStream stream = new FileOutputStream(cachePath + "/"+bitmap+".png");
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+
+            File imagePath = new File(context.getCacheDir(), "share");
+            File newFile = new File(imagePath, bitmap+".png");
+
+            final Uri data = FileProvider.getUriForFile(context, "com.ninjabyte.guianica.fileprovider", newFile);
+            context.grantUriPermission(context.getPackageName(), data, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            final Intent intent = new Intent(Intent.ACTION_SEND)
+                    .setDataAndType(data, "image/*")
+                    .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    .setDataAndType(data, context.getContentResolver().getType(data))
+                    .putExtra(Intent.EXTRA_STREAM, data);
+            context.startActivity(Intent.createChooser(intent, "compartir oferta con..."));
+
+            progressBar.setVisibility(View.GONE);
+
+        } catch (IOException e) {
+            showSnackBar(layoutMessage, "Error: "+e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }

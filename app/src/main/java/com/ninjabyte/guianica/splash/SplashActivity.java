@@ -47,13 +47,12 @@ public class SplashActivity extends AppCompatActivity implements buttonDialogLis
         if (currentUser.getCurrentUser() != null ){
             if (Utilities.userFinishedAuth(SplashActivity.this)){
                 Utilities.setFragment(new WelcomeFragment(), SplashActivity.this, FRAGMENT_CONTAINER);
-                return;
             }else {
-                Utilities.setFragment(new ConfirmFragment(), SplashActivity.this, FRAGMENT_CONTAINER);
-                return;
+                Utilities.setFragment(new AuthFragment(), SplashActivity.this, FRAGMENT_CONTAINER);
             }
+        }else {
+            Utilities.setFragment(new AuthFragment(), SplashActivity.this, FRAGMENT_CONTAINER);
         }
-        Utilities.setFragment(new AuthFragment(), SplashActivity.this, FRAGMENT_CONTAINER);
     }
 
 

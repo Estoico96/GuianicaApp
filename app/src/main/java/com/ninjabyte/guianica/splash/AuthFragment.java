@@ -79,7 +79,6 @@ public class AuthFragment extends Fragment implements View.OnClickListener {
         BetterLinkMovementMethod.linkifyHtml(privacyPolicy).setOnLinkClickListener(new BetterLinkMovementMethod.OnLinkClickListener() {
             @Override
             public boolean onClick(TextView textView, String url) {
-                //startActivity(new Intent(context, PrivacyPolicyWebViewActivity.class));
                 showPrivacyPolicyDialog();
                 return true;
             }

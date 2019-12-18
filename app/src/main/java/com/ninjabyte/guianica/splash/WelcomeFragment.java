@@ -39,7 +39,7 @@ import com.ninjabyte.guianica.model.Connection;
         super.onCreate(savedInstanceState);
         context = getContext();
         activity = getActivity();
-        connection = Utilities.checkConnetion(context);
+        connection = Utilities.checkConnection(context);
 
     }
 
@@ -60,6 +60,7 @@ import com.ninjabyte.guianica.model.Connection;
                     @Override
                     public void run() {
                         startActivity(new Intent(context, MainActivity.class));
+                        activity.finish();
                     }
                 }, 7000);
 

@@ -9,12 +9,14 @@
     <!-- TEXT COLORS -->
     <color name="colorPrimaryText">#000000</color>
     <color name="colorSecondaryText">#747474</color>
-    <color name="colorAccentText">#e9002d56</color>
+    <color name="colorAccentText">#E7602C</color>
 
     <!-- BACKGROUND COLORS -->
     <color name="colorGrey">#c2c2c2</color>
     <color name="colorGreen">#4aa60d</color>
     <color name="placeholderBg">#D5D5D5</color>
+    <color name="colorRating">#F6F0DF</color>
+    <color name="colorCloses">#E2738A</color>
 
     <!-- BACKGROUND COLORS -->
     <color name="colorPanel">#aeb9b9b9</color>

@@ -28,6 +28,8 @@ public class Result {
         return company;
     }
 
+
+
     public void setCompany(String company) {
         this.company = company;
     }

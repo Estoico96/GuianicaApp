@@ -3,6 +3,7 @@ package com.ninjabyte.guianica.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,12 +94,11 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
     }
 
     public class ResultHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private ImageButton btnSendProfile;
+        private CardView container;
         private TextView companyName;
         private CircleImageView companyLogo;
         private TextView companySpecialty;
         private TextView companySchedule;
-        private RatingBar companyRating;
         private TextView companyRatingCount;
         private TextView companyStateDelivery;
         private TextView companyStateOffer;
@@ -106,17 +106,16 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
         public ResultHolder(@NonNull View itemView) {
             super(itemView);
 
-            btnSendProfile = itemView.findViewById(R.id.button_send_profile_view_result);
+            container = itemView.findViewById(R.id.container_company_info_activity_result);
             companyName = itemView.findViewById(R.id.company_name_view_result);
             companyLogo = itemView.findViewById(R.id.company_logo_view_result);
             companySchedule = itemView.findViewById(R.id.schedule_company_view_result);
-            companyRating = itemView.findViewById(R.id.company_rating_view_result);
             companyRatingCount = itemView.findViewById(R.id.count_rating_view_result);
             companyStateDelivery = itemView.findViewById(R.id.state_delivery_view_result);
             companySpecialty = itemView.findViewById(R.id.company_specialty_view_result);
             companyStateOffer = itemView.findViewById(R.id.state_offer_company_view_result);
 
-            btnSendProfile.setOnClickListener(this);
+            container.setOnClickListener(this);
         }
 
         public void createResults(int position) {
@@ -133,7 +132,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
                     getSchedule(position, 0),
                     getSchedule(position, 1)
             ));
-            companyRating.setRating(rating);
+
             companyRatingCount.setText(String.valueOf(rating));
 
             if (activeDelivery) {
@@ -150,8 +149,10 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
 
         @Override
         public void onClick(View v) {
-            if (v.getId() == R.id.button_send_profile_view_result) {
+            if (v.getId() == R.id.container_company_info_activity_result) {
                 Intent intent = new Intent(context, ProfileActivity.class);
+
+                if (arrayResults.get(getAdapterPosition()).isOffer())  intent.putExtra("rsl_uid", arrayResults.get(getAdapterPosition()).getUid());
                 intent.putExtra("rsl_url_image", arrayResults.get(getAdapterPosition()).getLogoUrl());
                 intent.putExtra("rsl_name", arrayResults.get(getAdapterPosition()).getCompany());
                 intent.putExtra("rsl_specialty", arrayResults.get(getAdapterPosition()).getSpecialty());

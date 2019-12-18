@@ -30,6 +30,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
@@ -44,13 +45,14 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     private ShimmerFrameLayout shimmerActivityResult;
     private RelativeLayout relativeContaierResult;
     private TextView categoryName;
+    private TextView btnMoreOffer;
     private ResultAdapter resultAdapter;
     private FilterAdapter filterAdapter;
     private ArrayList<Result> arrayResults;
     private ArrayList<String> arrayFilter;
     private RecyclerView recyclerResult;
     private TextView textDescriptionResults;
-    private DatabaseReference companyDatabaseReference;
+    private Query companyQueryDatabaseReference;
     private ValueEventListener resultValueEventListener;
     private Bundle bundle;
     private int position = 0;
@@ -71,6 +73,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         relativeContaierResult = findViewById(R.id.relative_container_activity_result);
         categoryName = findViewById(R.id.category_name_result_activity);
         recyclerResult = findViewById(R.id.recycler_result_result_activity);
+        btnMoreOffer = findViewById(R.id.btn_more_offer_profile_activity);
         RecyclerView recyclerFilter = findViewById(R.id.recycler_filter_result_activity);
 
         recyclerResult.setHasFixedSize(false);
@@ -122,28 +125,32 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onStart() {
         super.onStart();
-        if (bundle != null) categoryName.setText(bundle.getString("category_name"));
-        companyDatabaseReference = Utilities.getDatabaseReference()
-                .child(Utilities.DB_NODE)
-                .child("companies")
-                .child("data");
-        companyDatabaseReference.addValueEventListener(resultValueEventListener);
+        if (bundle != null){
+            categoryName.setText(bundle.getString("category_name"));
+            companyQueryDatabaseReference = Utilities.getDatabaseReference()
+                    .child(Utilities.DB_NODE)
+                    .child("companies")
+                    .child("data").orderByChild("hashtag").equalTo(bundle.getString("hashtag_name"));
+            companyQueryDatabaseReference.addValueEventListener(resultValueEventListener);
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (companyDatabaseReference != null)
-            companyDatabaseReference.removeEventListener(resultValueEventListener);
+        if (companyQueryDatabaseReference != null)
+            companyQueryDatabaseReference.removeEventListener(resultValueEventListener);
     }
 
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.btn_more_offer_profile_activity){
 
+        }
     }
 
     private void onCreateFilter(Result result) {
-        String nameFilter = result.getSpecialty().substring(15, result.getSpecialty().length());
+        String nameFilter = result.getSpecialty();
             if (arrayFilter.size() != 0){
                 if (!nameFilter.equals(arrayFilter.get(position))) {
                     arrayFilter.add(nameFilter);

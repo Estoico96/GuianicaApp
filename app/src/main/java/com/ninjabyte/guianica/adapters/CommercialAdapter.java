@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,19 +56,23 @@ public class CommercialAdapter extends PagerAdapter {
 
         ImageView banner = itemView.findViewById(R.id.company_banner_view_fragment_commercial);
         TextView companyName = itemView.findViewById(R.id.company_name_view_fragment_commercial);
-        TextView companyType = itemView.findViewById(R.id.company_type_view_fragment_commercial);
+       // TextView companyType = itemView.findViewById(R.id.company_type_view_fragment_commercial);
         TextView companyTelephone = itemView.findViewById(R.id.company_telephone_fragment_commercial);
         TextView companyDescription = itemView.findViewById(R.id.company_description_view_fragment_commercial);
-        Button call = itemView.findViewById(R.id.btn_call_view_fragment_commercial);
+        ImageButton call = itemView.findViewById(R.id.btn_call_view_fragment_commercial);
+
+
+
+        Log.v("testPXtoDP", "dp: "+ Utilities.pxFromDp(context, 607));
 
              companyName.setText(arrayCommercials
                 .get(position)
                 .getName());
 
-        companyType.setText(arrayCommercials
+       /* companyType.setText(arrayCommercials
                 .get(position)
                 .getType());
-
+        */
         companyDescription.setText(arrayCommercials
                 .get(position)
                 .getDescription());

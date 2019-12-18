@@ -87,6 +87,7 @@ public class CategoryHomefragmentAdapter extends RecyclerView.Adapter<CategoryHo
                 Intent data = new Intent(context, ResultActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("category_name", category.getText().toString());
+                bundle.putString("hashtag_name", category.getText().toString().toLowerCase());
                 data.putExtras(bundle);
                 context.startActivity(data);
             }

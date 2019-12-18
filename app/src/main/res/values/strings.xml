@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Guianica</string>
     <string name="text_btn_share_detail_offer">compartir</string>
+    <string name="text_bar_operation_company_open">Abierto</string>
+    <string name="text_bar_operation_company_closes">Cerrado</string>
+    <string name="text_bar_operation_company_delivery">Delivery</string>
     <string name="text_about_slide_title_one">¡Gracias por descargarme!</string>
     <string name="text_about_slide_description_one">Soy una guia digital dónde encontrarás información de contacto y ofertas de distintos negocios comerciales.</string>
     <string name="text_about_slide_title_two">Encuentra los negocios comerciales entre las distintas categorías.</string>
@@ -16,15 +19,18 @@
     <string name="last_commercial_int_key">cmmky</string>
     <string name="text_button_fragment_confirm">Continuar</string>
     <string name="text_hints_search_main_activity">Buscar&#8230;</string>
-    <string name="text_description_fragment_confirm">Gracias por iniciar sesión, ya esta todo listo.</string>
+    <string name="text_description_fragment_confirm">El registro se ha completado con exito, puedes darle continuar para disfrutar del contenido de Guianica.</string>
     <string name="text_load_data_user_fragment_confirm">Estamos guardando tu perfil, espera un momento.</string>
     <string name="text_description_offer">Aprovecha todas las ofertas de este mes que tenemos para tí con mucho amor.</string>
     <string name="text_description_results">Hemos encontrado %1$d negocios en esta categoría, puedes filtarlos según su especialidad.</string>
     <string name="text_schedule_company_activity_result">Abierto de %1$s a %2$s</string>
+    <string name="text_template_tooltip">%1$s disponibles</string>
+
+
     <!-- LOREM IPSUM -->
     <string name="lorem_title_small">Lorem ipsum</string>
     <string name="lorem_description_small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
-    <string name="lorem_description_medium">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+    <string name="lorem_description_medium">Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
 
     <!-- ERROR MESSAGES -->
     <string name="text_app_error">Ha ocurrido un error, Intentalo de nuevo.</string>
@@ -50,11 +56,16 @@
     <string name="title_commercial_home_fragment">Anuncios</string>
     <string name="title_category_home_fragment">Categorias</string>
     <string name="title_tourist_places_home_fragment">Lugares turísticos</string>
-    <!-- DDESCRIPTION ACTIVITY PROFILE -->
+
+
+    <!-- ACTIVITY PROFILE -->
     <string name="description_featured_products_profile_activity">Estos son algunos de nuestros productos preferidos entre la comunidad, puedes llamarnos y preguntar acerca de ellos.</string>
+    <string name="title_gallery_profile_activity">Galería</string>
+    <string name="title_featured_products_profile_activity">Productos destacados</string>
+    <string name="title_offers_profile_activity">Ofertas</string>
 
     <!-- SPLASH TEXTS -->
-    <string name="text_checking_connection_fragment_welcome">Comprobando conexióna a internet&#8230;</string>
+    <string name="text_checking_connection_fragment_welcome">Comprobando conexión a a internet&#8230;</string>
     <string name="text_checking_updates_fragment_welcome">Comprobando actualizaciones&#8230;</string>
 
      <!-- DIALOG TEXT -->

@@ -20,6 +20,7 @@ import com.ninjabyte.guianica.Utilities;
 import com.ninjabyte.guianica.adapters.FeaturedProductsAdapter;
 import com.ninjabyte.guianica.adapters.GalleryAdapter;
 import com.ninjabyte.guianica.model.FeaturedProduct;
+import com.ninjabyte.guianica.model.Offer;
 import com.ninjabyte.guianica.model.SocialNetworks;
 
 import java.util.ArrayList;
@@ -32,17 +33,19 @@ import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip;
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Bundle bundle;
-    private TextView tooltipOffer;
+    private String urlLastbannerOffers;
     private ImageButton buttonEmail;
     private CircleImageView companyLogo;
     private TextView companyName;
+    private TextView titleOffer;
+    private TextView tootipOffer;
     private TextView companySpecialty;
     private ImageView iFacebook;
     private ImageView iTwitter;
     private ImageView iInstagram;
     private ImageView iYoutube;
+    private ImageView bannerOffers;
     private Map<String, SocialNetworks> mapSocialNetworks;
-    private ImageView lastOfferBanner;
     private GalleryAdapter galleryAdapter;
     private FeaturedProductsAdapter featuredProductsAdapter;
 
@@ -51,7 +54,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private ArrayList<FeaturedProduct> arrayFeaturedProducts;
 
     private DataSnapshot contactSnapshot;
+    private  DatabaseReference profileOffersDatabaseReference;
     private ValueEventListener profileDataValueEventListener;
+    private ValueEventListener profileDataOfferValueEventListener;
 
 
     @Override
@@ -71,11 +76,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onStart() {
         super.onStart();
-        if (bundle != null && profileDataValueEventListener != null) {
+        if (bundle != null && profileDataValueEventListener != null && profileDataOfferValueEventListener != null)  {
+            if (bundle.getString("rsl_uid") != null) urlLastbannerOffers = bundle.getString("rsl_uid");
+            if (bundle.get("oftKey") != null){
+
+                return;
+            }
             initializeDefaultDataProfile();
             onCreateDataReference();
-            //initializeGallery();
-
         }
     }
 
@@ -122,8 +130,20 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 .child("meta-data")
                 .child("4e9e-8432-258840d49798");
 
-        profileDatabaseReference.addValueEventListener(profileDataValueEventListener);
+        if (urlLastbannerOffers != null){
+            profileOffersDatabaseReference = Utilities.getDatabaseReference()
+                    .child(Utilities.DB_NODE)
+                    .child("offers")
+                    .child("data")
+                    .child(urlLastbannerOffers);
+
+            profileOffersDatabaseReference.addListenerForSingleValueEvent(profileDataOfferValueEventListener);
+        }
+
+        profileDatabaseReference.addListenerForSingleValueEvent(profileDataValueEventListener);
+
     }
+
 
     private void bindViews() {
 
@@ -132,13 +152,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         companyLogo = findViewById(R.id.company_logo_profile_activity);
         companyName = findViewById(R.id.company_name_profile_activity);
-        tooltipOffer = findViewById(R.id.tooltip_offer_activity_profile);
         companySpecialty = findViewById(R.id.company_specialty_profile_activity);
-        lastOfferBanner = findViewById(R.id.last_offer_profile_activity);
         iFacebook = findViewById(R.id.btn_facebook_activity_profile);
         iTwitter = findViewById(R.id.btn_twitter_activity_profile);
         iInstagram = findViewById(R.id.btn_instagram_activity_profile);
         iYoutube = findViewById(R.id.btn_youtebe_activity_profile);
+        bannerOffers = findViewById(R.id.last_banner_offer_profile_activity);
+        titleOffer = findViewById(R.id.title_offers_profile_activity);
+        tootipOffer = findViewById(R.id.tooltip_offers_profile_activity);
 
         ImageButton buttonCall = findViewById(R.id.btn_call_profile_activity);
         ImageButton buttonLocation = findViewById(R.id.btn_place_profile_activity);
@@ -174,14 +195,26 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void initializeListeners(){
-
         profileDataValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 contactSnapshot = dataSnapshot.child("contacts");
                 initializeGallery(dataSnapshot.child("gallery"));
                 initializeSocialNetworks(dataSnapshot.child("contacts").child("social_networks"));
+                initializeFeaturedProducts(dataSnapshot.child("featured_products"));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+
+        profileDataOfferValueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Offer offer = dataSnapshot.getValue(Offer.class);
+                initializeOffers(offer.getLastBannerUrlOffer(), offer.getCounter());
             }
 
             @Override
@@ -204,6 +237,16 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         galleryAdapter.notifyDataSetChanged();
     }
 
+    private void initializeFeaturedProducts(DataSnapshot snapshot){
+        arrayFeaturedProducts.clear();
+
+        for (DataSnapshot snap : snapshot.getChildren()){
+            FeaturedProduct product = snap.getValue(FeaturedProduct.class);
+            arrayFeaturedProducts.add(product);
+        }
+
+        featuredProductsAdapter.notifyDataSetChanged();
+    }
     private void initializeSocialNetworks(DataSnapshot snapshot){
         mapSocialNetworks = new HashMap <>();
         for (DataSnapshot snap : snapshot.getChildren()){
@@ -231,5 +274,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     break;
             }
         }
+    }
+    private void initializeOffers(String url, int count){
+        titleOffer.setVisibility(View.VISIBLE);
+        tootipOffer.setVisibility(View.VISIBLE);
+        bannerOffers.setVisibility(View.VISIBLE);
+        tootipOffer.setText(String.format(getResources().getString(R.string.text_template_tooltip), String.valueOf(count)));
+        Utilities.setImageFromUrl(ProfileActivity.this, Utilities.TYPE_NORMAL,null,bannerOffers, url);
     }
 }

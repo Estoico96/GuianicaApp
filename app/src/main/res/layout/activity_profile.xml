@@ -15,16 +15,19 @@
             style="@style/TitleHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Galería" />
+            android:layout_marginBottom="5dp"
+            android:text="@string/title_gallery_profile_activity"
+            tools:ignore="RelativeOverlap" />
 
-        <Button
-            style="@style/Base.Widget.AppCompat.Button.Borderless"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="16dp"
-            android:text="ver más" />
+            android:textColor="@color/colorAccentText"
+            android:layout_marginTop="15dp"
+            style="@style/LayoutLateralMargin"
+            android:text="ver más"/>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_gallery_profile_activity"
@@ -44,129 +47,13 @@
             android:src="@drawable/shimmer_circle_image"
             app:civ_border_width="0dp" />
 
-        <TextView
-            android:id="@+id/company_name_profile_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/recycler_gallery_profile_activity"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@+id/company_logo_profile_activity"
-            android:fontFamily="@font/nunito_sans_bold"
-            android:text="Atomic Pizza Nicaragua"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/company_specialty_profile_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/company_name_profile_activity"
-            android:layout_toEndOf="@+id/company_logo_profile_activity"
-            android:fontFamily="@font/nunito_sans"
-            android:text="Restaurante de comida rápida"
-            android:textColor="@color/colorSecondaryText"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/open_company_profile_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/company_specialty_profile_activity"
-            android:layout_toEndOf="@+id/company_logo_profile_activity"
-            android:fontFamily="@font/nunito_sans"
-            android:layout_marginEnd="10dp"
-            android:drawableStart="@drawable/ic_time"
-            android:drawablePadding="5dp"
-            android:text="Abierto 05:00 pm"
-            android:textColor="@color/colorSecondaryText"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/closes_company_profile_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/company_specialty_profile_activity"
-            android:layout_toEndOf="@+id/open_company_profile_activity"
-            android:fontFamily="@font/nunito_sans"
-            android:text="Cierra 05:00 pm"
-            android:textColor="@color/colorSecondaryText"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/description_profile_activity"
-            style="@style/LayoutLateralMargin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/open_company_profile_activity"
-            android:fontFamily="@font/nunito_sans"
-            android:text="@string/lorem_description_medium"
-            android:textColor="@color/colorSecondaryText"
-            android:textSize="14sp" />
-
-        <LinearLayout
-            android:id="@+id/layout_container_btn_contact_profile_activity"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/description_profile_activity"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/btn_call_profile_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_contact_profile_activity"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_phone_blue" />
-
-            <ImageButton
-                android:id="@+id/btn_place_profile_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/button_contact_profile_activity"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_place_blue" />
-
-            <ImageButton
-                android:id="@+id/btn_mail_profile_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/button_contact_profile_activity"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_mail_blue" />
-
-            <ImageButton
-                android:id="@+id/btn_web_site_profile_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_contact_profile_activity"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_web_site" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/title_social_networks_activity_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layout_container_btn_contact_profile_activity"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="17dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/nunito_sans"
-            android:text="Siguenos en:"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="15sp" />
 
         <RelativeLayout
             android:id="@+id/container_social_networks_activity_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title_social_networks_activity_profile"
+            android:layout_below="@+id/company_logo_profile_activity"
+            android:layout_marginBottom="10dp"
             android:gravity="center">
 
 
@@ -214,80 +101,243 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/title_offer_profile_activity"
-            style="@style/TitleHeader"
+            android:id="@+id/company_name_profile_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/container_social_networks_activity_profile"
-            android:text="Ofertas" />
-
-        <TextView
-            android:id="@+id/tooltip_offer_activity_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/container_social_networks_activity_profile"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="18dp"
-            android:layout_toEndOf="@+id/title_offer_profile_activity"
-            android:background="@drawable/background_tooltip"
+            android:layout_below="@+id/recycler_gallery_profile_activity"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/company_logo_profile_activity"
             android:fontFamily="@font/nunito_sans_bold"
-            android:paddingStart="7dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="7dp"
-            android:paddingBottom="2dp"
-            android:text="3"
-            android:textColor="@color/colorWhite"
-            android:textSize="13sp" />
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/container_last_offer_activity_profile"
-            android:layout_width="match_parent"
-            android:layout_height="215dp"
-            android:layout_below="@+id/title_offer_profile_activity"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            app:cardCornerRadius="10dp"
-            app:cardUseCompatPadding="true">
-
-            <ImageView
-                android:id="@+id/last_offer_profile_activity"
-                android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:scaleType="centerCrop" />
-
-        </android.support.v7.widget.CardView>
-
+            android:text="Atomic Pizza Nicaragua"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/title_featured_products_profile_activity"
-            style="@style/TitleHeader"
+            android:id="@+id/company_specialty_profile_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/container_last_offer_activity_profile"
-            android:text="Productos destacados" />
+            android:layout_below="@+id/company_name_profile_activity"
+            android:layout_toEndOf="@+id/company_logo_profile_activity"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Restaurante de comida rápida"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="14sp" />
+
+
+        <LinearLayout
+            android:id="@+id/bar_operation_company_activity_profile"
+            style="@style/LayoutLateralMargin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/container_social_networks_activity_profile"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/nunito_sans_bold"
+                    android:gravity="center"
+                    android:text="@string/text_bar_operation_company_open"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_sans_bold"
+                    android:gravity="center"
+                    android:text="@string/text_bar_operation_company_closes"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_sans_bold"
+                    android:gravity="center"
+                    android:text="@string/text_bar_operation_company_delivery"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/open_company_profile_activity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center"
+                    android:text="08:00 am"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/closes_company_profile_activity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center"
+                    android:text="11:00 pm"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/delivery_company_profile_activity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center"
+                    android:text="Si"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/description_featured_products_profile_activity"
+            android:id="@+id/description_profile_activity"
             style="@style/LayoutLateralMargin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title_featured_products_profile_activity"
-            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/bar_operation_company_activity_profile"
             android:fontFamily="@font/nunito_sans"
-            android:text="@string/description_featured_products_profile_activity"
+            android:text="@string/lorem_description_medium"
             android:textColor="@color/colorSecondaryText"
             android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/layout_container_bar_contact_profile_activity"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/description_profile_activity"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_call_profile_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_contact_profile_activity"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_phone_orange" />
+
+            <ImageButton
+                android:id="@+id/btn_place_profile_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/button_contact_profile_activity"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_place_orange" />
+
+            <ImageButton
+                android:id="@+id/btn_mail_profile_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/button_contact_profile_activity"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_mail_orange" />
+
+            <ImageButton
+                android:id="@+id/btn_web_site_profile_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_contact_profile_activity"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_web_site_orange" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title_offers_profile_activity"
+            style="@style/TitleHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_container_bar_contact_profile_activity"
+            android:layout_marginBottom="5dp"
+            android:text="@string/title_offers_profile_activity"
+            android:visibility="gone"
+            tools:ignore="RelativeOverlap" />
+
+        <TextView android:id="@+id/btn_more_offer_profile_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ver todos"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/colorAccentText"
+            android:layout_marginTop="16dp"
+            style="@style/LayoutLateralMargin"
+            android:layout_below="@+id/layout_container_bar_contact_profile_activity"/>
+
+        <TextView
+            android:id="@+id/tooltip_offers_profile_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_container_bar_contact_profile_activity"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/title_offers_profile_activity"
+            android:background="@drawable/background_tooltip"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:text="3 disponibles"
+            android:textColor="@color/colorWhite"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/last_banner_offer_profile_activity"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_below="@+id/title_offers_profile_activity"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop"
+            android:src="@drawable/lorem_background"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/title_featured_product_profile_activity"
+            style="@style/TitleHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/last_banner_offer_profile_activity"
+            android:layout_marginBottom="5dp"
+            android:text="@string/title_featured_products_profile_activity"
+            tools:ignore="RelativeOverlap" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_featured_products_profile_activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/description_featured_products_profile_activity"
+            android:layout_below="@+id/title_featured_product_profile_activity"
+            android:layout_marginTop="6dp"
             android:layout_marginBottom="10dp">
 
         </android.support.v7.widget.RecyclerView>
-
-
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>
