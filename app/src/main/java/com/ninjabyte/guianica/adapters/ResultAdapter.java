@@ -150,9 +150,11 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultHold
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.container_company_info_activity_result) {
+
                 Intent intent = new Intent(context, ProfileActivity.class);
 
-                if (arrayResults.get(getAdapterPosition()).isOffer())  intent.putExtra("rsl_uid", arrayResults.get(getAdapterPosition()).getUid());
+                intent.putExtra("rsl_is_offer", arrayResults.get(getAdapterPosition()).isOffer());
+                intent.putExtra("rsl_uid", arrayResults.get(getAdapterPosition()).getUid());
                 intent.putExtra("rsl_url_image", arrayResults.get(getAdapterPosition()).getLogoUrl());
                 intent.putExtra("rsl_name", arrayResults.get(getAdapterPosition()).getCompany());
                 intent.putExtra("rsl_specialty", arrayResults.get(getAdapterPosition()).getSpecialty());

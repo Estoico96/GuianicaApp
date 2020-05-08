@@ -8,7 +8,7 @@
 
     <!-- TEXT COLORS -->
     <color name="colorPrimaryText">#000000</color>
-    <color name="colorSecondaryText">#747474</color>
+    <color name="colorSecondaryText">#666666</color>
     <color name="colorAccentText">#E7602C</color>
 
     <!-- BACKGROUND COLORS -->
@@ -23,7 +23,7 @@
     <color name="colorBackground">#F3F3F3</color>
 
     <!-- DOTS COLORS -->
-    <color name="colorDotInactive">#e9002d56</color>
+    <color name="colorDotInactive">#FAA98E</color>
 
     <!-- NAVIGATIONVIEW COLOR -->
     <color name="selector_item_color">#225FA4</color>

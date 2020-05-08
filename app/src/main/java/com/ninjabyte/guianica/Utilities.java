@@ -104,13 +104,10 @@ public class Utilities {
 
     public static Connection checkConnection(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null && activeNetwork.isConnected();
         boolean isWiFi = activeNetwork != null && activeNetwork.getType() == ConnectivityManager.TYPE_WIFI;
-
         stateConnection = isConnected;
-
         return new Connection(isConnected, isWiFi);
     }
 
@@ -131,7 +128,6 @@ public class Utilities {
         display.getMetrics(metrics);
 
         float displayWidth = metrics.widthPixels;
-
         switch (type) {
             case TYPE_CIRCLE:
                 Glide.with(context)
@@ -149,9 +145,6 @@ public class Utilities {
                         .into(normalImage);
                 break;
         }
-
-
-
     }
 
     public static String getCurrentUser(String request) {
@@ -251,15 +244,15 @@ public class Utilities {
         return privacyPolicySharedPreferences.getBoolean(context.getString(R.string.privacy_policy_state_key), false);
     }
 
-    public static void showDialog(Context context, buttonDialogListener selectedButtonDialogListener, int title, int content, String textPButton, String textNButton) {
+    public static void showDialog(Context context, buttonDialogListener selectedButtonDialogListener,
+                                  int title, int content, String textPButton, String textNButton) {
 
         final buttonDialogListener dialogListener = selectedButtonDialogListener;
-
         AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.MyDialogTheme);
+
         builder.setTitle(context.getResources().getString(title));
         builder.setMessage(context.getResources().getString(content));
         builder.setCancelable(false);
-
         builder.setPositiveButton(textPButton,
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -279,6 +272,38 @@ public class Utilities {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+    public static AlertDialog showDynamicDialog(Context context, buttonDialogListener selectedButtonDialogListener,
+                                  String title, String content) {
+
+        final buttonDialogListener dialogListener = selectedButtonDialogListener;
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.MyDialogTheme);
+
+        builder.setTitle(title);
+        builder.setMessage(content);
+        builder.setCancelable(false);
+        builder.setPositiveButton("Si",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialogListener.onClickPositiveButton(dialog);
+                    }
+                });
+
+        builder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialogListener.onClickNegativeButton(dialog);
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        //dialog.show();
+
+        return dialog;
+    }
+
 
     public static String getRandomProverb() {
         Random random = new Random();

@@ -51,7 +51,6 @@ public class CategoryHomefragmentAdapter extends RecyclerView.Adapter<CategoryHo
 
 
 
-
     public class CategoryHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private CardView container;
         private TextView category;

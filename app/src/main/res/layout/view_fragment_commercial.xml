@@ -1,61 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_container_banner_fragment_commercial"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginEnd="10dp"
-    app:cardCornerRadius="10dp"
-    app:cardUseCompatPadding="true">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/company_banner_view_fragment_commercial"
             android:layout_width="match_parent"
-            android:layout_height="190dp"
-            android:scaleType="fitXY"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
             android:src="@drawable/lorem_commercial"
             android:contentDescription="@string/app_name"/>
 
-        <TextView
-            android:id="@+id/company_telephone_fragment_commercial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/company_banner_view_fragment_commercial"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="12dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/nunito_sans"
-            android:maxLines="2"
-            android:text="7671-4584"
-            android:textColor="@color/colorAccent"
-            android:textSize="16sp" />
+    <TextView
+        android:id="@+id/company_telephone_fragment_commercial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/company_banner_view_fragment_commercial"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/nunito_sans"
+        android:maxLines="2"
+        android:text="7671-4584"
+        android:textColor="@color/colorAccent"
+        android:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/company_name_view_fragment_commercial"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/company_telephone_fragment_commercial"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="12dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/nunito_sans_bold"
-            android:maxLines="1"
-            android:text="@string/lorem_title_small"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/company_name_view_fragment_commercial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/company_telephone_fragment_commercial"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:maxLines="1"
+        android:text="@string/lorem_title_small"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/company_category_view_fragment_commercial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/company_name_view_fragment_commercial"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/background_tooltip"
+        android:layout_marginBottom="12dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:maxLines="1"
+        android:text="***"
+        android:textColor="@color/colorWhite"
+        android:textSize="14sp" />
+
 
         <View
             android:id="@+id/line_title_view_fragment_commercial"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/company_name_view_fragment_commercial"
+            android:layout_below="@+id/company_category_view_fragment_commercial"
             android:background="@color/colorGrey" />
 
         <TextView
@@ -63,19 +72,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line_title_view_fragment_commercial"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="15dp"
             android:ellipsize="end"
             android:fontFamily="@font/nunito_sans"
             android:textColor="@color/colorSecondaryText"
-            android:textSize="14sp" />
+            android:textSize="15sp" />
 
         <ImageButton
             android:id="@+id/btn_call_view_fragment_commercial"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_below="@+id/company_banner_view_fragment_commercial"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="-25dp"
@@ -86,5 +95,4 @@
             android:textColor="@color/colorWhite"
             android:textSize="14sp"
             android:contentDescription="@string/app_name" />
-    </RelativeLayout>
-</android.support.v7.widget.CardView>
+</RelativeLayout>

@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/say_hello_home_fragment"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="14dp"
                 android:layout_toEndOf="@+id/title_offer_home_fragment"
                 android:background="@drawable/background_tooltip"
                 android:fontFamily="@font/nunito_sans_bold"
@@ -136,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recycler_offers_home_fragment"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="14dp"
                 android:layout_toEndOf="@+id/title_category_home_fragment"
                 android:background="@drawable/background_tooltip"
                 android:fontFamily="@font/nunito_sans_bold"
@@ -153,13 +153,28 @@
             </android.support.v7.widget.RecyclerView>
 
             <TextView
-                android:id="@+id/title_commercial_home_fragment"
-                style="@style/TitleHeader"
+            android:id="@+id/title_commercial_home_fragment"
+            style="@style/TitleHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recycler_category_home_fragment"
+            android:layout_marginBottom="5dp"
+            android:text="@string/title_commercial_home_fragment" />
+
+            <com.shuhart.bubblepagerindicator.BubblePageIndicator
+                android:id="@+id/indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/recycler_category_home_fragment"
+                android:layout_below="@id/title_commercial_home_fragment"
+                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="5dp"
-                android:text="@string/title_commercial_home_fragment" />
+                android:layout_marginTop="5dp"
+                app:bpi_fillColor="@color/colorAccent"
+                app:bpi_pageColor="@color/colorDotInactive"
+                app:bpi_radius="2dp"
+                app:bpi_marginBetweenCircles="6dp"
+                app:bpi_onSurfaceCount="@integer/default_bubble_indicator_on_surface_count"
+                app:bpi_risingCount="@integer/default_bubble_indicator_rising_count"/>
 
             <TextView
                 android:id="@+id/tooltip_commercial_home_fragment"
@@ -167,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recycler_category_home_fragment"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="14dp"
                 android:layout_toEndOf="@+id/title_commercial_home_fragment"
                 android:background="@drawable/background_tooltip"
                 android:fontFamily="@font/nunito_sans_bold"
@@ -175,7 +190,7 @@
                 android:textSize="13sp" />
 
 
-            <ImageButton
+            <ImageButton android:id="@+id/btn_filter_commercial_home_fragment"
                 style="@style/LayoutLateralMargin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -186,12 +201,11 @@
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_more_grey" />
 
-
             <com.ninjabyte.guianica.custom.HeightWrappingViewPager
                 android:id="@+id/viewpager_commercial_home_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/title_commercial_home_fragment"
+                android:layout_below="@+id/indicator"
                 android:layout_marginTop="5dp"
                 android:clipToPadding="false">
             </com.ninjabyte.guianica.custom.HeightWrappingViewPager>

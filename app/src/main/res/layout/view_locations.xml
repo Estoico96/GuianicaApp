@@ -19,6 +19,7 @@
     <ImageView android:id="@+id/btn_see_map_view_telephone"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
         android:src="@drawable/ic_map_white"

@@ -1,15 +1,19 @@
 package com.ninjabyte.guianica.main;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,6 +23,7 @@ import com.ninjabyte.guianica.R;
 import com.ninjabyte.guianica.Utilities;
 import com.ninjabyte.guianica.adapters.FeaturedProductsAdapter;
 import com.ninjabyte.guianica.adapters.GalleryAdapter;
+import com.ninjabyte.guianica.interfaces.buttonDialogListener;
 import com.ninjabyte.guianica.model.FeaturedProduct;
 import com.ninjabyte.guianica.model.Offer;
 import com.ninjabyte.guianica.model.SocialNetworks;
@@ -28,23 +33,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip;
 
-public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener, buttonDialogListener {
 
     private Bundle bundle;
-    private String urlLastbannerOffers;
+
+    private static String companyUID;
+    private static String companyOffersUID;
+
     private ImageButton buttonEmail;
+    private TextView buttonSeeMoreOffers;
+
     private CircleImageView companyLogo;
+
+
     private TextView companyName;
     private TextView titleOffer;
     private TextView tootipOffer;
     private TextView companySpecialty;
+
     private ImageView iFacebook;
     private ImageView iTwitter;
     private ImageView iInstagram;
     private ImageView iYoutube;
     private ImageView bannerOffers;
+
     private Map<String, SocialNetworks> mapSocialNetworks;
     private GalleryAdapter galleryAdapter;
     private FeaturedProductsAdapter featuredProductsAdapter;
@@ -54,10 +67,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private ArrayList<FeaturedProduct> arrayFeaturedProducts;
 
     private DataSnapshot contactSnapshot;
-    private  DatabaseReference profileOffersDatabaseReference;
+    private DatabaseReference profileOffersDatabaseReference;
     private ValueEventListener profileDataValueEventListener;
     private ValueEventListener profileDataOfferValueEventListener;
 
+    //ELEMENTOS INICIALES
+    private AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -70,20 +85,18 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         initializeArrays();
         bindViews();
         initializeListeners();
+
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (bundle != null && profileDataValueEventListener != null && profileDataOfferValueEventListener != null)  {
-            if (bundle.getString("rsl_uid") != null) urlLastbannerOffers = bundle.getString("rsl_uid");
-            if (bundle.get("oftKey") != null){
+        if (bundle != null && profileDataValueEventListener != null && profileDataOfferValueEventListener != null) {
+            if (bundle.getString("rsl_uid") != null) companyUID = bundle.getString("rsl_uid");
 
-                return;
-            }
             initializeDefaultDataProfile();
-            onCreateDataReference();
+            onCreateDataReference(bundle.getBoolean("rsl_is_offer"));
         }
     }
 
@@ -91,26 +104,46 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_call_profile_activity:
-                new ContactSheetHelper(ProfileActivity.this, ProfileActivity.this, ContactSheetHelper.TYPE_TELEPHONE, contactSnapshot);
+                new ContactSheetHelper(ProfileActivity.this, ProfileActivity.this, ContactSheetHelper.TYPE_TELEPHONE, contactSnapshot, "Telefonos");
                 break;
 
             case R.id.btn_place_profile_activity:
-                new ContactSheetHelper(ProfileActivity.this, ProfileActivity.this, ContactSheetHelper.TYPE_LOCATION, contactSnapshot);
+                new ContactSheetHelper(ProfileActivity.this, ProfileActivity.this, ContactSheetHelper.TYPE_LOCATION, contactSnapshot, "Direcciones");
 
                 break;
 
-            case R.id.btn_facebook_activity_profile :
+            case R.id.btn_facebook_activity_profile:
 
-                new SimpleTooltip.Builder(this)
-                        .anchorView(v)
-                        .text(mapSocialNetworks.get("Facebook").getUser())
-                        .gravity(Gravity.TOP)
-                        .build()
-                        .show();
+                dialogSocialNetworks("Facebook",
+                        String.format(getResources()
+                                .getString(R.string.text_content_facebook_activity_profile),bundle.getString("rsl_name")),
+                        R.id.btn_facebook_activity_profile);
+                /*
+                Utilities.showDynamicDialog(ProfileActivity.this, this, "Facebook",
+                        String.format(getResources().getString(R.string.text_content_facebook_activity_profile), bundle.getString("rsl_name"))).show();
 
+
+*/
+                break;
+
+            case R.id.btn_instagram_activity_profile:
+                Utilities.showDynamicDialog(ProfileActivity.this, this, "Instagram",
+                        String.format(getResources().getString(R.string.text_content_facebook_activity_profile), bundle.getString("rsl_name")));
 
                 break;
 
+
+            case R.id.btn_more_offer_profile_activity:
+                Intent intent = new Intent(this, DetailOfferActivity.class);
+                Bundle data = new Bundle();
+
+                data.putString("uidCmpny", bundle.getString("rsl_uid"));
+                data.putString("nameCmpny", bundle.getString("rsl_name"));
+                data.putString("logoCmpny", bundle.getString("rsl_url_image"));
+                data.putString("uidOft", companyOffersUID);
+                intent.putExtras(data);
+                startActivity(intent);
+                break;
 
         }
     }
@@ -123,30 +156,25 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-    private void onCreateDataReference() {
+    private void onCreateDataReference(boolean isOffer) {
         DatabaseReference profileDatabaseReference = Utilities.getDatabaseReference()
                 .child(Utilities.DB_NODE)
                 .child("companies")
                 .child("meta-data")
-                .child("4e9e-8432-258840d49798");
-
-        if (urlLastbannerOffers != null){
+                .child(companyUID);
+        if (isOffer) {
             profileOffersDatabaseReference = Utilities.getDatabaseReference()
                     .child(Utilities.DB_NODE)
                     .child("offers")
                     .child("data")
-                    .child(urlLastbannerOffers);
-
+                    .child(companyUID);
             profileOffersDatabaseReference.addListenerForSingleValueEvent(profileDataOfferValueEventListener);
         }
-
         profileDatabaseReference.addListenerForSingleValueEvent(profileDataValueEventListener);
-
     }
 
 
     private void bindViews() {
-
         RecyclerView recyclerGallery = findViewById(R.id.recycler_gallery_profile_activity);
         RecyclerView recyclerFeaturedProduct = findViewById(R.id.recycler_featured_products_profile_activity);
 
@@ -163,7 +191,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         ImageButton buttonCall = findViewById(R.id.btn_call_profile_activity);
         ImageButton buttonLocation = findViewById(R.id.btn_place_profile_activity);
-
+        buttonSeeMoreOffers = findViewById(R.id.btn_more_offer_profile_activity);
 
         //RECYCLER GALLERY
         LinearLayoutManager galleryLinearLayoutManager = new LinearLayoutManager(this);
@@ -173,7 +201,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         recyclerGallery.setHasFixedSize(false);
         galleryAdapter = new GalleryAdapter(ProfileActivity.this, arrayUrlImages);
         recyclerGallery.setAdapter(galleryAdapter);
-
 
         //RECYCLER FEATURED PRODUCTS
         LinearLayoutManager featuredProductsLinearLayoutManager = new LinearLayoutManager(this);
@@ -187,14 +214,19 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         buttonCall.setOnClickListener(this);
         buttonLocation.setOnClickListener(this);
         iFacebook.setOnClickListener(this);
+        buttonSeeMoreOffers.setOnClickListener(this);
+
+
+        //INICIALIZACION DE ELEMENTOS NECESAIOS
+        builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
     }
 
-    private void initializeArrays(){
+    private void initializeArrays() {
         arrayUrlImages = new ArrayList<>();
         arrayFeaturedProducts = new ArrayList<>();
     }
 
-    private void initializeListeners(){
+    private void initializeListeners() {
         profileDataValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -214,6 +246,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Offer offer = dataSnapshot.getValue(Offer.class);
+                companyOffersUID = offer.getOfferID();
                 initializeOffers(offer.getLastBannerUrlOffer(), offer.getCounter());
             }
 
@@ -225,11 +258,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-    private void initializeGallery(DataSnapshot snapshot){
+    private void initializeGallery(DataSnapshot snapshot) {
 
         arrayUrlImages.clear();
 
-        for (DataSnapshot snap : snapshot.getChildren()){
+        for (DataSnapshot snap : snapshot.getChildren()) {
             String url = snap.getValue(String.class);
             arrayUrlImages.add(url);
         }
@@ -237,36 +270,37 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         galleryAdapter.notifyDataSetChanged();
     }
 
-    private void initializeFeaturedProducts(DataSnapshot snapshot){
+    private void initializeFeaturedProducts(DataSnapshot snapshot) {
         arrayFeaturedProducts.clear();
 
-        for (DataSnapshot snap : snapshot.getChildren()){
+        for (DataSnapshot snap : snapshot.getChildren()) {
             FeaturedProduct product = snap.getValue(FeaturedProduct.class);
             arrayFeaturedProducts.add(product);
         }
 
         featuredProductsAdapter.notifyDataSetChanged();
     }
-    private void initializeSocialNetworks(DataSnapshot snapshot){
-        mapSocialNetworks = new HashMap <>();
-        for (DataSnapshot snap : snapshot.getChildren()){
+
+    private void initializeSocialNetworks(DataSnapshot snapshot) {
+        mapSocialNetworks = new HashMap<>();
+        for (DataSnapshot snap : snapshot.getChildren()) {
             SocialNetworks social = snap.getValue(SocialNetworks.class);
             mapSocialNetworks.put(social.getName(), social);
 
-            switch (social.getName() != null ? social.getName() : ""){
-                case "Twitter" :
+            switch (social.getName() != null ? social.getName() : "") {
+                case "Twitter":
                     iTwitter.setVisibility(View.VISIBLE);
                     break;
 
-                case "Facebook" :
+                case "Facebook":
                     iFacebook.setVisibility(View.VISIBLE);
                     break;
 
-                case "Instagram" :
+                case "Instagram":
                     iInstagram.setVisibility(View.VISIBLE);
                     break;
 
-                case "Youtube" :
+                case "Youtube":
                     iYoutube.setVisibility(View.VISIBLE);
                     break;
 
@@ -275,11 +309,68 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             }
         }
     }
-    private void initializeOffers(String url, int count){
+
+    private void initializeOffers(String url, int count) {
         titleOffer.setVisibility(View.VISIBLE);
         tootipOffer.setVisibility(View.VISIBLE);
         bannerOffers.setVisibility(View.VISIBLE);
         tootipOffer.setText(String.format(getResources().getString(R.string.text_template_tooltip), String.valueOf(count)));
-        Utilities.setImageFromUrl(ProfileActivity.this, Utilities.TYPE_NORMAL,null,bannerOffers, url);
+        Utilities.setImageFromUrl(ProfileActivity.this, Utilities.TYPE_NORMAL, null, bannerOffers, url);
+    }
+
+    private void dialogSocialNetworks(String title, String content, final int onClickButton) {
+        builder.setTitle(title);
+        builder.setMessage(content);
+        builder.setCancelable(false);
+        builder.setPositiveButton("Si",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (onClickButton) {
+                            case R.id.btn_facebook_activity_profile:
+                                String facebookId = "fb://page/1491096557677909";
+                                String urlPage = "https://www.facebook.com/atomic.nicaragua/";
+
+                                try {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(facebookId)));
+                                } catch (Exception e) {
+                                    //Abre url de pagina.
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlPage)));
+                                }
+                                break;
+
+                            case R.id.btn_instagram_activity_profile:
+
+                                break;
+
+                            default:
+
+
+                                break;
+                        }
+                    }
+                });
+
+        builder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+    @Override
+    public void onClickPositiveButton(DialogInterface dialog) {
+
+    }
+
+    @Override
+    public void onClickNegativeButton(DialogInterface dialog) {
+
     }
 }

@@ -25,6 +25,7 @@
     <string name="text_description_results">Hemos encontrado %1$d negocios en esta categoría, puedes filtarlos según su especialidad.</string>
     <string name="text_schedule_company_activity_result">Abierto de %1$s a %2$s</string>
     <string name="text_template_tooltip">%1$s disponibles</string>
+    <string name="text_template_tooltip_commercial">%1$s / %2$s</string>
 
 
     <!-- LOREM IPSUM -->
@@ -73,6 +74,12 @@
     <string name="text_content_warning_connection_mobile_fragment_welcome">Hola querido usuario, hemos detectado que estas usando tu internet movil para cargar la aplicación, esto puede consumir tus datos.</string>
     <string name="text_content_no_connection_fragment_welcome">No se ha detectado ninguna conexión, Guianica entrará en modo sin conexión.</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- DIALOG TEXT PROFILE ACTIVITY SOCIAL MEDIA-->
+    <string name="text_title_social_network_activity_profile">Redes sociales</string>
+    <string name="text_content_facebook_activity_profile">Quieres darle ME GUSTA a la pagina de %1$s</string>
+    <string name="text_content_instagram">Quieres dale SEGUIR la pagina de %1$s</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -31,7 +31,7 @@ public class ContactSheetHelper {
     private ArrayList<String> arrayEmails;
     private ContactRecyclerAdapter contactAdapter;
 
-    public ContactSheetHelper(Activity activity, Context context, String type, DataSnapshot snapshot) {
+    public ContactSheetHelper(Activity activity, Context context, String type, DataSnapshot snapshot, String title) {
         this.activity = activity;
         this.snapshot = snapshot;
 
@@ -44,7 +44,8 @@ public class ContactSheetHelper {
         ProgressBar progressBar = view.findViewById(R.id.progress_profile_activity);
 
         TextView sheetTitle = view.findViewById(R.id.title_contact_profile_activity);
-        sheetTitle.setText(type);
+
+        sheetTitle.setText(title);
 
         recyclerContact.setLayoutManager(new LinearLayoutManager(context));
         recyclerContact.setHasFixedSize(false);

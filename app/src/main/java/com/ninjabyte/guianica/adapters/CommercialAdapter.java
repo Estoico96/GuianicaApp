@@ -41,7 +41,7 @@ public class CommercialAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view == ((CardView) object);
+        return view == ((RelativeLayout) object);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class CommercialAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((CardView) object);
+        container.removeView((RelativeLayout) object);
     }
 
 }

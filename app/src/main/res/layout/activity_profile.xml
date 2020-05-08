@@ -19,14 +19,6 @@
             android:text="@string/title_gallery_profile_activity"
             tools:ignore="RelativeOverlap" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:textColor="@color/colorAccentText"
-            android:layout_marginTop="15dp"
-            style="@style/LayoutLateralMargin"
-            android:text="ver más"/>
 
 
         <android.support.v7.widget.RecyclerView
@@ -52,6 +44,7 @@
             android:id="@+id/container_social_networks_activity_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:layout_below="@+id/company_logo_profile_activity"
             android:layout_marginBottom="10dp"
             android:gravity="center">
@@ -63,6 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/app_name"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_facebook"
                 android:visibility="gone" />
 
@@ -71,6 +65,7 @@
                 style="@style/LayoutLateralMargin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/btn_facebook_activity_profile"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_instagram"
@@ -81,6 +76,7 @@
                 style="@style/LayoutLateralMargin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/btn_instagram_activity_profile"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_twitter"
@@ -92,6 +88,7 @@
                 style="@style/LayoutLateralMargin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/btn_twitter_activity_profile"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_youtube"
@@ -258,6 +255,7 @@
                 android:id="@+id/btn_mail_profile_activity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/button_contact_profile_activity"
                 android:contentDescription="@string/app_name"
@@ -267,6 +265,7 @@
                 android:id="@+id/btn_web_site_profile_activity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:background="@drawable/button_contact_profile_activity"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_web_site_orange" />
@@ -304,7 +303,7 @@
             android:layout_toEndOf="@+id/title_offers_profile_activity"
             android:background="@drawable/background_tooltip"
             android:fontFamily="@font/nunito_sans_bold"
-            android:text="3 disponibles"
+            android:text="***"
             android:textColor="@color/colorWhite"
             android:textSize="13sp"
             android:visibility="gone" />

@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -39,13 +40,15 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
     private ShimmerFrameLayout shimmerHomeFragment;
     private RelativeLayout containerContent;
     private Context context;
     private Activity activity;
     private CircleImageView userImage;
     private TextView userName;
+
+    private ImageButton btnFiltterCommercial;
 
     private HeightWrappingViewPager viewPagerCommercial;
     private  RecyclerView recyclerViewOffer;
@@ -54,6 +57,8 @@ public class HomeFragment extends Fragment {
     private CommercialAdapter commercialAdapter;
     private OfferAdapter adapterOffer;
     private CategoryHomefragmentAdapter adapterCategory;
+
+    private BubblePageIndicator indicator;
 
     private ArrayList<Offer> arrayOffers;
     private ArrayList<Category> arrayCategory;
@@ -71,6 +76,7 @@ public class HomeFragment extends Fragment {
     private TextView tooltipOffer;
     private TextView tooltipCommercial;
 
+    private View fragmentHomeView;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -89,7 +95,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View fragmentHomeView = inflater.inflate(R.layout.fragment_home, container, false);
+         fragmentHomeView = inflater.inflate(R.layout.fragment_home, container, false);
 
         shimmerHomeFragment = fragmentHomeView.findViewById(R.id.shimmer_view_home_fragment);
         containerContent = fragmentHomeView.findViewById(R.id.container_content_home_fragment);
@@ -104,6 +110,8 @@ public class HomeFragment extends Fragment {
         tooltipCategory = fragmentHomeView.findViewById(R.id.tooltip_category_home_fragment);
         tooltipCommercial = fragmentHomeView.findViewById(R.id.tooltip_commercial_home_fragment);
 
+        btnFiltterCommercial = fragmentHomeView.findViewById(R.id.btn_filter_commercial_home_fragment);
+        indicator = fragmentHomeView.findViewById(R.id.indicator);
 
         onCreateDataUser();
         onCreateOffer();
@@ -114,6 +122,7 @@ public class HomeFragment extends Fragment {
         categoryDatabaseReference.addChildEventListener(categoryChildEventListener);
         noticeDatabaseReference.addValueEventListener(noticeValueEventListener);
 
+        btnFiltterCommercial.setOnClickListener(this);
 
         return fragmentHomeView;
     }
@@ -181,8 +190,7 @@ public class HomeFragment extends Fragment {
                 arrayCategory.add(category);
                 adapterCategory.notifyDataSetChanged();
 
-                tooltipCategory.setText(String.format(
-                        getResources().getString(R.string.text_template_tooltip),
+                tooltipCategory.setText(String.format(getResources().getString(R.string.text_template_tooltip),
                         String.valueOf(arrayCategory.size())));
             }
             @Override
@@ -212,9 +220,7 @@ public class HomeFragment extends Fragment {
                     arrayCommercials.add(commercial);
                 }
 
-                tooltipCommercial.setText(String.format(
-                        getResources().getString(R.string.text_template_tooltip),
-                        String.valueOf(arrayCommercials.size())));
+
 
                 onCreateCommercialViewPager();
             }
@@ -242,17 +248,14 @@ public class HomeFragment extends Fragment {
         commercialAdapter = new CommercialAdapter(context, activity,arrayCommercials);
         viewPagerCommercial.setAdapter(commercialAdapter);
 
+
         int currentItem = Utilities.getCommercialInt(context, arrayCommercials.size());
         viewPagerCommercial.setCurrentItem(currentItem);
+        indicator.setViewPager(viewPagerCommercial);
 
-        if (currentItem == 0){
-            viewPagerCommercial.setPadding(16,0,284,0);
-        }else if (currentItem == arrayCommercials.size() -1){
-            viewPagerCommercial.setPadding(284,0,16,0);
-        }else {
-            viewPagerCommercial.setPadding(150,0,150,0);
-        }
-
+        tooltipCommercial.setText(String.format(getResources().getString(R.string.text_template_tooltip_commercial),
+                String.valueOf(currentItem+1),
+                String.valueOf(arrayCommercials.size())));
 
         viewPagerCommercial.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -262,19 +265,20 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onPageSelected(int i) {
-                if (i == 0){
-                    viewPagerCommercial.setPadding(16,0,284,0);
-                }else if (i == arrayCommercials.size() - 1){
-                    viewPagerCommercial.setPadding(284,0,16,0);
-                }else {
-                    viewPagerCommercial.setPadding(150,0,150,0);
-                }
+                tooltipCommercial.setText(String.format(getResources().getString(R.string.text_template_tooltip_commercial),
+                        String.valueOf(i+1),
+                        String.valueOf(arrayCommercials.size())));
             }
 
             @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
+            public void onPageScrollStateChanged(int i) {}
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btn_filter_commercial_home_fragment){
+            Utilities.showSnackBar(fragmentHomeView.findViewById(R.id.container_main_home_fragment), "Esta función esta en desarrollo, pronto estará lista.  \uD83D\uDC68\u200D\uD83D\uDCBB");
+        }
     }
 }
